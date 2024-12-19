@@ -1,0 +1,74 @@
+/* reset */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+p {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+img {
+  vertical-align: bottom;
+  max-width: 100%;
+}
+button {
+  -webkit-appearance: none;
+  appearance: none;
+  vertical-align: middle;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  border-radius: 0;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+/* 共通 */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  font-family: impact, MS-gothic;
+  background-color: gray;
+}
+.screen {
+  aspect-ratio: 9/16;
+  min-width: 300px;
+  max-height: 100vh;
+}
+/* start */
+#start {
+  background-image: url(images/start@2x.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  & button {
+    width: 46%;
+    aspect-ratio: 496/156;
+    margin-bottom: 15.74%;
+    border-radius: 78px;
+    text-align: center;
+    font-size: 4.6vw;
+    letter-spacing: 0.1em;
+    color: #995633;
+    background-color: #F1EC7E;
+    border: none;
+    box-shadow: 0px 6px #E5814C;
+  }
+}
