@@ -9,12 +9,11 @@
 </head>
 
 <body>
-  <!-- スタート画面 -->
+  <!-- スタート -->
   <div id="start" class="screen">
     <button id="start-button">START</button>
   </div>
-
-  <!-- ゲームプレイ画面 -->
+  <!-- プレイ -->
   <div id="play" class="screen" style="display: none;">
     <div class="game-header">
       <img src="icon.png" alt="Game Icon" class="game-icon">
@@ -25,22 +24,18 @@
       <button id="action-button" class="overlay-button">アクション</button>
     </div>
   </div>
-
-  <!-- ゲームオーバー画面 -->
+  <!-- オーバー -->
   <div id="over" class="screen" style="display: none;">
     <h1>ゲームオーバー</h1>
-    <p>スコア: <span id="final-score"></span></p>
     <button id="restart-button">再挑戦する</button>
   </div>
-
-  <!-- ゲームクリア画面 -->
+  <!-- クリア -->
   <div id="clear" class="screen" style="display: none;">
     <h1>ゲームクリア！</h1>
-    <p>スコア: <span id="final-score-clear"></span></p>
     <button id="restart-button-clear">もう一度プレイする</button>
   </div>
 
-  <script src="main.js"></script>
+  <script src="main.js" defer></script>
 </body>
 
 </html>

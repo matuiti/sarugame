@@ -1,5 +1,3 @@
-document.addEventListener('DOMContentLoaded', function () {
-
   // 要素の取得
   const scenes = {
     start: document.getElementById("start"),
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
     startGame();
   });
 
-});
 
 // シーン変更関数
 function sceneChange(scene, scenes) {

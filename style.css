@@ -31,7 +31,7 @@ button {
   cursor: pointer;
 }
 
-/* 共通 */
+/* base */
 body {
   display: flex;
   flex-direction: column;
