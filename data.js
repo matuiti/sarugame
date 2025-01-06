@@ -62,17 +62,17 @@ saru_close_d_l.src = "images/saru_02_down_l@2x.png";
 let saru_close_apple_l = new Image();/*アップルタイム変身時*/
 saru_close_apple_l.src = "images/saru_02_apple_l@2x.png";
 //オブジェクト
-let item_01 = new Image();/*バナナ*/
-item_01.src = "images/item_01@2x.png";
-let item_02 = new Image();/*リンゴ*/
-item_02.src = "images/item_02@2x.png";
-let item_03 = new Image();/*うんち*/
-item_03.src = "images/item_03@2x.png";
+let banana = new Image();/*バナナ*/
+banana.src = "images/item_banana@2x.png";
+let apple = new Image();/*リンゴ*/
+apple.src = "images/item_apple@2x.png";
+let unti = new Image();/*うんち*/
+unti.src = "images/item_unti@2x.png";
 //さるガール
-let saru_girl = new Image();  /*サルガール(右向き)*/
+let saru_girl = new Image();  /*右向き*/
 saru_girl.src = "images/saru_girl@2x.png";
-let saru_girl_l = new Image();  /*サルガール(左向き)*/
+let saru_girl_l = new Image();  /*左向き*/
 saru_girl_l.src = "images/saru_girl_l@2x.png";
 //さるガール（GIF）
-let saru_girl_d = new Image();/*サルガール*/
-saru_girl_d.src = "images/saru_girl_d.gif";
+let saru_girl_gif = new Image();/*ダンシング*/
+saru_girl_gif.src = "images/saru_girl.gif";

@@ -1,5 +1,6 @@
-//初期化
 function init() {
+  //BGMスタート
+  bgm.play();
   //フラグ
   over = false;
   loopStop = false;
