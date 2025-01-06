@@ -1,19 +1,17 @@
-/*--------------------設定-----------------------------------*/
-//描画スピード
+//FPS
 let gameSpeed = 1000 / 60;
-//降ってくるアイテムのリポップ間隔(ms)
+//アイテムのリポップ間隔(ms)
 let repopTime = 1000;
-//ドロップスピード(ms)
+//落下速度(ms)
 let dropSpeed = 400;
-
-//音
+//BGM（プレイ時）
+let bgm_01 = document.getElementById("bgm_01");   /*BGM01*/
+let bgm = bgm_01;/*BGM初期値*/
+//ヴォリューム調整
 se_unti.volume = 0.3;
 se_banana.volume = 0.3;
 
-let bgm_01 = document.getElementById("bgm_01");   /*BGM01*/
-let bgm = bgm_01;/*BGM初期値*/
-
-/*min~maxの乱数獲得ファンクション*/
+/*min~maxの乱数獲得関数*/
 function rand(min, max) { return Math.floor(Math.random() * ((max + 1) - min) + min) }
 
 //フィールドサイズ
@@ -47,6 +45,6 @@ let currentLife;
 
 //オブジェクト共通
 //-----------------------落ちてくるオブジェクトの設定---------
-let objType = [item_01_2x, item_02_2x, item_03_2x];
+let objType = [item_01, item_02, item_03];
 let bnnEf = document.getElementById('bnn-ef');/*バナナ取得時のエフェクト専用要素*/
 let appleTime = false;

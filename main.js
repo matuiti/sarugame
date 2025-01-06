@@ -1,16 +1,16 @@
   // 要素の取得
-  const scenes = {
-    start: document.getElementById("start"),
-    play: document.getElementById("play"),
-    clear: document.getElementById("clear"),
-    over: document.getElementById("over")
-  };
+  // const scenes = {
+  //   start: document.getElementById("start"),
+  //   play: document.getElementById("play"),
+  //   clear: document.getElementById("clear"),
+  //   over: document.getElementById("over")
+  // };
 
   const BTN_START = document.getElementById("start-button");
   const BTN_RESTART = document.getElementById("restart-button");
 
   // 初期シーンの表示
-  sceneChange('start', scenes);
+  // sceneChange('start', scenes);
   // スタートボタンのクリック処理
   BTN_START.addEventListener("click", function () {
     sceneChange('play', scenes);
