@@ -28,7 +28,7 @@ class SceneManager {
 
   #showScene(scene) {
     if (this.#els[scene]) {
-      this.#els[scene].style.display = 'block'; // 指定されたシーンを表示
+      this.#els[scene].style.display = 'flex'; // 指定されたシーンを表示
     }
   }
 

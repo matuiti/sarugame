@@ -48,7 +48,7 @@ const YES_BTN = document.getElementById("yes-btn");
 const NO_BTN = document.getElementById("no-btn");
 const RESTART_BTN = document.getElementById("restart-btn");
 //ボタンのクリック処理
-START_BTN.addEventListener("click", SCENE_MANAGER.setScene("play"));
+START_BTN.addEventListener("click", () => SCENE_MANAGER.setScene("play"));
 
 //オブジェクトのタイプ名
 let OBJ_TYPES = ["banana", "apple", "unti"];

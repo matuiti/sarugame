@@ -10,10 +10,12 @@
 </head>
 
 <body>
+
   <!-- ゲームスタート画面 -->
-  <div id="start" class="screen">
+  <div id="start" class="screen" style="display: none;">
     <button id="start-btn">START</button>
   </div>
+
   <!-- プレイ画面 -->
   <div id="play" class="screen" style="display: none;">
     <div class="game-header">
@@ -25,20 +27,23 @@
       <button id="action-button" class="overlay-button">アクション</button>
     </div>
   </div>
+
   <!-- ゲームオーバー画面 -->
   <div id="over" class="screen" style="display: none;">
-    <h1>ゲームオーバー</h1>
-    <p>コンテニュー？</p>
-    <button id="yes-btn">Yes</button>
-    <button id="no-btn">No</button>
-  </div>
-  <!-- ゲームクリア画面 -->
-  <div id="clear" class="screen" style="display: none;">
-    <h1>ゲームクリア！</h1>
-    <button id="restart-btn">もう一度プレイする</button>
+    <img id="over__title" class="over__title" width="80%" src="images/overtitle@2x.png">
+    <div id="over__body" class="over__body">
+      <img id="over__message" class="over__message" width="80%" src="images/playagain@2x.png">
+      <button id="yes-btn" class="yes-btn"></button>
+      <button id="no-btn" class="no-btn"></button>
+    </div>
+    <img id="over-saru" class="over-saru" width="80%" src="images/saru_gameover@2x.png">
   </div>
 
-  <!-- <script src="js/Assets.js"></script> -->
+  <!-- ゲームクリア画面 -->
+  <div id="clear" class="screen" style="display: none;">
+    <button id="restart-btn">ONE MORE ?</button>
+  </div>
+
   <script type="module" src="js/main.js"></script>
 </body>
 
