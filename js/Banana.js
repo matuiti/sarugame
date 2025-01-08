@@ -1,5 +1,8 @@
+import Obj from './Obj.js';
+
 class Banana extends Obj {
   constructor(){
+    super();
     this.t = "banana";
   }
 
@@ -58,3 +61,5 @@ class Banana extends Obj {
   }
 
 }
+
+export default Banana;

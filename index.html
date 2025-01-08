@@ -6,18 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SARU GAME</title>
   <link rel="stylesheet" href="style.css">
-	<link rel="shortcut icon" href="favicon.ico">
+  <link rel="shortcut icon" href="favicon.ico">
 </head>
 
 <body>
-  <!-- スタート -->
+  <!-- ゲームスタート画面 -->
   <div id="start" class="screen">
-    <button id="start-button">START</button>
+    <button id="start-btn">START</button>
   </div>
-  <!-- プレイ -->
+  <!-- プレイ画面 -->
   <div id="play" class="screen" style="display: none;">
     <div class="game-header">
-      <img src="icon.png" alt="Game Icon" class="game-icon">
+      <img src="images/icon_01@2x.png" alt="Game Icon" class="game-icon">
       <span>スコア: <span id="score">0</span></span>
     </div>
     <div class="content">
@@ -25,18 +25,21 @@
       <button id="action-button" class="overlay-button">アクション</button>
     </div>
   </div>
-  <!-- オーバー -->
+  <!-- ゲームオーバー画面 -->
   <div id="over" class="screen" style="display: none;">
     <h1>ゲームオーバー</h1>
-    <button id="restart-button">再挑戦する</button>
+    <p>コンテニュー？</p>
+    <button id="yes-btn">Yes</button>
+    <button id="no-btn">No</button>
   </div>
-  <!-- クリア -->
+  <!-- ゲームクリア画面 -->
   <div id="clear" class="screen" style="display: none;">
     <h1>ゲームクリア！</h1>
-    <button id="restart-button-clear">もう一度プレイする</button>
+    <button id="restart-btn">もう一度プレイする</button>
   </div>
 
-  <script src="main.js" defer></script>
+  <!-- <script src="js/Assets.js"></script> -->
+  <script type="module" src="js/main.js"></script>
 </body>
 
 </html>

@@ -1,16 +1,23 @@
 class Obj {
-  constructor(t) {
-    this.t = t; /*種類*/
-    this.x = (rand(0, 10) - 1) * BLOCK_W;
+  constructor(BLOCK_W,BLOCK_H,SCREEN_H) {
+    this.BLOCK_W  = BLOCK_W;
+    this.BLOCK_H  = BLOCK_H;
+    this.SCREEN_H = SCREEN_H;
+    
+    this.t; /*種類*/
+    this.x = (this.rand(0, 10) - 1) * this.BLOCK_W;
     this.y = 0;
-    this.vy = BLOCK_H;/*移動距離*/
-    this.w = BLOCK_W;
-    this.h = BLOCK_H;
+    this.vy = this.BLOCK_H;/*移動距離*/
+    this.w = this.BLOCK_W;
+    this.h = this.BLOCK_H;
     this.erase = false;
   }
+
+
+  
   update() {
     if (over) { return; }
-    if (this.y >= SCREEN_H) {
+    if (this.y >= this.SCREEN_H) {
       this.erase = true;/*画面外は削除*/
       return;
     }
@@ -51,4 +58,10 @@ class Obj {
       return true;
     }
   }
+
+  /*min~maxの乱数獲得関数*/
+  rand(min, max) { return Math.floor(Math.random() * ((max + 1) - min) + min) }
+
 }
+
+export default Obj;
