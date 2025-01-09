@@ -17,14 +17,15 @@
   </div>
 
   <!-- プレイ画面 -->
-  <div id="play" class="screen" style="display: none;">
-    <div class="game-header">
-      <img src="images/icon_01@2x.png" alt="Game Icon" class="game-icon">
+  <div id="play" class="screen bg-03" style="display: none;">
+    <div id="play__header" class="play__header">
+      <img id="play__icon" class="play__icon" src="images/icon_01@2x.png">
       <span>スコア: <span id="score">0</span></span>
     </div>
-    <div class="content">
-      <canvas id="canvas"></canvas>
-      <button id="action-button" class="overlay-button">アクション</button>
+    <canvas id="canvas"></canvas>
+    <div id="play__btns" class="play__btns">
+      <button id="left" class="left"></button>
+      <button id="right" class="right"></button>
     </div>
   </div>
 
