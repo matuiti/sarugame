@@ -1,6 +1,10 @@
-import Assets from './Assets.js';
+import Images from './Images.js';
+import Sounds from './Sounds.js';
+import Config from './Config.js';
+import GameState from './GameState.js';
 import SceneManager from './SceneManager.js';
+import ObjManager from './ObjManager.js';
 import Obj from './Obj.js';
-import Banana from './Banana.js';
+import Rope from './Rope.js';
 
-export { Assets, SceneManager, Obj, Banana };
+export { Images, Sounds, Config, GameState, SceneManager, ObjManager, Obj, Rope };

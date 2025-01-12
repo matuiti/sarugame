@@ -1,15 +1,6 @@
-class Assets {
+class Images {
   constructor() {
-    // サウンド
-    this.bgm_01 = new Audio('sound/bgm_01.mp3');
-    this.se_move = new Audio('sound/move_02.mp3');
-    this.se_scream = new Audio('sound/dawn.mp3');
-    this.se_banana = new Audio('sound/banana.mp3');
-    this.se_apple = new Audio('sound/apple.mp3');
-    this.se_appletime = new Audio('sound/mahounosutekki.mp3');
-    this.se_unti = new Audio('sound/unti_01.mp3');
-
-    // 画像
+    
     this.heart_00 = this.loadImage("images/heart_00@2x.png");
     this.heart = this.loadImage("images/heart@2x.png");
     this.icon_01 = this.loadImage("images/icon_01@2x.png");
@@ -56,4 +47,4 @@ class Assets {
   }
 }
 
-export default Assets;
+export default Images;

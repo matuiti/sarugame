@@ -1,18 +1,29 @@
 class SceneManager {
-
   #scenes;       // シーンのリスト
   #currentScene; // 現在のシーン
-  #els;          // シーンのDOM要素
-
+  #els;          // シーンの要素
+  #btns;         // 各シーンのボタン要素
+  
   constructor() {
     this.#els = {
-      start: document.getElementById("start"),
-      play: document.getElementById("play"),
-      clear: document.getElementById("clear"),
-      over: document.getElementById("over")
+      start : document.getElementById("start"),
+      play  : document.getElementById("play"),
+      clear : document.getElementById("clear"),
+      over  : document.getElementById("over")
     };
     this.#scenes = ["start", "play", "clear", "over"];
     this.#currentScene = "start"; // 初期値
+
+    this.#btns = {
+      start   : document.getElementById("start-btn"),
+      yes     : document.getElementById("yes-btn"),
+      no      : document.getElementById("no-btn"),
+      restart : document.getElementById("restart-btn")
+    };
+    this.#btns.start.addEventListener("click", () => this.setScene("play"));
+    this.#btns.yes.addEventListener("click", () => this.setScene("play"));
+    this.#btns.no.addEventListener("click", () => this.setScene("start"));
+    this.#btns.restart.addEventListener("click", () => this.setScene("play"));
   }
 
   update() {

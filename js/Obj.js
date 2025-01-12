@@ -1,67 +1,44 @@
+
+import { Config } from './index.js';
+
 class Obj {
-  constructor(BLOCK_W,BLOCK_H,SCREEN_H) {
-    this.BLOCK_W  = BLOCK_W;
-    this.BLOCK_H  = BLOCK_H;
-    this.SCREEN_H = SCREEN_H;
-    
-    this.t; /*種類*/
-    this.x = (this.rand(0, 10) - 1) * this.BLOCK_W;
-    this.y = 0;
-    this.vy = this.BLOCK_H;/*移動距離*/
-    this.w = this.BLOCK_W;
-    this.h = this.BLOCK_H;
+  constructor( type ) {
+    this.blockW   = Config.BLOCK_W;
+    this.blockH   = Config.BLOCK_H;
+    this.fieldRow = Config.FIELD_ROW;
+    this.type = type;         /*種類を設定*/
+    this.x = this.rand(0, 9); /*初期座標x*/
+    this.y = 0;               /*初期座標y*/
+    this.vy = 1;              /*移動距離*/
     this.erase = false;
   }
 
-
-  
   update() {
-    if (over) { return; }
-    if (this.y >= this.SCREEN_H) {
-      this.erase = true;/*画面外は削除*/
-      return;
-    }
+    if (over) return;
+    if (this.checkMove()) this.erase = true; /*画面外は削除*/
+    this.move();
   }
 
   draw() {
-
+    // 描画処理をここに記述
   }
 
-  moveObj() {
+  /*画面下を超えたら削除*/
+  checkMove() {
+    return this.y >= this.fieldRow;
+  }
+
+  move() {
     this.y += this.vy;
   }
 
-  checkHit() {
-    if (
-      ((this.y >= 627 && this.y <= 1248) &&
-        (((this.x === 0 || this.x === 108 || this.x === 324) && saru_x === 0) ||
-          ((this.x === 648 || this.x === 864 || this.x === 972) && saru_x === 648) ||
-          ((this.x === 108 || this.x === 432) && saru_x === 108) ||
-          ((this.x === 540 || this.x === 864) && saru_x === 540) ||
-          ((this.x === 324 || this.x === 648) && saru_x === 324) ||
-          ((this.x === 216 || this.x === 432 || this.x === 540) && (saru_x === 216 && dir_r)) ||
-          ((this.x === 432 || this.x === 648 || this.x === 756) && (saru_x === 432 && dir_r)) ||
-          ((this.x === 216 || this.x === 324 || this.x === 540) && (saru_x === 216 && !dir_r)) ||
-          ((this.x === 432 || this.x === 540 || this.x === 756) && (saru_x === 432 && !dir_r))))
-      ||
-      ((this.y >= 960 && this.y <= 1248) &&
-        ((this.x >= 0 && this.x <= 324 && saru_x === 0) ||
-          (this.x >= 108 && this.x <= 432 && saru_x === 108) ||
-          (this.x >= 216 && this.x <= 540 && saru_x === 216) ||
-          (this.x >= 324 && this.x <= 648 && saru_x === 324) ||
-          (this.x >= 432 && this.x <= 756 && saru_x === 432) ||
-          (this.x >= 540 && this.x <= 864 && saru_x === 540) ||
-          (this.x >= 648 && this.x <= 972 && saru_x === 648) ||
-          (this.x >= 756 && this.x <= 1080 && saru_x === 756)))
-    ) {
-      this.erase = true;
-      return true;
-    }
-  }
+  
 
   /*min~maxの乱数獲得関数*/
-  rand(min, max) { return Math.floor(Math.random() * ((max + 1) - min) + min) }
-
+  rand(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 }
 
 export default Obj;
+
