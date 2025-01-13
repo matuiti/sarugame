@@ -1,35 +1,40 @@
 import { Images, Sounds, Config, GameState, SceneManager, ObjManager, Obj, Rope } from './index.js';
 
+// canvas
+const canvas = document.getElementById('canvas');
+const ctx    = canvas.getContext('2d');
+
 // インスタンス
 const IMAGES = new Images; //画像データ
 const SOUNDS = new Sounds; //サウンドデータ
 const CONFIG = new Config; //設定
 const GAME_STATE = new GameState;   //ゲームの状態管理
-const SCENE_MANAGER = new SceneManager;//シーン管理
+const SCENE_MANAGER = new SceneManager();//シーン管理
 const OBJ_MANAGER = new ObjManager;//オブジェクトの制御
-const ROPE = new Rope;        //ロープ
-new Obj; //ドロップアイテムの親クラス
+const ROPE = new Rope; //ロープ
+const OBJ  = new Obj;  //ドロップアイテムの親クラス
 
 //初期表示
 // SCENE_MANAGER.setScene("start");
 
-if (SCENE_MANAGER.getScene() === "play") {
-  init();
-}
+// if (SCENE_MANAGER.getScene() === "play") {
+//   init();
+// }
+
+// init();
 
 function init() {
   // メインのBGMを再生開始
-  // SOUNDS.setBGM();
+  SOUNDS.setBGM();
   GAME_STATE.reset();
   ROPE.reset();
   OBJ_MANAGER.reset();
 
-
   // オブジェクトのポップ開始
   OBJ_MANAGER.startPop(CONFIG.POP_INTERVAL);
-
+  // OBJ.startAutoMove(CONFIG.FALLING_SPEED);
   // ゲームループの開始
-  // requestAnimationFrame(gameLoop);
+  requestAnimationFrame(gameLoop);
 }
 
 
@@ -45,7 +50,6 @@ function gameLoop(timestamp) {
     return;// ゲームループ終了
   }
 
-  // 設定FPSで処理を実行
   if (!lastTime) lastTime = timestamp;
   deltaTime = timestamp - lastTime;
   if (deltaTime >= CONFIG.GAME_SPEED) {
@@ -64,6 +68,7 @@ function update() {
 }
 
 function draw() {
+  OBJ_MANAGER.drawAllObjects(ctx);
 }
 
 function over() {

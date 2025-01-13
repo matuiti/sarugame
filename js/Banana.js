@@ -1,4 +1,4 @@
-import { Sounds, GameState } from './index.js'
+import { Sounds, GameState, Obj } from './index.js'
 
 class Banana extends Obj {
   constructor() {
@@ -48,7 +48,9 @@ class Banana extends Obj {
       this.bnnEf.classList.add('none');
     }, 500);
     Sounds.setBanana();
-
+  }
+  draw(ctx){
+    super.draw(ctx);
   }
 }
 

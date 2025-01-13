@@ -1,7 +1,12 @@
+import { Sounds, GameState, Obj } from './index.js'
+
 class Apple extends Obj {
   constructor() {
     super("apple");
     this.appleTime = false;
+  }
+  draw(ctx) {
+    super.draw(ctx);
   }
 
   isAppleTime(){return this.appleTime;}

@@ -3,7 +3,7 @@ class Config {
     // システム
     this.GAME_SPEED = 1000 / 60; // FPS
     this.POP_INTERVAL = 1000; // アイテムのリポップ間隔(ms)
-    this.FALLING_SPEED = 400; // 落下速度(ms)
+    this.FALLING_SPEED = 1000; // 落下速度(ms)
 
     // フィールド
     this.FIELD_COL = 10; // 列数

@@ -1,8 +1,10 @@
+import { Config, Banana, Apple, Unti } from './index.js';
+const CONFIG = new Config;
 class ObjManager {
   constructor() {
     this.objects = [];
-    this.objTypes = ["Banana", "Apple", "Unti"]; // ドロップオブジェクトのクラス
-    this.probabilities = [0.7, 0.1, 0.2];        // banana, apple, unti の出現確率
+    this.objTypes = [Banana, Apple, Unti]; // ドロップオブジェクトのクラス
+    this.probabilities = [0.7, 0.1, 0.2];  // banana, apple, unti の出現確率
     this.intervalId = null;
   }
 
@@ -22,6 +24,7 @@ class ObjManager {
   #addObject() {
     const objClass = this.#getRandomClass();
     const newObj = new objClass();
+    newObj.startAutoMove(CONFIG.FALLING_SPEED); // オブジェクトの移動開始
     this.objects.push(newObj);
   }
 
@@ -38,6 +41,17 @@ class ObjManager {
 
   reset() {
     this.objects.splice(0); // 配列をクリア
+  }
+
+  updateAllObjects() {
+    this.objects = this.objects.filter(obj => !obj.erase);
+    this.objects.forEach(obj => obj.move()); // オブジェクトの移動を更新
+  }
+
+  drawAllObjects(ctx) {
+    this.objects.forEach(obj => {
+      obj.draw(ctx);
+    });
   }
 }
 
