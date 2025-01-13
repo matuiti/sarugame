@@ -11,7 +11,7 @@ const ROPE = new Rope;        //ロープ
 new Obj; //ドロップアイテムの親クラス
 
 //初期表示
-SCENE_MANAGER.setScene("start");
+// SCENE_MANAGER.setScene("start");
 
 if (SCENE_MANAGER.getScene() === "play") {
   init();
@@ -24,8 +24,53 @@ function init() {
   ROPE.reset();
   OBJ_MANAGER.reset();
 
-  // ループの開始
-  // ドロップオブジェクトのループも開始
-  // 以下、仮置き
-  // loop1 = setInterval(gameLoop, gameSpeed);
+
+  // オブジェクトのポップ開始
+  OBJ_MANAGER.startPop(CONFIG.POP_INTERVAL);
+
+  // ゲームループの開始
+  // requestAnimationFrame(gameLoop);
+}
+
+
+
+
+
+
+let lastTime = 0;//最終計測
+let deltaTime = 0;//最終計測からの経過時間
+function gameLoop(timestamp) {
+  if (GAME_STATE.over) {
+    over();
+    return;// ゲームループ終了
+  }
+
+  // 設定FPSで処理を実行
+  if (!lastTime) lastTime = timestamp;
+  deltaTime = timestamp - lastTime;
+  if (deltaTime >= CONFIG.GAME_SPEED) {
+    update();
+    draw();
+    lastTime = timestamp;
+  }
+
+  // requestAnimationFrame(gameLoop);
+}
+
+function update() {
+  //checkHit
+  //
+
+}
+
+function draw() {
+}
+
+function over() {
+  // サルを操作不能にする
+  // 当たり判定チェックを停止
+  // やられアニメーションを起動（サル・ロープ）
+
+  OBJ_MANAGER.stopPop();
+  SCENE_MANAGER.setScene("over");
 }

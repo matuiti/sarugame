@@ -5,11 +5,6 @@ class Banana extends Obj {
     super("banana");
     this.bnnEf = document.getElementById('bnn-ef');// バナナ獲得時のポイント演出用要素
   }
-  update() {
-    if (this.checkHit()) {
-      this.getBanana();
-    }
-  }
   getBanana() {
     GameState.updateBanana();
     switch (saru_x) {

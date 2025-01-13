@@ -2,8 +2,8 @@ class Config {
   constructor() {
     // システム
     this.GAME_SPEED = 1000 / 60; // FPS
-    this.REPOP_TIME = 1000; // アイテムのリポップ間隔(ms)
-    this.DROP_SPEED = 400; // 落下速度(ms)
+    this.POP_INTERVAL = 1000; // アイテムのリポップ間隔(ms)
+    this.FALLING_SPEED = 400; // 落下速度(ms)
 
     // フィールド
     this.FIELD_COL = 10; // 列数
@@ -22,11 +22,11 @@ class Config {
   getGameSpeed() {
     return this.GAME_SPEED;
   }
-  getRepopTime() {
-    return this.REPOP_TIME;
+  getPopInterval() {
+    return this.POP_INTERVAL;
   }
   getDropSpeed() {
-    return this.DROP_SPEED;
+    return this.FALLING_SPEED;
   }
 
   // フィールド設定のgetメソッド
@@ -53,11 +53,11 @@ class Config {
   setGameSpeed(value) {
     this.GAME_SPEED = value;
   }
-  setRepopTime(value) {
-    this.REPOP_TIME = value;
+  setPopInterval(value) {
+    this.POP_INTERVAL = value;
   }
   setDropSpeed(value) {
-    this.DROP_SPEED = value;
+    this.FALLING_SPEED = value;
   }
 
   // フィールド設定のsetメソッド

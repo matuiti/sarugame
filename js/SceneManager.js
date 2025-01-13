@@ -26,7 +26,7 @@ class SceneManager {
     this.#btns.restart.addEventListener("click", () => this.setScene("play"));
   }
 
-  update() {
+  #update() {
     this.#hideAll();  // 全てのシーンを非表示
     this.#showScene(this.#currentScene); // 現在のシーンを表示
   }
@@ -50,7 +50,7 @@ class SceneManager {
   setScene(scene) {
     if (this.#scenes.includes(scene)) {
       this.#currentScene = scene;
-      this.update(); // シーンを設定した後に表示を更新
+      this.#update(); // シーンを設定した後に表示を更新
     } else {
       console.warn(`無効なシーン: ${scene}`); // 無効なシーンの場合は警告を表示
     }
