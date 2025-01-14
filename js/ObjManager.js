@@ -25,7 +25,7 @@ class ObjManager {
   #addObject() {
     const objClass = this.#getRandomClass();
     const newObj = new objClass();
-    newObj.startAutoMove(CONFIG.FALLING_SPEED); // オブジェクトの移動開始
+    newObj.startAutoMove(CONFIG.FALLING_SPEED); // オブジェクトの自動移動開始
     this.objects.push(newObj);
   }
 
@@ -40,11 +40,11 @@ class ObjManager {
     }
   }
 
-  reset() {
-    this.objects.splice(0); // 配列をクリア
+  reset() {//配列を空に
+    this.objects.splice(0);
   }
 
-  updateAllObjects() {
+  updateAllObjects() {//objects[]を削除フラグがfalseのものだけで作成更新
     this.objects = this.objects.filter(obj => !obj.erase);
   }
 

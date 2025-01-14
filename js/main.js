@@ -1,4 +1,4 @@
-import { Images, Sounds, Config, GameState, ObjManager, Obj, Rope } from './index.js';
+import { Images, Sounds, Config, GameState, ObjManager, Obj, Rope, Saru } from './index.js';
 
 // シーン管理
 let scene = 0;//0:タイトル, 1:プレイ, 2:ゲームオーバー, 3:クリア
@@ -26,8 +26,9 @@ const SOUNDS = new Sounds; //サウンドデータ
 const CONFIG = new Config; //設定
 const GAME_STATE = new GameState;   //ゲームの状態管理
 const OBJ_MANAGER = new ObjManager;//オブジェクトの制御
-const ROPE = new Rope; //ロープ
 const OBJ = new Obj;  //ドロップアイテムの親クラス
+const ROPE = new Rope; //ロープ
+const SARU = new Saru; //サル
 
 // canvas
 const canvas = document.getElementById('canvas');
@@ -40,7 +41,11 @@ let deltaTime = 0;//最終計測からの経過時間
 function gameLoop(timestamp) {
   if (GAME_STATE.over) {
     toOver();
-    return;// ゲームループ終了
+    return;//ループを抜ける
+  }
+  if (GAME_STATE.clear) {
+    toClear();
+    return;//ループを抜ける
   }
   
   if (!lastTime) lastTime = timestamp;
@@ -56,12 +61,13 @@ function gameLoop(timestamp) {
 }
 
 function update() {
-  OBJ_MANAGER.updateAllObjects();
+  OBJ_MANAGER.updateAllObjects();//objects[]を削除フラグがfalseのものだけで作成更新
 
   //checkHit
 }
 
 function draw() {
+  ROPE.draw(ctx);
   OBJ_MANAGER.drawAllObjects(ctx);
 }
 
@@ -78,11 +84,16 @@ function toOver() {//ゲームオーバー移行処理
   // サルを操作不能にする
   // 当たり判定チェックを停止
   // やられアニメーションを起動（サル・ロープ）
+  // SARU.toOver();
+  // ROPE.toOver();
 
   OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
   setScene(2);//ゲームオーバーへ
 }
-
+function toClear() {//ゲームクリア移行処理
+  OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
+  setScene(3);//ゲームクリアへ
+}
 function resetScene() {//全シーンを非表示
   Object.values(scenes).forEach(el => {
     el.style.display = 'none';
