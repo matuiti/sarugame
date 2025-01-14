@@ -34,14 +34,14 @@ button {
 
 /* base */
 body {
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 9/16;
   max-height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Impact', 'MS Gothic';
+  font-family: impact, MS-gothic;
   background-color: gray;
   overflow: hidden; /* 検証画面のスクロールバーを出現させない */
   border: 4px solid #2d100752;
@@ -65,11 +65,11 @@ body {
 }
 #title button {
   width: 46%;
-  aspect-ratio: 496 / 156;
+  aspect-ratio: 496/156;
   margin-bottom: 15.74%;
   border-radius: 78px;
   text-align: center;
-  font-size: clamp(10vw, 40px, 100%); /* 修正 */
+  font-size: clamp(100%, 10vw, 40px);
   letter-spacing: 0.1em;
   color: #995633;
   background-color: #f1ec7e;
@@ -84,16 +84,16 @@ body {
   position: absolute;
 }
 #play.bg-01 {
-  background: url(images/bg_01.png) center / cover no-repeat; /* スペース追加 */
+  background: url(images/bg_01.png) center/cover no-repeat;
 }
 #play.bg-02 {
-  background: url(images/bg_02.png) center / cover no-repeat;
+  background: url(images/bg_02.png) center/cover no-repeat;
 }
 #play.bg-03 {
-  background: url(images/bg_03.png) center / cover no-repeat;
+  background: url(images/bg_03.png) center/cover no-repeat;
 }
 #play.bg-04 {
-  background: url(images/bg_04.png) center / cover no-repeat;
+  background: url(images/bg_04.png) center/cover no-repeat;
 }
 .bnn-ef {
   position: absolute;
@@ -101,7 +101,7 @@ body {
   font-size: 2.4rem;
   color: #efed41;
   -webkit-text-stroke: 2px #ef7c39;
-  /* text-stroke: 2px #ef7c39; */
+  /* text-stroke: 2px #Fef7c39; */
   -webkit-animation: fadeInUp 0.2s;
   animation: fadeInUp 0.2s;
 }
@@ -135,7 +135,7 @@ body {
   text-align: center;
   width: 100%;
   position: absolute;
-  left: 0;
+  left: 0%;
   bottom: 0;
 }
 .left,
@@ -145,11 +145,11 @@ body {
   aspect-ratio: 346 / 324;
 }
 .left {
-  background: url(images/arrow_left@2x.png) center / contain no-repeat; /* スペース追加 */
+  background: url(images/arrow_left@2x.png) center/contain no-repeat;
   margin-right: 10%;
 }
 .right {
-  background: url(images/arrow_right@2x.png) center / contain no-repeat; /* スペース追加 */
+  background: url(images/arrow_right@2x.png) center/contain no-repeat;
 }
 .leave-l {
   animation: leave-l-anim 0.8s 0.6s both;

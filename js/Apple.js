@@ -1,16 +1,18 @@
-import { Sounds, GameState, Obj } from './index.js'
+import { Sounds, GameState, Obj, Saru } from './index.js'
 
 class Apple extends Obj {
   constructor() {
     super("apple");
-    this.appleTime = false;
   }
+  getApple(){
+    GameState.addApple();//スコア加算
+    Saru.setAppleTime(1);//アップルタイム起動
+  }
+
   draw(ctx) {
     super.draw(ctx);
   }
 
-  isAppleTime(){return this.appleTime;}
-  setAppleTime( appleTime ){return this.appleTime = appleTime;}//アップルタイムを活性化or非活性化
 }
 
 export default Apple;

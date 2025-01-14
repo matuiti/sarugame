@@ -9,7 +9,8 @@ class Saru {
     this.dir_r = true;
     this.appleTime = false;
   }
-
-  isAppleTime() { return this.appleTime; }
-  switchAppleTime( isAppleTime ) { return this.appleTime = isAppleTime; }//アップルタイム状態を切り替え
+  setAppleTime(appleTime) { this.appleTime = appleTime; }// アップルタイムの活性 or 非活性
+  checkAppleTime() { return this.appleTime; }
 }
+
+export default Saru;

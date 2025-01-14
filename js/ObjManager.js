@@ -50,7 +50,6 @@ class ObjManager {
 
   drawAllObjects(ctx) {
     this.objects.forEach(obj => {
-      console.log(this.objects);
       obj.draw(ctx);
     });
   }

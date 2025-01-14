@@ -8,5 +8,6 @@ import Banana from './Banana.js';
 import Apple from './Apple.js';
 import Unti from './Unti.js';
 import Rope from './Rope.js';
+import Saru from './Saru.js';
 
-export { Images, Sounds, Config, GameState, ObjManager, Obj, Banana, Apple, Unti, Rope };
+export { Images, Sounds, Config, GameState, ObjManager, Obj, Banana, Apple, Unti, Rope, Saru };

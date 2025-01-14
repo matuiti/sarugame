@@ -12,10 +12,6 @@ class Config {
     this.BLOCK_H = 96; // 1マス分のブロックサイズ（縦）
     this.SCREEN_W = this.BLOCK_W * this.FIELD_COL; // スクリーンサイズ（横）
     this.SCREEN_H = this.BLOCK_H * this.FIELD_ROW; // スクリーンサイズ（縦）
-
-    // 得点
-    this.SCORE_BANANA = 100;
-    this.SCORE_APPLE  = 300;
   }
 
   // システム設定のgetメソッド

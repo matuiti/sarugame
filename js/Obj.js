@@ -1,10 +1,9 @@
 import { Images, Config } from './index.js';
-const IMAGES = new Images();
-const CONFIG = new Config();
+const IMAGES = new Images;
+const CONFIG = new Config;
 const BLOCK_W = CONFIG.BLOCK_W;
 const BLOCK_H = CONFIG.BLOCK_H;
 const FIELD_ROW = CONFIG.FIELD_ROW;
-
 class Obj {
   constructor(type) {
     this.type = type; // 種類を設定
@@ -43,8 +42,6 @@ class Obj {
     }
   }
 
-  update() { }
-
   draw(ctx) {
     if (this.image && this.image.complete) {
       ctx.drawImage(this.image, this.x * BLOCK_W, this.y * BLOCK_H, BLOCK_W, BLOCK_H);
@@ -54,7 +51,6 @@ class Obj {
       };
     }
   }
-
 
   move() {
     if (this.y >= FIELD_ROW) {

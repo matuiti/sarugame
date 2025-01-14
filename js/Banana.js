@@ -6,7 +6,7 @@ class Banana extends Obj {
     super("banana");
   }
   getBanana() {
-    GameState.updateBanana();
+    GameState.addBanana();
     switch (saru_x) {
       case 0: bnnEf.classList.remove('none'); bnnEf.classList.add('bnn-ef1');
         setTimeout(function () {
@@ -49,9 +49,11 @@ class Banana extends Obj {
     }, 500);
     Sounds.setBanana();
   }
+
   draw(ctx){
     super.draw(ctx);
   }
+
 }
 
 export default Banana;
