@@ -11,6 +11,11 @@ class Config {
     this.BLOCK_H = 96; // 1マス分のブロックサイズ（縦）
     this.SCREEN_W = this.BLOCK_W * this.FIELD_COL; // スクリーンサイズ（横）
     this.SCREEN_H = this.BLOCK_H * this.FIELD_ROW; // スクリーンサイズ（縦）
+
+    this.RIGHT_END = 6;
+    this.LEFT_END  = 0;
+
+    this.hit = false;//仮置き
   }
 }
 

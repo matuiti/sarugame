@@ -1,4 +1,5 @@
-import { Sounds, GameState, Obj, Saru } from './index.js'
+import { Sounds, GameState, Obj } from './index.js'
+import SARU from './Saru.js';
 
 class Apple extends Obj {
   constructor() {
@@ -6,7 +7,7 @@ class Apple extends Obj {
   }
   getApple(){
     GameState.addApple();//スコア加算
-    Saru.setAppleTime(1);//アップルタイム起動
+    SARU.setAppleTime(1);//アップルタイム起動
   }
 
   draw(ctx) {

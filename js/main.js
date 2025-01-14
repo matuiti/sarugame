@@ -1,4 +1,5 @@
-import { Images, Sounds, Config, GameState, ObjManager, Obj, Rope, Saru } from './index.js';
+import { Images, Sounds, Config, GameState, ObjManager, Obj, Input } from './index.js';
+import { ROPE, SARU } from './index.js';
 
 // シーン管理
 let scene = 0;//0:タイトル, 1:プレイ, 2:ゲームオーバー, 3:クリア
@@ -27,8 +28,7 @@ const CONFIG = new Config; //設定
 const GAME_STATE = new GameState;   //ゲームの状態管理
 const OBJ_MANAGER = new ObjManager;//オブジェクトの制御
 const OBJ = new Obj;  //ドロップアイテムの親クラス
-const ROPE = new Rope; //ロープ
-const SARU = new Saru; //サル
+const INPUT = new Input; //入力操作
 
 // canvas
 const canvas = document.getElementById('canvas');
@@ -38,7 +38,7 @@ canvas.height = CONFIG.SCREEN_H;
 
 let lastTime = 0;//最終計測
 let deltaTime = 0;//最終計測からの経過時間
-function gameLoop(timestamp) {
+export function gameLoop(timestamp) {
   if (GAME_STATE.over) {
     toOver();
     return;//ループを抜ける
@@ -52,8 +52,11 @@ function gameLoop(timestamp) {
   deltaTime = timestamp - lastTime;
   if (deltaTime >= CONFIG.GAME_SPEED) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);//画面のクリア
+    // console.log("loop中間："+ SARU.x)
     update();
+    // console.log("loop update()直後："+ SARU.x)
     draw();
+    // console.log("loop draw()直後："+ SARU.x)
     lastTime = timestamp;
   }
 
@@ -68,6 +71,7 @@ function update() {
 
 function draw() {
   ROPE.draw(ctx);
+  SARU.draw(ctx);
   OBJ_MANAGER.drawAllObjects(ctx);
 }
 
@@ -75,6 +79,7 @@ function init() {//初期化関数
   SOUNDS.setBGM();//プレイ時のBGM開始（ループ再生）
   GAME_STATE.reset();
   ROPE.reset();
+  SARU.reset();
   OBJ_MANAGER.reset();
   setScene(1);//プレイ画面へ
   OBJ_MANAGER.startPop(CONFIG.POP_INTERVAL);//オートポップとオート移動開始、範囲外の移動は削除
