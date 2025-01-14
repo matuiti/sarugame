@@ -1,17 +1,14 @@
 import { Images, Config } from './index.js';
 const IMAGES = new Images();
 const CONFIG = new Config();
+const BLOCK_W = CONFIG.BLOCK_W;
+const BLOCK_H = CONFIG.BLOCK_H;
+const FIELD_ROW = CONFIG.FIELD_ROW;
 
 class Obj {
   constructor(type) {
-    this.blockW = CONFIG.BLOCK_W;
-    this.blockH = CONFIG.BLOCK_H;
-    this.fieldRow = CONFIG.FIELD_ROW;
-    this.fallingSpeed = CONFIG.FALLING_SPEED;
-
     this.type = type; // 種類を設定
     this.image = this.getImage(type); // 画像を設定
-
     this.x = this.rand(0, 9); // 初期座標x
     this.y = 0; // 初期座標y
     this.vy = 1; // 移動距離
@@ -50,19 +47,17 @@ class Obj {
 
   draw(ctx) {
     if (this.image && this.image.complete) {
-      console.log(`Drawing ${this.type} at (${this.x * this.blockW}, ${this.y * this.blockH})`);
-      ctx.drawImage(this.image, this.x * this.blockW, this.y * this.blockH, this.blockW, this.blockH);
+      ctx.drawImage(this.image, this.x * BLOCK_W, this.y * BLOCK_H, BLOCK_W, BLOCK_H);
     } else if (this.image) {
       this.image.onload = () => {
-        console.log(`Loading ${this.type} image`);
-        ctx.drawImage(this.image, this.x * this.blockW, this.y * this.blockH, this.blockW, this.blockH);
+        ctx.drawImage(this.image, this.x * BLOCK_W, this.y * BLOCK_H, BLOCK_W, BLOCK_H);
       };
     }
   }
 
 
   move() {
-    if (this.y >= this.fieldRow) {
+    if (this.y >= FIELD_ROW) {
       this.erase = true;
       return;
     }

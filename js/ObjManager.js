@@ -18,6 +18,7 @@ class ObjManager {
     if (this.intervalId !== null) {
       clearInterval(this.intervalId);
       this.intervalId = null;
+      this.reset();
     }
   }
 
@@ -45,14 +46,16 @@ class ObjManager {
 
   updateAllObjects() {
     this.objects = this.objects.filter(obj => !obj.erase);
-    this.objects.forEach(obj => obj.move()); // オブジェクトの移動を更新
   }
 
   drawAllObjects(ctx) {
     this.objects.forEach(obj => {
+      console.log(this.objects);
       obj.draw(ctx);
     });
   }
 }
 
 export default ObjManager;
+
+

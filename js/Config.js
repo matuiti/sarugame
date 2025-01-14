@@ -1,8 +1,8 @@
 class Config {
   constructor() {
     // システム
-    this.GAME_SPEED = 1000 / 60; // FPS
-    this.POP_INTERVAL = 1000; // アイテムのリポップ間隔(ms)
+    this.GAME_SPEED = 1000 / 30; // FPS
+    this.POP_INTERVAL = 2000; // アイテムのリポップ間隔(ms)
     this.FALLING_SPEED = 1000; // 落下速度(ms)
 
     // フィールド
