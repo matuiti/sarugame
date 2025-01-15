@@ -1,5 +1,5 @@
-import { Images, Sounds, Config } from './index.js';
-import { GAME_STATE, ROPE, SARU, OBJ_MANAGER, COLLISION_MANAGER, INPUT } from './index.js';
+import { Images, Sounds, Config, CollisionManager } from './index.js';
+import { GAME_STATE, ROPE, SARU, OBJ_MANAGER, INPUT } from './index.js';
 
 // シーン管理
 let scene = 0;//0:タイトル, 1:プレイ, 2:ゲームオーバー, 3:クリア
@@ -25,6 +25,8 @@ let events = [//ボタンのイベント
 const IMAGES = new Images; //画像データ
 const SOUNDS = new Sounds; //サウンドデータ
 const CONFIG = new Config; //設定
+const COLLISION_MANAGER = new CollisionManager(SARU,OBJ_MANAGER);
+
 
 // canvas
 const canvas = document.getElementById('canvas');
@@ -60,6 +62,7 @@ function update() {
   OBJ_MANAGER.updateAllObjects();//objects[]を削除フラグがfalseのものだけで作成更新
 
   //checkHit
+  COLLISION_MANAGER.checkCollisions();
 }
 
 function draw() {

@@ -1,5 +1,4 @@
 import { Config, Banana, Apple, Unti } from './index.js';
-// import { CONFIG } from './index.js';
 const CONFIG = new Config;
 class ObjManager {
   constructor() {
@@ -39,6 +38,9 @@ class ObjManager {
         return this.objTypes[i];
       }
     }
+  }
+  getCurrentObjects(){
+    return this.objects;
   }
 
   reset() {//配列を空に

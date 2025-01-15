@@ -1,20 +1,19 @@
 import { Images, Config } from './index.js';
-// import { CONFIG } from './index.js';
 const IMAGES = new Images;
 const CONFIG = new Config;
 
 class Rope {
-  constructor(){
+  constructor() {
     this.w = CONFIG.SCREEN_W;
     this.h = CONFIG.SCREEN_H / 100;
     this.reset();
   }
-  reset(){
+  reset() {
     this.x = 0;
-    this.y = CONFIG.SCREEN_H / 2 - CONFIG.BLOCK_H * 2;
+    this.y = 8;
   }
-  draw(ctx){
-    ctx.drawImage(IMAGES.rope,this.x,this.y,this.w,this.h);
+  draw(ctx) {
+    ctx.drawImage(IMAGES.rope, this.x, this.y * CONFIG.BLOCK_H + this.h, this.w, this.h);
   }
   // toOver();
 }

@@ -16,8 +16,8 @@ const GAME_STATE = new GameState;
 const ROPE = new Rope;
 const SARU = new Saru;
 const OBJ_MANAGER = new ObjManager;
-const COLLISION_MANAGER = new CollisionManager;
+// const COLLISION_MANAGER = new CollisionManager;
 const INPUT = new Input;
 
-export { Images, Sounds, Config, Obj, Banana, Apple, Unti };
-export { GAME_STATE, ROPE, SARU, OBJ_MANAGER, COLLISION_MANAGER, INPUT };
+export { Images, Sounds, Config, Obj, Banana, Apple, Unti, CollisionManager };
+export { GAME_STATE, ROPE, SARU, OBJ_MANAGER, INPUT };

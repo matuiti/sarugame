@@ -53,7 +53,8 @@ class Saru {
 
   reset() {
     this.x = (FIELD_COL / 2) - (this.w / 2);//ステージ中央へ
-    this.y = ROPE.y - ROPE.h;//ロープに合わせる
+    // this.y = ROPE.y - ROPE.h;//ロープに合わせる
+    this.y = 8;
     this.right = 1; // 0:左向き, 1:右向き
     this.open = 1; // 0:閉じポーズ, 1:開きポーズ
     this.type = 0; // 0:普通, 1:叫び, 2:ダウン, 3:アップルタイム
@@ -70,18 +71,17 @@ class Saru {
   }
 
   getCurrentHitbox(){
-
+    return HITBOXS;
   }
 
   move(toRight) {
     this.right = toRight ? 1 : 0;
     this.open = 1 - this.open; // 元の値を反転
     this.x += toRight ? this.vx : -this.vx;
-    console.log(this.open);
   }
 
   draw(ctx) {
-    ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * BLOCK_W, this.y, this.blockW, this.blockH);
+    ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * BLOCK_W, this.y * BLOCK_H, this.blockW, this.blockH);
   }
 }
 

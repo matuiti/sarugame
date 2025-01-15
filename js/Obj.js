@@ -1,6 +1,5 @@
 
 import { Images, Config } from './index.js';
-// import { CONFIG } from './index.js';
 const IMAGES = new Images;
 const CONFIG = new Config;
 const BLOCK_W = CONFIG.BLOCK_W;
