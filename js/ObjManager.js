@@ -25,11 +25,11 @@ class ObjManager {
   #addObject() {
     const objClass = this.#getRandomClass();
     const newObj = new objClass();
-    newObj.startAutoMove(CONFIG.FALLING_SPEED); // オブジェクトの自動移動開始
     this.objects.push(newObj);
+    newObj.startAutoMove(CONFIG.FALLING_SPEED); // オブジェクトの自動移動開始
   }
 
-  #getRandomClass() {
+  #getRandomClass() {//return Banana || Apple || Unti
     let sum = 0;
     let r = Math.random();
     for (let i = 0; i < this.probabilities.length; i++) {
