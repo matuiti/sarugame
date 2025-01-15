@@ -7,6 +7,25 @@ const BLOCK_W = CONFIG.BLOCK_W;
 const BLOCK_H = CONFIG.BLOCK_H;
 const FIELD_COL = CONFIG.FIELD_COL;
 
+const HITBOXS = [//HITBOXS[0:閉, 1:開][ y ][ x ]
+  [//閉じポーズ
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1]
+  ],
+  [//開きポーズ
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1]
+  ]
+]
+
 const IMG_SARU = [// IMG_SARU[ this.right ][ this.open ][ this.type ]・・・IMG_SARU[0-1][0-1][0-3]
   [// 左向き
     // 閉じポーズ
@@ -50,13 +69,16 @@ class Saru {
     return this.appleTime; // アップルタイム中かどうか true or false
   }
 
+  getCurrentHitbox(){
+
+  }
+
   move(toRight) {
     this.right = toRight ? 1 : 0;
     this.open = 1 - this.open; // 元の値を反転
     this.x += toRight ? this.vx : -this.vx;
     console.log(this.open);
   }
-
 
   draw(ctx) {
     ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * BLOCK_W, this.y, this.blockW, this.blockH);

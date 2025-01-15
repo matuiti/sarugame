@@ -1,4 +1,6 @@
-import { Sounds, GameState, Obj } from './index.js'
+import { Sounds, Obj } from './index.js';
+import { GAME_STATE, SARU } from './index.js';
+
 const bnnEf = document.getElementById('bnn-ef');// バナナ獲得時のポイント演出用要素
 
 class Banana extends Obj {
@@ -6,8 +8,8 @@ class Banana extends Obj {
     super("banana");
   }
   getBanana() {
-    GameState.addBanana();
-    switch (saru_x) {
+    GAME_STATE.addBanana();
+    switch (SARU.x) {
       case 0: bnnEf.classList.remove('none'); bnnEf.classList.add('bnn-ef1');
         setTimeout(function () {
           bnnEf.classList.remove('bnn-ef1');

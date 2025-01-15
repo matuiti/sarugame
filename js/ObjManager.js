@@ -1,4 +1,5 @@
 import { Config, Banana, Apple, Unti } from './index.js';
+// import { CONFIG } from './index.js';
 const CONFIG = new Config;
 class ObjManager {
   constructor() {

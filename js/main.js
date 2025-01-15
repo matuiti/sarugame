@@ -1,5 +1,5 @@
-import { Images, Sounds, Config, GameState, ObjManager, Obj, Input } from './index.js';
-import { ROPE, SARU } from './index.js';
+import { Images, Sounds, Config } from './index.js';
+import { GAME_STATE, ROPE, SARU, OBJ_MANAGER, COLLISION_MANAGER, INPUT } from './index.js';
 
 // シーン管理
 let scene = 0;//0:タイトル, 1:プレイ, 2:ゲームオーバー, 3:クリア
@@ -25,10 +25,6 @@ let events = [//ボタンのイベント
 const IMAGES = new Images; //画像データ
 const SOUNDS = new Sounds; //サウンドデータ
 const CONFIG = new Config; //設定
-const GAME_STATE = new GameState;   //ゲームの状態管理
-const OBJ_MANAGER = new ObjManager;//オブジェクトの制御
-const OBJ = new Obj;  //ドロップアイテムの親クラス
-const INPUT = new Input; //入力操作
 
 // canvas
 const canvas = document.getElementById('canvas');
@@ -52,11 +48,8 @@ export function gameLoop(timestamp) {
   deltaTime = timestamp - lastTime;
   if (deltaTime >= CONFIG.GAME_SPEED) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);//画面のクリア
-    // console.log("loop中間："+ SARU.x)
     update();
-    // console.log("loop update()直後："+ SARU.x)
     draw();
-    // console.log("loop draw()直後："+ SARU.x)
     lastTime = timestamp;
   }
 

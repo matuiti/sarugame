@@ -1,9 +1,7 @@
 import { gameLoop } from './main.js';
 import { Config } from './index.js';
 import { SARU } from './index.js';
-
-const CONFIG = new Config();
-
+const CONFIG = new Config;
 class Input {
   constructor() {
     this.init();
