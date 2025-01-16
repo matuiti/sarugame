@@ -38,10 +38,12 @@ let lastTime = 0;//最終計測
 let deltaTime = 0;//最終計測からの経過時間
 export function gameLoop(timestamp) {
   if (GAME_STATE.over) {
+    SOUNDS.stopBGM();
     toOver();
     return;//ループを抜ける
   }
   if (GAME_STATE.clear) {
+    SOUNDS.stopBGM();
     toClear();
     return;//ループを抜ける
   }
@@ -58,11 +60,12 @@ export function gameLoop(timestamp) {
   requestAnimationFrame(gameLoop);
 }
 
+let state;
 function update() {
-  OBJ_MANAGER.updateAllObjects();//objects[]を削除フラグがfalseのものだけで作成更新
-
-  //checkHit
-  COLLISION_MANAGER.checkCollisions();
+  state = GAME_STATE.state;
+  OBJ_MANAGER.updateAllObjects();//objects[]を更新
+  if (state !== 1) COLLISION_MANAGER.checkCollisions();//（hit中以外）当たり判定のチェックと処理分岐
+  SARU.update(state);
 }
 
 function draw() {
@@ -72,7 +75,7 @@ function draw() {
 }
 
 function init() {//初期化関数
-  SOUNDS.setBGM();//プレイ時のBGM開始（ループ再生）
+  SOUNDS.startBGM();//プレイ時のBGM開始（ループ再生）
   GAME_STATE.reset();
   ROPE.reset();
   SARU.reset();

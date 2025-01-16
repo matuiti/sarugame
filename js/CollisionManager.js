@@ -1,3 +1,4 @@
+import { GAME_STATE } from "./index.js";
 class CollisionManager {
   constructor(saru, objManager) {
     this.saru = saru;
@@ -11,8 +12,11 @@ class CollisionManager {
 
     for (const object of objects) {
       if (this.checkCollision(playerHitbox, object)) {
-        // ここでコリジョン処理を行う（例：オブジェクトの削除、スコアの更新など）
         object.erase = true;
+        if(object.type === "banana"){GAME_STATE.hitBanana();}
+        if(object.type === "apple" ){GAME_STATE.hitApple ();}
+        if(object.type === "unti"  ){GAME_STATE.hitUnti  ();}
+        return;
       }
     }
   }

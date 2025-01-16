@@ -43,34 +43,23 @@ const IMG_SARU = [// IMG_SARU[ this.right ][ this.open ][ this.type ]・・・IM
 
 class Saru {
   constructor() {
-    this.w = 4;//ブロック数
-    this.h = 6;//ブロック数
-    this.blockW = BLOCK_W * this.w;//描画用のサイズ
-    this.blockH = BLOCK_H * this.h;//描画用のサイズ
-    this.vx = 1;//歩幅
+    this.w = 4;//Saruの幅（ブロック数）
+    this.h = 6;//Saruの高さ（ブロック数）
+    this.blockW = BLOCK_W * this.w;//Saruの幅（描画用）
+    this.blockH = BLOCK_H * this.h;//Saruの高さ（描画用）
+    this.vx = 1;//歩幅（ブロック数）
     this.reset();
   }
 
   reset() {
-    this.x = (FIELD_COL / 2) - (this.w / 2);//ステージ中央へ
-    // this.y = ROPE.y - ROPE.h;//ロープに合わせる
-    this.y = 8;
+    this.x = (FIELD_COL / 2) - (this.w / 2);//左右中央
+    this.y = CONFIG.START_Y;
     this.right = 1; // 0:左向き, 1:右向き
     this.open = 1; // 0:閉じポーズ, 1:開きポーズ
     this.type = 0; // 0:普通, 1:叫び, 2:ダウン, 3:アップルタイム
-    this.appleTime = 0; // 0:false, 1:true
   }
 
-  setAppleTime(appleTime) {
-    this.appleTime = appleTime;
-    this.type = 3;
-  }
-
-  checkAppleTime() {
-    return this.appleTime; // アップルタイム中かどうか true or false
-  }
-
-  getCurrentHitbox(){
+  getCurrentHitbox() {
     return HITBOXS;
   }
 
@@ -78,6 +67,10 @@ class Saru {
     this.right = toRight ? 1 : 0;
     this.open = 1 - this.open; // 元の値を反転
     this.x += toRight ? this.vx : -this.vx;
+  }
+
+  update(state) {
+    this.type = state;
   }
 
   draw(ctx) {

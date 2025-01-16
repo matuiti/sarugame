@@ -10,7 +10,7 @@ class Rope {
   }
   reset() {
     this.x = 0;
-    this.y = 8;
+    this.y = CONFIG.START_Y;
   }
   draw(ctx) {
     ctx.drawImage(IMAGES.rope, this.x, this.y * CONFIG.BLOCK_H + this.h, this.w, this.h);

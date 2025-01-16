@@ -2,7 +2,7 @@ class Config {
   constructor() {
     // システム
     this.GAME_SPEED = 1000 / 30; // FPS
-    this.POP_INTERVAL = 3000; // アイテムのリポップ間隔(ms)
+    this.POP_INTERVAL = 500; // アイテムのリポップ間隔(ms)
     this.FALLING_SPEED = 400; // 落下速度(ms)
     // フィールド
     this.FIELD_COL = 10; // 列数
@@ -15,7 +15,9 @@ class Config {
     this.RIGHT_END = 6;
     this.LEFT_END  = 0;
 
-    this.hit = false;//仮置き
+    this.START_Y = 8;
+
+    // this.hit = false;//仮置き
   }
 }
 

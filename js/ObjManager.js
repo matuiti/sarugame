@@ -4,7 +4,7 @@ class ObjManager {
   constructor() {
     this.objects = [];
     this.objTypes = [Banana, Apple, Unti]; // ドロップオブジェクトのクラス
-    this.probabilities = [0.7, 0.1, 0.2];  // banana, apple, unti の出現確率
+    this.probabilities = [0.1, 0.1, 0.8];  // banana, apple, unti の出現確率
     this.intervalId = null;
   }
 
