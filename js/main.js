@@ -1,5 +1,5 @@
-import { Images, Sounds, Config, CollisionManager } from './index.js';
-import { GAME_STATE, ROPE, SARU, OBJ_MANAGER, INPUT } from './index.js';
+import { Sounds, Config, CollisionManager } from './index.js';
+import { GAME_STATE, ROPE, SARU, OBJ_MANAGER } from './index.js';
 
 // シーン管理
 let scene = 0;//0:タイトル, 1:プレイ, 2:ゲームオーバー, 3:クリア
@@ -22,7 +22,6 @@ let events = [//ボタンのイベント
   btns.restart.addEventListener("click", () => init())//初期化→プレイへ
 ]
 // インスタンス
-const IMAGES = new Images; //画像データ
 const SOUNDS = new Sounds; //サウンドデータ
 const CONFIG = new Config; //設定
 const COLLISION_MANAGER = new CollisionManager(SARU,OBJ_MANAGER);

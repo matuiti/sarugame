@@ -1,6 +1,5 @@
 import { Sounds } from './index.js'
-const SOUNDS = new Sounds; //サウンドデータ
-
+const SOUNDS = new Sounds;
 class GameState {
   constructor() {
     this.reset();
@@ -14,9 +13,9 @@ class GameState {
     this.over = false;
     this.clear = false;
     this.state = 0;//0:通常, 1:hit, 2:ダウン, 3:appleTime
-    this.maxBanana = 5;
+    this.maxBanana = 5;//ステージクリア目標数
     this.currentBanana = 0;
-    this.maxLife = 5;
+    this.maxLife = 5;//最大ライフ数
     this.currentLife = this.maxLife;
     this.score = 0;
 
@@ -35,26 +34,32 @@ class GameState {
       this.over = true;
     }
   }
+  // 加点時の頭上表示アニメーション
+  //  #showScorePopup(score){}
 
+  // 衝突後の処理(バナナ)
   hitBanana() {
     SOUNDS.se("banana");
     this.currentBanana++;
     this.#updateScore(this.scoreType[0]);
+    // this.#showScorePopup(this.scoreType[0]);
     if (this.currentBanana >= this.maxBanana) this.clear = true;
   }
+  
+  // 衝突後の処理(リンゴ)
   hitApple() {
     if (this.state === 3) {//アップルタイム中なら
       SOUNDS.se("apple");
       this.#updateScore(this.scoreType[1]);
       this.addAppleTime(this.addTime);
+      // this.#showScorePopup(this.scoreType[0]);
     } else {
       SOUNDS.se("appleTime");
       this.state = 3;
       this.#updateScore(this.scoreType[1]);
       this.startAppleTime();
-
+      // this.#showScorePopup(this.scoreType[0]);
     }
-
   }
   startAppleTime() {
     this.appleTimer = setInterval(() => {
@@ -68,13 +73,14 @@ class GameState {
   addAppleTime(addTime) { this.remainingAppleTime += addTime; }//アップルタイムの継続時間を延長
   stopAppleTime() { clearInterval(this.appleTimer); this.appleTimer = null; }//アップルタイム終了
 
+  // 衝突後の処理(うんち)
   hitUnti() {
     SOUNDS.se("unti");
-    this.state = 1;
-    this.#updateLife();
+    this.state = 1;//やられ状態
+    this.#updateLife();//ライフが1減る
     setTimeout(() => {
-      this.state = 0;
-    }, 1000);
+      this.state = 0;//通常状態
+    }, 1000);//やられ時間
   }
 
 }
