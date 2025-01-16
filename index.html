@@ -12,29 +12,53 @@
 <body>
 
   <!-- ゲームスタート画面 -->
-  <div id="title" class="screen" style="display: flex;">
+  <div id="title" class="screen" style="display: none;">
     <button id="start-btn">START</button>
   </div>
 
   <!-- プレイ画面 -->
-  <div id="play" class="screen bg-03" style="display: none;">
-    <div id="play__header" class="play__header">
-      <!-- <img id="play__icon" class="play__icon" src="images/icon_01@2x.png"> -->
-      <span>スコア: <span id="score">0</span></span>
+  <div id="play" class="screen bg-02" style="display: flex;">
+    <div id="header" class="header">
+      <div class="container">
+        <div class="box-left">
+          <img id="icon" class="icon" src="images/icon_0@2x.png">
+        </div>
+        <div class="box-center">
+          <div class="box-score">
+            <div class="box-score-title">
+              <img id="score-title" class="score-title" src="images/score_title@2x.png">
+            </div>
+            <div class="box-num-score">
+              <img class="num-score" src="images/num_score_0@2x.png">
+              <img class="num-score" src="images/num_score_0@2x.png">
+              <img class="num-score" src="images/num_score_0@2x.png">
+              <img class="num-score" src="images/num_score_0@2x.png">
+              <img class="num-score" src="images/num_score_0@2x.png">
+            </div>
+          </div>
+          <div class="box-life">
+            <img class="life" src="images/life_5@2x.png">
+
+          </div>
+        </div>
+        <div class="box-right">
+          <img id="count-panel" class="count-panel" src="images/count_panel@2x.png">
+        </div>
+      </div>
     </div>
     <canvas id="canvas"></canvas>
-    <div id="play__btns" class="play__btns">
-      <button id="left" class="left"></button>
-      <button id="right" class="right"></button>
+    <div id="play-btns" class="play-btns">
+      <button id="left-btn" class="left-btn"></button>
+      <button id="right-btn" class="right-btn"></button>
     </div>
     <span id="bnn-ef" class="none">100</span>
   </div>
 
   <!-- ゲームオーバー画面 -->
   <div id="over" class="screen" style="display: none;">
-    <img id="over__title" class="over__title" width="80%" src="images/overtitle@2x.png">
-    <div id="over__body" class="over__body">
-      <img id="over__message" class="over__message" width="80%" src="images/playagain@2x.png">
+    <img id="over-title" class="over-title" width="80%" src="images/overtitle@2x.png">
+    <div id="over-body" class="over-body">
+      <img id="over-message" class="over-message" width="80%" src="images/playagain@2x.png">
       <button id="yes-btn" class="yes-btn"></button>
       <button id="no-btn" class="no-btn"></button>
     </div>

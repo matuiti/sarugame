@@ -53,7 +53,6 @@ class Images {
     this.saru_close_s = this.loadImage("images/saru_02_shout@2x.png");
     this.saru_close_d = this.loadImage("images/saru_02_down@2x.png");
     this.saru_close_apple = this.loadImage("images/saru_02_apple@2x.png");
-
     // サル（左向き）
     this.saru_open_l = this.loadImage("images/saru_01_l@2x.png");
     this.saru_open_s_l = this.loadImage("images/saru_01_shout_l@2x.png");

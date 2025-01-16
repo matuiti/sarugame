@@ -9,8 +9,8 @@ class Input {
 
   init() {
     // スマホのタッチイベント
-    document.getElementById("left").addEventListener("touchstart", this.touchLeft.bind(this), { passive: false });
-    document.getElementById("right").addEventListener("touchstart", this.touchRight.bind(this), { passive: false });
+    document.getElementById("left-btn").addEventListener("touchstart", this.touchLeft.bind(this), { passive: false });
+    document.getElementById("right-btn").addEventListener("touchstart", this.touchRight.bind(this), { passive: false });
     // PCのキーボードイベント
     document.onkeydown = this.handleKeyDown.bind(this);
   }

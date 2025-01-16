@@ -18,3 +18,5 @@ class HeaderUI {
     this.icon_type = 0; //0:通常, 1:叫び, 2:ダウン, 3:appleTime
   }
 }
+
+export default HeaderUI;
