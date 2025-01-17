@@ -12,12 +12,12 @@
 <body>
 
   <!-- ゲームスタート画面 -->
-  <div id="title" class="screen" style="display: none;">
+  <div id="title" class="screen" style="display: flex;">
     <button id="start-btn">START</button>
   </div>
 
   <!-- プレイ画面 -->
-  <div id="play" class="screen bg-02" style="display: flex;">
+  <div id="play" class="screen bg-02" style="display: none;">
     <div id="header" class="header">
       <div class="container">
         <div class="box-left">
@@ -42,7 +42,16 @@
           </div>
         </div>
         <div class="box-right">
-          <img id="count-panel" class="count-panel" src="images/count_panel@2x.png">
+          <div class="box-right-bg">
+            <div class="box-num-now">
+              <img class="num-now" src="images/num_now_0@2x.png">
+              <img class="num-now" src="images/num_now_0@2x.png">
+            </div>
+            <div class="box-num-max">
+              <img class="num-max" src="images/num_max_0@2x.png">
+              <img class="num-max" src="images/num_max_0@2x.png">
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -92,6 +92,7 @@ body {
 #play.bg-04 {
   background: url(images/bg_04.png) center/cover no-repeat;
 }
+/* play（headerUI） */
 .header {
   display: flex;
   position: absolute;
@@ -100,7 +101,7 @@ body {
   aspect-ratio: 210/1080;
   max-height: 12vh;
   width: 100%;
-  background-color: #F1EC7E;
+  background-color: #f1ec7e;
 }
 .container {
   display: flex;
@@ -110,7 +111,7 @@ body {
 .header img {
   display: inline-block;
   object-fit: contain;
-  width: 100%;
+  /* width: 100%; */
 }
 .box-left {
   width: 20%;
@@ -120,11 +121,37 @@ body {
 }
 .box-right {
   width: 28%;
+  height: 100%;
+}
+.box-right-bg {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-image: url(images/count_panel@2x.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.box-num-now {
+  position: absolute;
+  top: 32%;
+  left: 8%;
+}
+.box-num-max {
+  position: absolute;
+  top: 60%;
+  left: 60%;
+}
+.num-now {
+  width: 32%;
+}
+.num-max {
+  width: 42%;
 }
 .box-score {
   display: flex;
 }
-.box-score-title{
+.box-score-title {
   display: flex;
 }
 .box-num-score {
@@ -133,7 +160,6 @@ body {
 .box-num-score img {
   width: 20%;
 }
-
 
 .bnn-ef {
   position: absolute;

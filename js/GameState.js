@@ -1,4 +1,5 @@
-import { Sounds } from './index.js'
+import { Sounds } from './index.js';
+import { HEADER_UI } from './index.js';
 const SOUNDS = new Sounds;
 class GameState {
   constructor() {
@@ -13,12 +14,12 @@ class GameState {
     this.over = false;
     this.clear = false;
     this.state = 0;//0:通常, 1:hit, 2:ダウン, 3:appleTime
-    this.maxBanana = 5;//ステージクリア目標数
-    this.currentBanana = 0;
+    this.maxBananas = 5;//ステージクリア目標数
+    this.currentBananas = 0;
     this.maxLife = 5;//最大ライフ数
     this.currentLife = this.maxLife;
     this.score = 0;
-
+    HEADER_UI.init(this.state, this.currentLife, this.score, this.currentBananas, this.maxBananas);//(iconIndex, newLife, newScore, currentBananas, maxBananas)
   }
   // スコア更新
   #updateScore(points) {
@@ -40,12 +41,12 @@ class GameState {
   // 衝突後の処理(バナナ)
   hitBanana() {
     SOUNDS.se("banana");
-    this.currentBanana++;
+    this.currentBananas++;
     this.#updateScore(this.scoreType[0]);
     // this.#showScorePopup(this.scoreType[0]);
-    if (this.currentBanana >= this.maxBanana) this.clear = true;
+    if (this.currentBananas >= this.maxBananas) this.clear = true;
   }
-  
+
   // 衝突後の処理(リンゴ)
   hitApple() {
     if (this.state === 3) {//アップルタイム中なら

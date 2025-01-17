@@ -1,5 +1,5 @@
 import { Sounds, Config, CollisionManager } from './index.js';
-import { GAME_STATE, ROPE, SARU, OBJ_MANAGER } from './index.js';
+import { HEADER_UI, GAME_STATE, ROPE, SARU, OBJ_MANAGER } from './index.js';
 
 // シーン管理
 let scene = 0;//0:タイトル, 1:プレイ, 2:ゲームオーバー, 3:クリア
@@ -65,6 +65,7 @@ function update() {
   OBJ_MANAGER.updateAllObjects();//objects[]を更新
   if (state !== 1) COLLISION_MANAGER.checkCollisions();//（hit中以外）当たり判定のチェックと処理分岐
   SARU.update(state);
+  HEADER_UI.update(state,GAME_STATE.currentLife,GAME_STATE.score,GAME_STATE.currentBananas);//(iconIndex, newLife, newScore, currentBananas)
 }
 
 function draw() {
