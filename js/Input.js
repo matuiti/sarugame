@@ -1,6 +1,6 @@
 import { gameLoop } from './main.js';
 import { Config } from './index.js';
-import { SARU } from './index.js';
+import { GAME_STATE, SARU } from './index.js';
 const CONFIG = new Config;
 class Input {
   constructor() {
@@ -17,20 +17,20 @@ class Input {
 
   touchLeft(e) {
     e.preventDefault();
-    if (CONFIG.over || CONFIG.hit || SARU.x <= 0) return;
+    if (GAME_STATE.over || CONFIG.hit || SARU.x <= 0) return;
     SARU.move(false);
     gameLoop();
   }
 
   touchRight(e) {
     e.preventDefault();
-    if (CONFIG.over || CONFIG.hit || SARU.x >= (CONFIG.SCREEN_W - SARU.w)) return;
+    if (GAME_STATE.over || CONFIG.hit || SARU.x >= (CONFIG.SCREEN_W - SARU.w)) return;
     SARU.move(true);
     gameLoop();
   }
 
   handleKeyDown(e) {
-    if (CONFIG.over) return;
+    if (GAME_STATE.over) return;
     if (e.key === "ArrowLeft" && SARU.x > CONFIG.LEFT_END && !CONFIG.hit) {
       SARU.move(0);
       gameLoop();

@@ -9,6 +9,10 @@ let scenes = [//シーン要素
   document.getElementById("over"),
   document.getElementById("clear")
 ]
+let keyPanel = {//操作パネル要素
+  left: document.getElementById('left-btn'),
+  right: document.getElementById('right-btn')
+}
 let btns = {//ボタン要素
   start: document.getElementById("start-btn"),
   yes: document.getElementById("yes-btn"),
@@ -24,29 +28,18 @@ let events = [//ボタンのイベント
 // インスタンス
 const SOUNDS = new Sounds; //サウンドデータ
 const CONFIG = new Config; //設定
-const COLLISION_MANAGER = new CollisionManager(SARU,OBJ_MANAGER);
+const COLLISION_MANAGER = new CollisionManager(SARU, OBJ_MANAGER);
 
 
 // canvas
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-canvas.width  = CONFIG.SCREEN_W;
+canvas.width = CONFIG.SCREEN_W;
 canvas.height = CONFIG.SCREEN_H;
 
 let lastTime = 0;//最終計測
 let deltaTime = 0;//最終計測からの経過時間
 export function gameLoop(timestamp) {
-  if (GAME_STATE.over) {
-    SOUNDS.stopBGM();
-    toOver();
-    return;//ループを抜ける
-  }
-  if (GAME_STATE.clear) {
-    SOUNDS.stopBGM();
-    toClear();
-    return;//ループを抜ける
-  }
-  
   if (!lastTime) lastTime = timestamp;
   deltaTime = timestamp - lastTime;
   if (deltaTime >= CONFIG.GAME_SPEED) {
@@ -56,16 +49,27 @@ export function gameLoop(timestamp) {
     lastTime = timestamp;
   }
 
+  if (GAME_STATE.toOver) {
+    SOUNDS.stopBGM();
+    toOver();
+    return;//ループを抜ける
+  }
+  if (GAME_STATE.clear) {
+    SOUNDS.stopBGM();
+    toClear();
+    return;//ループを抜ける
+  }
+
   requestAnimationFrame(gameLoop);
 }
 
-let state;
 function update() {
-  state = GAME_STATE.state;
+  let state = GAME_STATE.state;
   OBJ_MANAGER.updateAllObjects();//objects[]を更新
-  if (state !== 1) COLLISION_MANAGER.checkCollisions();//（hit中以外）当たり判定のチェックと処理分岐
+  if (state !== 1 && !GAME_STATE.over) COLLISION_MANAGER.checkCollisions();//hit中とダウン中以外は、当たり判定のチェックをして事後処理の分岐
+  ROPE.update();
   SARU.update(state);
-  HEADER_UI.update(state,GAME_STATE.currentLife,GAME_STATE.score,GAME_STATE.currentBananas);//(iconIndex, newLife, newScore, currentBananas)
+  HEADER_UI.update(state, GAME_STATE.currentLife, GAME_STATE.score, GAME_STATE.currentBananas);//(iconIndex, newLife, newScore, currentBananas)
 }
 
 function draw() {
@@ -80,20 +84,41 @@ function init() {//初期化関数
   ROPE.reset();
   SARU.reset();
   OBJ_MANAGER.reset();
+  COLLISION_MANAGER.reset();
   setScene(1);//プレイ画面へ
   OBJ_MANAGER.startPop(CONFIG.POP_INTERVAL);//オートポップとオート移動開始、範囲外の移動は削除
+  keyPanel.left.classList.remove('leave-l');//逃げていたパネルを元に戻す
+  keyPanel.right.classList.remove('leave-r');//逃げていたパネルを元に戻す
   requestAnimationFrame(gameLoop);//ゲームループ開始
 }
 function toOver() {//ゲームオーバー移行処理
-  // サルを操作不能にする
-  // 当たり判定チェックを停止
-  // やられアニメーションを起動（サル・ロープ）
-  // SARU.toOver();
-  // ROPE.toOver();
-
+  // debugger
+  GAME_STATE.toOver = false;
+  GAME_STATE.over = true;
+  COLLISION_MANAGER.setSkipCheck();
+  downAnim1();
+}
+function downAnim1() {
+  runawayPanel();
+  ROPE.fall(ctx);
+  SARU.jump(ctx);
+  setTimeout(downAnim2, 600);
+}
+function downAnim2() {
+  SARU.fall(ctx);
+  setTimeout(cleanup, 2000);
+}
+function cleanup() {
   OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
   setScene(2);//ゲームオーバーへ
+  
+
 }
+function runawayPanel() {
+  keyPanel.left.classList.add('leave-l');
+  keyPanel.right.classList.add('leave-r');
+}
+
 function toClear() {//ゲームクリア移行処理
   OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
   setScene(3);//ゲームクリアへ

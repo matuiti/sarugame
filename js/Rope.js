@@ -1,6 +1,6 @@
 import { Images, Config } from './index.js';
-const IMAGES = new Images;
-const CONFIG = new Config;
+const IMAGES = new Images();
+const CONFIG = new Config();
 
 class Rope {
   constructor() {
@@ -11,11 +11,20 @@ class Rope {
   reset() {
     this.x = 0;
     this.y = CONFIG.START_Y;
+    this.isFalling = false;
   }
   draw(ctx) {
     ctx.drawImage(IMAGES.rope, this.x, this.y * CONFIG.BLOCK_H + this.h, this.w, this.h);
   }
-  // toOver();
+  fall() { this.isFalling = true; }
+
+  update() {
+    if (this.isFalling && this.y < CONFIG.FIELD_ROW) {
+      this.y += 1; // ロープが落ちる
+    } else {
+      this.isFalling = false;
+    }
+  }
 }
 
 export default Rope;

@@ -272,12 +272,9 @@ body {
 .yes-btn,
 .no-btn {
   position: absolute;
-  width: calc(100% / 4);
-}
-.yes-btn,
-.no-btn {
-  top: 56%;
-  height: calc(100% / 4);
+  top: 48%;
+  height: 8%;
+  width: 24%;
   background-color: #e5af4c;
   background-repeat: no-repeat;
   background-position: center;
@@ -287,12 +284,12 @@ body {
   box-shadow: 0px 6px 0px 0px #ff3c0b;
 }
 .yes-btn {
-  left: 17%;
+  left: 22%;
   background-image: url(images/yes@2x.png);
   background-size: 62%;
 }
 .no-btn {
-  right: 17%;
+  right: 22%;
   background-image: url(images/no@2x.png);
   background-size: 42%;
 }

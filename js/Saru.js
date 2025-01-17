@@ -57,6 +57,8 @@ class Saru {
     this.right = 1; // 0:左向き, 1:右向き
     this.open = 1; // 0:閉じポーズ, 1:開きポーズ
     this.type = 0; // 0:普通, 1:叫び, 2:ダウン, 3:アップルタイム
+    this.isJumping = false;
+    this.isFalling = false;
   }
 
   getCurrentHitbox() {
@@ -69,13 +71,32 @@ class Saru {
     this.x += toRight ? this.vx : -this.vx;
   }
 
-  update(state) {
+  setType(state) {
     this.type = state;
   }
 
   draw(ctx) {
     ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * BLOCK_W, this.y * BLOCK_H, this.blockW, this.blockH);
   }
+
+  jump() { this.isJumping = true; }
+
+  fall() { this.isFalling = true; }
+
+  update(state) {
+    this.type = state;
+    
+    if (this.isJumping && this.y > 2) {
+      this.y -= 1;
+    } else { this.isJumping = false; }
+    if (this.isFalling && this.y < (CONFIG.FIELD_ROW + this.h + 1)) {
+      this.y += 1;
+    } else {
+      this.isFalling = false;
+    }
+  }
+
+
 }
 
 export default Saru;
