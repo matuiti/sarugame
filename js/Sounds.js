@@ -6,12 +6,26 @@ class Sounds {
     this.unti = new Audio('sound/unti_01.mp3');
     this.appletime = new Audio('sound/mahounosutekki.mp3');
     this.move = new Audio('sound/move_02.mp3');
-    this.scream = new Audio('sound/dawn.mp3');
+    this.scream = new Audio('sound/dawn_02.mp3');
 
-    // ヴォリューム調整
-    this.banana.volume = 0.3;
-    this.unti.volume = 0.3;
+    this.setVolumeBGM(0.6);
+    this.setVolumeSE(0.1);
   }
+
+  // 全SEのヴォリュームを一括設定するメソッド
+  setVolumeSE(volume) {
+    this.banana.volume = volume;
+    this.apple.volume = volume;
+    this.unti.volume = volume;
+    this.appletime.volume = volume;
+    this.move.volume = volume;
+    this.scream.volume = volume;
+  }
+  // 全BGMのヴォリュームを一括設定するメソッド
+  setVolumeBGM(volume) {
+    this.bgm_01.volume = volume;
+  }
+
   se(se) {
     let sound;
     switch (se) {
@@ -27,6 +41,9 @@ class Sounds {
       case "unti":
         sound = this.unti;
         break;
+      case "scream":
+        sound = this.scream;
+        break;
       default:
         console.error("指定されたサウンドは見つかりません: " + se);
         return;
@@ -34,10 +51,12 @@ class Sounds {
     sound.currentTime = 0;
     sound.play();
   }
+
   startBGM() {
     this.bgm_01.loop = true;
     this.bgm_01.play();
   }
+
   stopBGM() {
     if (this.bgm_01) {
       this.bgm_01.pause();

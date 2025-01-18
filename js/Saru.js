@@ -79,17 +79,15 @@ class Saru {
     ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * BLOCK_W, this.y * BLOCK_H, this.blockW, this.blockH);
   }
 
-  jump() { this.isJumping = true; }
-
-  fall() { this.isFalling = true; }
+  jump() { this.isJumping = true; }//animation起動のフラグを立てる
+  fall() { this.isFalling = true; }//animation起動のフラグを立てる
 
   update(state) {
     this.type = state;
-    
-    if (this.isJumping && this.y > 2) {
+    if (this.isJumping && this.y > 2) {//やられ時のジャンプアニメーション
       this.y -= 1;
     } else { this.isJumping = false; }
-    if (this.isFalling && this.y < (CONFIG.FIELD_ROW + this.h + 1)) {
+    if (this.isFalling && this.y < (CONFIG.FIELD_ROW + this.h + 1)) {//やられ時の落下アニメーション
       this.y += 1;
     } else {
       this.isFalling = false;

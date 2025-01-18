@@ -4,9 +4,10 @@ const SOUNDS = new Sounds;
 class GameState {
   constructor() {
     this.scoreType = [10, 50]//[バナナ,リンゴ]
-    this.initRemainingAppleTime = 5;//アップルタイムの基本効果時間(s)
+    this.initRemainingAppleTime = 3;//アップルタイムの基本効果時間(s)
     this.remainingAppleTime = this.initRemainingAppleTime;//アップルタイムの残り時間(s)
-    this.addTime = 3;//アップルタイム中のリンゴ獲得による延長時間(s)
+    this.addTime = 2;//アップルタイム中のリンゴ獲得による延長時間(s)
+    this.hitTime = 300;//hit中判定の時間（ms）
     this.reset();
   }
   reset() {
@@ -41,7 +42,7 @@ class GameState {
     } else {
       setTimeout(() => {
         this.state = 0;//通常状態
-      }, 1000);//やられ時間
+      }, this.hitTime);//やられ時間
     }
   }
   // 加点時の頭上表示アニメーション
@@ -81,7 +82,11 @@ class GameState {
     }, 1000); // 1秒ごとにカウントダウン
   }
   addAppleTime(addTime) { this.remainingAppleTime += addTime; }//アップルタイムの継続時間を延長
-  stopAppleTime() { clearInterval(this.appleTimer); this.appleTimer = null; }//アップルタイム終了
+  stopAppleTime() {
+    clearInterval(this.appleTimer);
+    this.appleTimer = null;
+    this.state = 0;
+  }//アップルタイム終了
 
   // 衝突後の処理(うんち)
   hitUnti() {

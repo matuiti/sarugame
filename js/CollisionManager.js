@@ -56,8 +56,8 @@ class CollisionManager {
         GAME_STATE.hitApple(); // リンゴがヒットした際の処理を呼び出す
         break;
       case "unti":
+        object.erase = true; // 衝突したオブジェクトを消去
         if (state !== 3) { // アップルタイム中は当たらない
-          object.erase = true; // 衝突したオブジェクトを消去
           GAME_STATE.hitUnti(); // うんちがヒットした際の処理を呼び出す
         }
         break;

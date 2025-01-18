@@ -14,7 +14,7 @@ let keyPanel = {//操作パネル要素
   right: document.getElementById('right-btn')
 }
 let btns = {//ボタン要素
-  start: document.getElementById("start-btn"),
+  start: document.getElementById("title-btn"),
   yes: document.getElementById("yes-btn"),
   no: document.getElementById("no-btn"),
   restart: document.getElementById("restart-btn")
@@ -102,6 +102,7 @@ function downAnim1() {
   runawayPanel();
   ROPE.fall(ctx);
   SARU.jump(ctx);
+  SOUNDS.se('scream');
   setTimeout(downAnim2, 600);
 }
 function downAnim2() {
@@ -111,7 +112,7 @@ function downAnim2() {
 function cleanup() {
   OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
   setScene(2);//ゲームオーバーへ
-  
+
 
 }
 function runawayPanel() {
@@ -126,10 +127,13 @@ function toClear() {//ゲームクリア移行処理
 function resetScene() {//全シーンを非表示
   Object.values(scenes).forEach(el => {
     el.style.display = 'none';
+    el.style.opacity = '0';
   });
 }
 function showScene(num) {//指定のシーンを表示
   scenes[num].style.display = 'flex';
+  scenes[num].style.opacity = '1';
+  
 }
 function setScene(num) {//シーンをセット
   resetScene();
