@@ -8,8 +8,8 @@ class Sounds {
     this.move = new Audio('sound/move_02.mp3');
     this.scream = new Audio('sound/dawn_02.mp3');
 
-    this.setVolumeBGM(0.6);
-    this.setVolumeSE(0.1);
+    this.setVolumeBGM(0.8);
+    this.setVolumeSE(0.4);
   }
 
   // 全SEのヴォリュームを一括設定するメソッド

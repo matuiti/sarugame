@@ -5,6 +5,7 @@ class Images {
     this.icon_1 = this.loadImage("images/icon_1@2x.png");
     this.icon_2 = this.loadImage("images/icon_2@2x.png");
     this.icon_3 = this.loadImage("images/icon_3@2x.png");
+    this.life_0 = this.loadImage("images/life_0@2x.png");
     this.life_1 = this.loadImage("images/life_1@2x.png");
     this.life_2 = this.loadImage("images/life_2@2x.png");
     this.life_3 = this.loadImage("images/life_3@2x.png");

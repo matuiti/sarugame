@@ -127,12 +127,10 @@ function toClear() {//ゲームクリア移行処理
 function resetScene() {//全シーンを非表示
   Object.values(scenes).forEach(el => {
     el.style.display = 'none';
-    el.style.opacity = '0';
   });
 }
 function showScene(num) {//指定のシーンを表示
   scenes[num].style.display = 'flex';
-  scenes[num].style.opacity = '1';
   
 }
 function setScene(num) {//シーンをセット
