@@ -1,7 +1,9 @@
 import { gameLoop } from './main.js';
 import { Config } from './index.js';
 import { GAME_STATE, SARU } from './index.js';
-const CONFIG = new Config;
+
+const CONFIG = new Config();
+
 class Input {
   constructor() {
     this.init();
@@ -12,7 +14,7 @@ class Input {
     document.getElementById("left-btn").addEventListener("touchstart", this.touchLeft.bind(this), { passive: false });
     document.getElementById("right-btn").addEventListener("touchstart", this.touchRight.bind(this), { passive: false });
     // PCのキーボードイベント
-    document.onkeydown = this.handleKeyDown.bind(this);
+    document.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
   touchLeft(e) {
