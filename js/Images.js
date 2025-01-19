@@ -1,46 +1,11 @@
 class Images {
   constructor() {
     //ヘッダー
-    this.icon_0 = this.loadImage("images/icon_0@2x.png");
-    this.icon_1 = this.loadImage("images/icon_1@2x.png");
-    this.icon_2 = this.loadImage("images/icon_2@2x.png");
-    this.icon_3 = this.loadImage("images/icon_3@2x.png");
-    this.life_0 = this.loadImage("images/life_0@2x.png");
-    this.life_1 = this.loadImage("images/life_1@2x.png");
-    this.life_2 = this.loadImage("images/life_2@2x.png");
-    this.life_3 = this.loadImage("images/life_3@2x.png");
-    this.life_4 = this.loadImage("images/life_4@2x.png");
-    this.life_5 = this.loadImage("images/life_5@2x.png");
-    this.num_now_0 = this.loadImage("images/num_now_0@2x.png");
-    this.num_now_1 = this.loadImage("images/num_now_1@2x.png");
-    this.num_now_2 = this.loadImage("images/num_now_2@2x.png");
-    this.num_now_3 = this.loadImage("images/num_now_3@2x.png");
-    this.num_now_4 = this.loadImage("images/num_now_4@2x.png");
-    this.num_now_5 = this.loadImage("images/num_now_5@2x.png");
-    this.num_now_6 = this.loadImage("images/num_now_6@2x.png");
-    this.num_now_7 = this.loadImage("images/num_now_7@2x.png");
-    this.num_now_8 = this.loadImage("images/num_now_8@2x.png");
-    this.num_now_9 = this.loadImage("images/num_now_9@2x.png");
-    this.num_max_0 = this.loadImage("images/num_max_0@2x.png");
-    this.num_max_1 = this.loadImage("images/num_max_1@2x.png");
-    this.num_max_2 = this.loadImage("images/num_max_2@2x.png");
-    this.num_max_3 = this.loadImage("images/num_max_3@2x.png");
-    this.num_max_4 = this.loadImage("images/num_max_4@2x.png");
-    this.num_max_5 = this.loadImage("images/num_max_5@2x.png");
-    this.num_max_6 = this.loadImage("images/num_max_6@2x.png");
-    this.num_max_7 = this.loadImage("images/num_max_7@2x.png");
-    this.num_max_8 = this.loadImage("images/num_max_8@2x.png");
-    this.num_max_9 = this.loadImage("images/num_max_9@2x.png");
-    this.num_score_0 = this.loadImage("images/num_score_0@2x.png");
-    this.num_score_1 = this.loadImage("images/num_score_1@2x.png");
-    this.num_score_2 = this.loadImage("images/num_score_2@2x.png");
-    this.num_score_3 = this.loadImage("images/num_score_3@2x.png");
-    this.num_score_4 = this.loadImage("images/num_score_4@2x.png");
-    this.num_score_5 = this.loadImage("images/num_score_5@2x.png");
-    this.num_score_6 = this.loadImage("images/num_score_6@2x.png");
-    this.num_score_7 = this.loadImage("images/num_score_7@2x.png");
-    this.num_score_8 = this.loadImage("images/num_score_8@2x.png");
-    this.num_score_9 = this.loadImage("images/num_score_9@2x.png");
+    this.icons = this.loadImages('icon',4);
+    this.lifes = this.loadImages('life',6);
+    this.num_now = this.loadImages('num_now',10);
+    this.num_max = this.loadImages('num_max',10);
+    this.num_score = this.loadImages('num_score',10);
     this.score_title = this.loadImage("images/score_title@2x.png");
     this.count_panel = this.loadImage("images/count_panel@2x.png");
     //ロープ
@@ -76,9 +41,16 @@ class Images {
   }
 
   loadImage(src) {
-    let img = new Image();
+    const img = new Image();
     img.src = src;
     return img;
+  }
+  loadImages(baseName, count) {
+    const images = [];
+    for (let i = 0; i < count; i++) {
+      images.push(this.loadImage(`images/${baseName}_${i}@2x.png`));
+    }
+    return images;
   }
 }
 
