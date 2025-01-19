@@ -2,7 +2,7 @@ class Config {
   constructor() {
     // システム
     this.GAME_SPEED = 1000 / 30; // FPS
-    this.POP_INTERVAL = 500; // アイテムのリポップ間隔(ms)
+    this.POP_INTERVAL = 400; // アイテムのリポップ間隔(ms)
     this.FALLING_SPEED = 200; // 落下速度(ms)
     this.PROBABILITIES = [0.8, 0.1, 0.1];// banana,apple,untiの出現確率
     // フィールド

@@ -15,11 +15,11 @@ class GameState {
     this.clear = false;
     this.toOver = false;//ライフ0になってからゲームオーバーまでの間かどうか
     this.state = 0;//0:通常, 1:hit, 2:ダウン, 3:appleTime
-    this.maxBananas = 90;//ステージクリア目標数
+    this.maxBananas = 20;//ステージクリア目標数
     this.currentBananas = 0;
     this.maxLife = 5;//最大ライフ数
     this.currentLife = this.maxLife;
-    this.score = 1000;
+    this.score = 0;
     this.appleTimer = null;
     HEADER_UI.init(this.state, this.currentLife, this.score, this.currentBananas, this.maxBananas);//(iconIndex, newLife, newScore, currentBananas, maxBananas)
   }

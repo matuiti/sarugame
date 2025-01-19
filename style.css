@@ -127,13 +127,18 @@ body {
   aspect-ratio: 182/162;
   width: 22%;
 }
-.box-left img,
-.box-score-title img{
+.box-left img{
   object-fit: contain;
 }
 .num-score,.num-now,.num-max{
   image-rendering: pixelated;
 }
+
+
+
+
+
+
 /* .num-score,.num-max{
   object-fit: cover;
 } */
@@ -141,13 +146,43 @@ body {
   height: 20%;
 } */
 
+
+
+
+
 .box-center {
-  aspect-ratio: 405/71;
+  aspect-ratio: 405/150;
+  width: 40%;
   display: flex;
   flex-direction: column;
-  width: 37.5%;
-  gap: 4px;
+  justify-content: space-around;
 }
+.box-score {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 25%;
+
+}
+.box-score-title {
+  display: flex;
+  flex: 1;
+}
+.box-num-score {
+  display: flex;
+  width: 45%;
+}
+.num-score {
+  width: 20%;
+}
+
+
+
+
+
+
+
+
 
 .box-right {
   height: 100%;
@@ -181,30 +216,6 @@ body {
 }
 .num-max {
   width: 32%;
-}
-.box-score {
-  display: flex;
-  gap: 2px;
-  
-
-}
-.box-score-title {
-  display: flex;
-  width: 100%;
-  flex: 1;
-  align-self: center;
-}
-.box-num-score {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  /* width: 100%; */
-}
-.num-score {
-  object-fit: contain;
-  /* width: 20%; */
-  max-height: 22%;
-  /* object-fit: scale-down; */
 }
 
 .bnn-ef {
