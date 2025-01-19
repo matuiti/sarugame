@@ -10,12 +10,12 @@ class Sounds {
 
     this.setVolumeBGM(0.8);
     this.setVolumeSE(0.4);
+    this.apple.volume = 0.1;
   }
 
   // 全SEのヴォリュームを一括設定するメソッド
   setVolumeSE(volume) {
     this.banana.volume = volume;
-    this.apple.volume = volume;
     this.unti.volume = volume;
     this.appletime.volume = volume;
     this.move.volume = volume;
