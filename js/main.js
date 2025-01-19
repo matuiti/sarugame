@@ -131,7 +131,6 @@ function resetScene() {//全シーンを非表示
 }
 function showScene(num) {//指定のシーンを表示
   scenes[num].style.display = 'flex';
-  
 }
 function setScene(num) {//シーンをセット
   resetScene();
