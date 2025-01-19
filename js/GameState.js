@@ -4,7 +4,7 @@ const SOUNDS = new Sounds;
 class GameState {
   constructor() {
     this.scoreType = [10, 50]//[バナナ,リンゴ]
-    this.initRemainingAppleTime = 3;//アップルタイムの基本効果時間(s)
+    this.initRemainingAppleTime = 5;//アップルタイムの基本効果時間(s)
     this.remainingAppleTime = this.initRemainingAppleTime;//アップルタイムの残り時間(s)
     this.addTime = 2;//アップルタイム中のリンゴ獲得による延長時間(s)
     this.hitTime = 300;//hit中判定の時間（ms）
@@ -15,11 +15,11 @@ class GameState {
     this.clear = false;
     this.toOver = false;//ライフ0になってからゲームオーバーまでの間かどうか
     this.state = 0;//0:通常, 1:hit, 2:ダウン, 3:appleTime
-    this.maxBananas = 20;//ステージクリア目標数
+    this.maxBananas = 90;//ステージクリア目標数
     this.currentBananas = 0;
     this.maxLife = 5;//最大ライフ数
     this.currentLife = this.maxLife;
-    this.score = 0;
+    this.score = 1000;
     this.appleTimer = null;
     HEADER_UI.init(this.state, this.currentLife, this.score, this.currentBananas, this.maxBananas);//(iconIndex, newLife, newScore, currentBananas, maxBananas)
   }

@@ -35,13 +35,14 @@ button {
 /* base */
 body {
   margin: 0 auto;
-  height: 100vh;
+  max-height: 100vh;
   aspect-ratio: 9/16;
   font-family: impact, MS-gothic;
   background-color: #404d3c;
   overflow: hidden; /* 検証画面のスクロールバーを出現させない */
 }
 .screen {
+  aspect-ratio: 9/16;
   max-width: 1080px;
   max-height: 1920px;
   width: 100%;
@@ -67,7 +68,7 @@ body {
   border-radius: 78px;
   background-color: #f1ec7e;
   border: none;
-  box-shadow: 0px 1.6vw #e5814c;
+  box-shadow: 0px 10px #e5814c;
   background-repeat: no-repeat;
   background-position: center;
   transition: 0.3s ease;
@@ -105,7 +106,7 @@ body {
   left: 0;
   background-color: #f1ec7e;
   width: 100%;
-  max-height: 235px;
+  /* max-height: 235px; */
   aspect-ratio: 1080 / 235;
   box-shadow: 0px 1.2vh #F7CA48;
   border-radius: 0 0 4% 4%;
@@ -119,13 +120,26 @@ body {
 
 .header img {
   display: inline-block;
-  object-fit: contain;
   /* width: 100%; */
 }
 .box-left {
+  display: flex;
   aspect-ratio: 182/162;
-  width: 17%;
+  width: 22%;
 }
+.box-left img,
+.box-score-title img{
+  object-fit: contain;
+}
+.num-score,.num-now,.num-max{
+  image-rendering: pixelated;
+}
+/* .num-score,.num-max{
+  object-fit: cover;
+} */
+/* .num-now{
+  height: 20%;
+} */
 
 .box-center {
   aspect-ratio: 405/71;
@@ -152,34 +166,45 @@ body {
 .box-num-now {
   display: flex;
   position: absolute;
-  top: 26%;
-  left: 8%;
+  top: 29%;
+  left: 6%;
+  max-height: 40%;
 }
 .box-num-max {
   display: flex;
   position: absolute;
-  top: 62%;
+  top: 66%;
   left: 60%;
 }
 .num-now {
-  width: 32%;
+  width: 30%;
 }
 .num-max {
-  width: 42%;
+  width: 32%;
 }
 .box-score {
   display: flex;
-  gap: 4px;
+  gap: 2px;
+  
 
 }
 .box-score-title {
   display: flex;
+  width: 100%;
+  flex: 1;
+  align-self: center;
 }
 .box-num-score {
   display: flex;
+  flex: 1;
+  align-items: center;
+  /* width: 100%; */
 }
-.box-num-score img {
-  width: 20%;
+.num-score {
+  object-fit: contain;
+  /* width: 20%; */
+  max-height: 22%;
+  /* object-fit: scale-down; */
 }
 
 .bnn-ef {
