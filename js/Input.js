@@ -48,7 +48,7 @@ class Input {
 
   touchRightStart(e) {
     e.preventDefault();
-    if (GAME_STATE.over || CONFIG.hit || SARU.x >= (CONFIG.SCREEN_W - SARU.w - CONFIG.RIGHT_END)) return;
+    if (GAME_STATE.over || CONFIG.hit || SARU.x >= CONFIG.RIGHT_END) return;
     if (this.rightCooldown) return; // クールダウン中は反応しない
     this.moveRight = true;
     this.isSingleTouch = true;
@@ -77,12 +77,12 @@ class Input {
       this.isSingleTouch = false;
       SARU.move(false);
       gameLoop();
-      setTimeout(this.move.bind(this), 200); // 速度調整のために200ms待機
+      setTimeout(this.move.bind(this), 300); // 速度調整のために200ms待機
     } else if (this.moveRight && !GAME_STATE.over && !CONFIG.hit && SARU.x < (CONFIG.SCREEN_W - SARU.w - CONFIG.RIGHT_END)) {
       this.isSingleTouch = false;
       SARU.move(true);
       gameLoop();
-      setTimeout(this.move.bind(this), 200); // 速度調整のために200ms待機
+      setTimeout(this.move.bind(this), 300); // 速度調整のために200ms待機
     }
   }
 
