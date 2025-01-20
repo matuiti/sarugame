@@ -34,7 +34,7 @@ class Input {
     this.isSingleTouch = true;
     this.move();
     this.leftCooldown = true;
-    setTimeout(() => this.leftCooldown = false, 300); // 300msのクールダウン時間を設定
+    setTimeout(() => this.leftCooldown = false, 200); // 300msのクールダウン時間を設定
   }
 
   touchLeftEnd(e) {
@@ -54,7 +54,7 @@ class Input {
     this.isSingleTouch = true;
     this.move();
     this.rightCooldown = true;
-    setTimeout(() => this.rightCooldown = false, 300); // 300msのクールダウン時間を設定
+    setTimeout(() => this.rightCooldown = false, 200); // 300msのクールダウン時間を設定
   }
 
   touchRightEnd(e) {
