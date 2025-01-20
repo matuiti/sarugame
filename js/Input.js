@@ -1,4 +1,4 @@
-import { gameLoop } from './main.js';
+import { gameLoop } from './index.js';
 import { Config } from './index.js';
 import { GAME_STATE, SARU } from './index.js';
 

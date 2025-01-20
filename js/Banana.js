@@ -1,5 +1,4 @@
-import { Sounds, Obj } from './index.js';
-import { GAME_STATE, SARU } from './index.js';
+import { Obj } from './index.js';
 
 // const bnnEf = document.getElementById('bnn-ef');// バナナ獲得時のポイント演出用要素
 

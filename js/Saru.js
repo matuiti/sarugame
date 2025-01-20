@@ -1,5 +1,4 @@
 import { Images, Config } from './index.js';
-import { ROPE } from './index.js';
 
 const IMAGES = new Images;
 const CONFIG = new Config;
@@ -42,7 +41,8 @@ const IMG_SARU = [// IMG_SARU[ this.right ][ this.open ][ this.type ]・・・IM
 ];
 
 class Saru {
-  constructor() {
+  constructor(ctx) {
+    this.ctx = ctx;
     this.w = 4;//Saruの幅（ブロック数）
     this.h = 6;//Saruの高さ（ブロック数）
     this.blockW = BLOCK_W * this.w;//Saruの幅（描画用）
@@ -75,8 +75,8 @@ class Saru {
     this.type = state;
   }
 
-  draw(ctx) {
-    ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * BLOCK_W, this.y * BLOCK_H, this.blockW, this.blockH);
+  draw() {
+    this.ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * BLOCK_W, this.y * BLOCK_H, this.blockW, this.blockH);
   }
 
   jump() { this.isJumping = true; }//animation起動のフラグを立てる

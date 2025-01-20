@@ -1,5 +1,6 @@
+import { canvas, ctx } from './index.js';
 import { Sounds, Config, CollisionManager } from './index.js';
-import { HEADER_UI, GAME_STATE, ROPE, SARU, OBJ_MANAGER } from './index.js';
+import { GAME_STATE, ROPE, SARU, OBJ_MANAGER, HEADER_UI } from './index.js';
 
 // シーン管理
 let scene = 0;//0:タイトル, 1:プレイ, 2:ゲームオーバー, 3:クリア
@@ -25,15 +26,13 @@ let events = [//ボタンのイベント
   btns.no.addEventListener("click", () => setScene(0)),//タイトルへ
   btns.restart.addEventListener("click", () => init())//初期化→プレイへ
 ]
+
+
 // インスタンス
 const SOUNDS = new Sounds; //サウンドデータ
 const CONFIG = new Config; //設定
 const COLLISION_MANAGER = new CollisionManager(SARU, OBJ_MANAGER);
 
-
-// canvas
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
 canvas.width = CONFIG.SCREEN_W;
 canvas.height = CONFIG.SCREEN_H;
 
@@ -69,13 +68,13 @@ function update() {
   if (state !== 1 && !GAME_STATE.over) COLLISION_MANAGER.checkCollisions();//hit中とダウン中以外は、当たり判定のチェックをして事後処理の分岐
   ROPE.update();
   SARU.update(state);
-  HEADER_UI.update(state, GAME_STATE.currentLife, GAME_STATE.score, GAME_STATE.currentBananas);//(iconIndex, newLife, newScore, currentBananas)
+  HEADER_UI.drawAll(state, GAME_STATE.currentLife, GAME_STATE.score, GAME_STATE.currentBananas, GAME_STATE.maxBananas);//(iconIndex, newLife, newScore, currentBananas)
 }
 
 function draw() {
-  ROPE.draw(ctx);
-  SARU.draw(ctx);
-  OBJ_MANAGER.drawAllObjects(ctx);
+  ROPE.draw();
+  SARU.draw();
+  OBJ_MANAGER.drawAllObjects();
 }
 
 function init() {//初期化関数
@@ -100,13 +99,13 @@ function toOver() {//ゲームオーバー移行処理
 }
 function downAnim1() {
   runawayPanel();
-  ROPE.fall(ctx);
-  SARU.jump(ctx);
+  ROPE.fall();
+  SARU.jump();
   SOUNDS.se('scream');
   setTimeout(downAnim2, 600);
 }
 function downAnim2() {
-  SARU.fall(ctx);
+  SARU.fall();
   setTimeout(cleanup, 2000);
 }
 function cleanup() {

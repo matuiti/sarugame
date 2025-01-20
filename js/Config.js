@@ -12,6 +12,7 @@ class Config {
     this.BLOCK_H = 96; // 1マス分のブロックサイズ（縦）
     this.SCREEN_W = this.BLOCK_W * this.FIELD_COL; // スクリーンサイズ（横）
     this.SCREEN_H = this.BLOCK_H * this.FIELD_ROW; // スクリーンサイズ（縦）
+    // this.HEADER_H = 235;
     this.RIGHT_END = 6;//プレイ画面の右端
     this.LEFT_END = 0;//プレイ画面の左端
     this.START_Y = 8;//サルとロープの初期位置(y)

@@ -1,6 +1,4 @@
-import { Sounds, Obj } from './index.js';
-import { GAME_STATE, SARU } from './index.js';
-
+import { Obj } from './index.js';
 class Unti extends Obj {
   constructor() {
     super("unti");

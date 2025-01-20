@@ -1,7 +1,8 @@
 import { Config, Banana, Apple, Unti } from './index.js';
 const CONFIG = new Config;
 class ObjManager {
-  constructor() {
+  constructor(ctx) {
+    this.ctx = ctx;
     this.objects = [];
     this.objTypes = [Banana, Apple, Unti]; // ドロップオブジェクトのクラス
     this.probabilities =CONFIG.PROBABILITIES; // banana,apple,untiの出現率
@@ -51,9 +52,9 @@ class ObjManager {
     this.objects = this.objects.filter(obj => !obj.erase);
   }
 
-  drawAllObjects(ctx) {
+  drawAllObjects() {
     this.objects.forEach(obj => {
-      obj.draw(ctx);
+      obj.draw(this.ctx);
     });
   }
 }

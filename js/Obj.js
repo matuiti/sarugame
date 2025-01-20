@@ -10,7 +10,7 @@ class Obj {
     this.type = type; // 種類を設定
     this.image = this.getImage(type); // 画像を設定
     this.x = this.rand(0, 9); // 初期座標x
-    this.y = 0; // 初期座標y
+    this.y = 3; // 初期座標y
     this.vy = 1; // 移動距離
     this.erase = false; // 削除フラグ
     this.moveIntervalId = null;

@@ -3,7 +3,8 @@ const IMAGES = new Images();
 const CONFIG = new Config();
 
 class Rope {
-  constructor() {
+  constructor(ctx) {
+    this.ctx = ctx;
     this.w = CONFIG.SCREEN_W;
     this.h = CONFIG.SCREEN_H / 100;
     this.reset();
@@ -13,8 +14,8 @@ class Rope {
     this.y = CONFIG.START_Y;
     this.isFalling = false;
   }
-  draw(ctx) {
-    ctx.drawImage(IMAGES.rope, this.x, this.y * CONFIG.BLOCK_H + this.h, this.w, this.h);
+  draw() {
+    this.ctx.drawImage(IMAGES.rope, this.x, this.y * CONFIG.BLOCK_H + this.h, this.w, this.h);
   }
   fall() { this.isFalling = true; }
 

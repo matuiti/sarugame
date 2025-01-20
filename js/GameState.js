@@ -21,6 +21,7 @@ class GameState {
     this.currentLife = this.maxLife;
     this.score = 227;
     this.appleTimer = null;
+    
     HEADER_UI.init(this.state, this.currentLife, this.score, this.currentBananas, this.maxBananas);//(iconIndex, newLife, newScore, currentBananas, maxBananas)
   }
   // スコア更新
