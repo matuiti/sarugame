@@ -71,12 +71,12 @@ class Input {
       this.isSingleTouch = false;
       SARU.move(false);
       gameLoop();
-      setTimeout(this.move.bind(this), 300); // 速度調整のために300ms待機
+      setTimeout(this.move.bind(this), 100); // 速度調整のために300ms待機
     } else if (this.moveRight && !GAME_STATE.over && !CONFIG.hit && SARU.x < CONFIG.RIGHT_END) {
       this.isSingleTouch = false;
       SARU.move(true);
       gameLoop();
-      setTimeout(this.move.bind(this), 300); // 速度調整のために300ms待機
+      setTimeout(this.move.bind(this), 100); // 速度調整のために300ms待機
     }
   }
 
