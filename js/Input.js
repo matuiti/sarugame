@@ -45,7 +45,7 @@ class Input {
 
   touchRightStart(e) {
     e.preventDefault();
-    if (GAME_STATE.over || CONFIG.hit || SARU.x >= (CONFIG.SCREEN_W - SARU.w)) return;
+    if (GAME_STATE.over || CONFIG.hit || SARU.x >= CONFIG.RIGHT_END) return ;
     this.moveRight = true;
     this.isSingleTouch = true;
     this.move();
