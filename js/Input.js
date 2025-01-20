@@ -11,8 +11,17 @@ class Input {
 
   init() {
     // スマホのタッチイベント
-    document.getElementById("left-btn").addEventListener("touchstart", this.touchLeft.bind(this), { passive: false });
-    document.getElementById("right-btn").addEventListener("touchstart", this.touchRight.bind(this), { passive: false });
+    this.leftBtn = document.getElementById("left-btn");
+    this.rightBtn = document.getElementById("right-btn");
+
+    this.leftBtn.addEventListener("touchstart", this.touchLeft.bind(this), { passive: false });
+    this.leftBtn.addEventListener("touchend", this.stopMovement.bind(this), { passive: false });
+    this.leftBtn.addEventListener("touchcancel", this.stopMovement.bind(this), { passive: false });
+
+    this.rightBtn.addEventListener("touchstart", this.touchRight.bind(this), { passive: false });
+    this.rightBtn.addEventListener("touchend", this.stopMovement.bind(this), { passive: false });
+    this.rightBtn.addEventListener("touchcancel", this.stopMovement.bind(this), { passive: false });
+
     // PCのキーボードイベント
     document.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
@@ -20,15 +29,32 @@ class Input {
   touchLeft(e) {
     e.preventDefault();
     if (GAME_STATE.over || CONFIG.hit || SARU.x <= 0) return;
-    SARU.move(false);
-    gameLoop();
+    this.moveLeft = true;
+    this.move();
   }
 
   touchRight(e) {
     e.preventDefault();
     if (GAME_STATE.over || CONFIG.hit || SARU.x >= (CONFIG.SCREEN_W - SARU.w)) return;
-    SARU.move(true);
-    gameLoop();
+    this.moveRight = true;
+    this.move();
+  }
+
+  stopMovement() {
+    this.moveLeft = false;
+    this.moveRight = false;
+  }
+
+  move() {
+    if (this.moveLeft && !GAME_STATE.over && !CONFIG.hit && SARU.x > 0) {
+      SARU.move(false);
+      gameLoop();
+      requestAnimationFrame(this.move.bind(this));
+    } else if (this.moveRight && !GAME_STATE.over && !CONFIG.hit && SARU.x < (CONFIG.SCREEN_W - SARU.w)) {
+      SARU.move(true);
+      gameLoop();
+      requestAnimationFrame(this.move.bind(this));
+    }
   }
 
   handleKeyDown(e) {
