@@ -49,11 +49,11 @@ class Input {
     if (this.moveLeft && !GAME_STATE.over && !CONFIG.hit && SARU.x > 0) {
       SARU.move(false);
       gameLoop();
-      requestAnimationFrame(this.move.bind(this));
+      setTimeout(this.move.bind(this), 100); // 速度調整のために100ms待機
     } else if (this.moveRight && !GAME_STATE.over && !CONFIG.hit && SARU.x < (CONFIG.SCREEN_W - SARU.w)) {
       SARU.move(true);
       gameLoop();
-      requestAnimationFrame(this.move.bind(this));
+      setTimeout(this.move.bind(this), 100); // 速度調整のために100ms待機
     }
   }
 
