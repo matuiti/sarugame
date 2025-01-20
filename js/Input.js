@@ -28,15 +28,18 @@ class Input {
 
   touchLeftStart(e) {
     e.preventDefault();
-    if (GAME_STATE.over || CONFIG.hit || SARU.x <= 0) return;
+    if (GAME_STATE.over || CONFIG.hit || SARU.x <= CONFIG.LEFT_END) return;
+    if (this.leftCooldown) return; // クールダウン中は反応しない
     this.moveLeft = true;
     this.isSingleTouch = true;
     this.move();
+    this.leftCooldown = true;
+    setTimeout(() => this.leftCooldown = false, 300); // 300msのクールダウン時間を設定
   }
 
   touchLeftEnd(e) {
     e.preventDefault();
-    if (this.isSingleTouch) {
+    if (this.isSingleTouch && SARU.x > CONFIG.LEFT_END) {
       SARU.move(false);
       gameLoop();
     }
@@ -45,15 +48,18 @@ class Input {
 
   touchRightStart(e) {
     e.preventDefault();
-    if (GAME_STATE.over || CONFIG.hit || SARU.x >= CONFIG.RIGHT_END) return ;
+    if (GAME_STATE.over || CONFIG.hit || SARU.x >= (CONFIG.SCREEN_W - SARU.w - CONFIG.RIGHT_END)) return;
+    if (this.rightCooldown) return; // クールダウン中は反応しない
     this.moveRight = true;
     this.isSingleTouch = true;
     this.move();
+    this.rightCooldown = true;
+    setTimeout(() => this.rightCooldown = false, 300); // 300msのクールダウン時間を設定
   }
 
   touchRightEnd(e) {
     e.preventDefault();
-    if (this.isSingleTouch) {
+    if (this.isSingleTouch && SARU.x < (CONFIG.SCREEN_W - SARU.w - CONFIG.RIGHT_END)) {
       SARU.move(true);
       gameLoop();
     }
@@ -71,12 +77,12 @@ class Input {
       this.isSingleTouch = false;
       SARU.move(false);
       gameLoop();
-      setTimeout(this.move.bind(this), 200); // 速度調整のために300ms待機
-    } else if (this.moveRight && !GAME_STATE.over && !CONFIG.hit && SARU.x < CONFIG.RIGHT_END) {
+      setTimeout(this.move.bind(this), 200); // 速度調整のために200ms待機
+    } else if (this.moveRight && !GAME_STATE.over && !CONFIG.hit && SARU.x < (CONFIG.SCREEN_W - SARU.w - CONFIG.RIGHT_END)) {
       this.isSingleTouch = false;
       SARU.move(true);
       gameLoop();
-      setTimeout(this.move.bind(this), 200); // 速度調整のために300ms待機
+      setTimeout(this.move.bind(this), 200); // 速度調整のために200ms待機
     }
   }
 
@@ -85,7 +91,7 @@ class Input {
     if (e.key === "ArrowLeft" && SARU.x > CONFIG.LEFT_END && !CONFIG.hit) {
       SARU.move(0);
       gameLoop();
-    } else if (e.key === "ArrowRight" && SARU.x < CONFIG.RIGHT_END && !CONFIG.hit) {
+    } else if (e.key === "ArrowRight" && SARU.x < (CONFIG.SCREEN_W - SARU.w - CONFIG.RIGHT_END) && !CONFIG.hit) {
       SARU.move(1);
       gameLoop();
     }
