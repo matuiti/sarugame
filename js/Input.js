@@ -49,11 +49,11 @@ class Input {
     if (this.moveLeft && !GAME_STATE.over && !CONFIG.hit && SARU.x > CONFIG.LEFT_END) {
       SARU.move(false);
       gameLoop();
-      setTimeout(this.move.bind(this), 300); // 速度調整のために200ms待機
+      setTimeout(this.move.bind(this), 100); // 速度調整のために200ms待機
     } else if (this.moveRight && !GAME_STATE.over && !CONFIG.hit && SARU.x < CONFIG.RIGHT_END) {
       SARU.move(true);
       gameLoop();
-      setTimeout(this.move.bind(this), 300); // 速度調整のために200ms待機
+      setTimeout(this.move.bind(this), 100); // 速度調整のために200ms待機
     }
   }
 
