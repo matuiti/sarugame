@@ -59,7 +59,7 @@ class Input {
 
   touchRightEnd(e) {
     e.preventDefault();
-    if (this.isSingleTouch && SARU.x < (CONFIG.SCREEN_W - SARU.w - CONFIG.RIGHT_END)) {
+    if (this.isSingleTouch && SARU.x < CONFIG.RIGHT_END) {
       SARU.move(true);
       gameLoop();
     }
@@ -78,7 +78,7 @@ class Input {
       SARU.move(false);
       gameLoop();
       setTimeout(this.move.bind(this), 300); // 速度調整のために200ms待機
-    } else if (this.moveRight && !GAME_STATE.over && !CONFIG.hit && SARU.x < (CONFIG.SCREEN_W - SARU.w - CONFIG.RIGHT_END)) {
+    } else if (this.moveRight && !GAME_STATE.over && !CONFIG.hit && SARU.x < CONFIG.RIGHT_END) {
       this.isSingleTouch = false;
       SARU.move(true);
       gameLoop();
@@ -91,7 +91,7 @@ class Input {
     if (e.key === "ArrowLeft" && SARU.x > CONFIG.LEFT_END && !CONFIG.hit) {
       SARU.move(0);
       gameLoop();
-    } else if (e.key === "ArrowRight" && SARU.x < (CONFIG.SCREEN_W - SARU.w - CONFIG.RIGHT_END) && !CONFIG.hit) {
+    } else if (e.key === "ArrowRight" && SARU.x < CONFIG.RIGHT_END && !CONFIG.hit) {
       SARU.move(1);
       gameLoop();
     }
