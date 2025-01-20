@@ -75,6 +75,7 @@ function draw() {
   ROPE.draw();
   SARU.draw();
   OBJ_MANAGER.drawAllObjects();
+  GAME_STATE.drawScorePopups(SARU);
 }
 
 function init() {//初期化関数

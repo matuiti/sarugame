@@ -1,13 +1,15 @@
 class Images {
   constructor() {
     //ヘッダー
-    this.icons = this.loadImages('icon',4);
-    this.lifes = this.loadImages('life',6);
-    this.num_now = this.loadImages('num_now',10);
-    this.num_max = this.loadImages('num_max',10);
-    this.num_score = this.loadImages('num_score',10);
+    this.icons = this.loadImages2x('icon',4);
+    this.lifes = this.loadImages2x('life',6);
+    this.num_now = this.loadImages2x('num_now',10);
+    this.num_max = this.loadImages2x('num_max',10);
+    this.num_score = this.loadImages2x('num_score',10);
     this.score_title = this.loadImage("images/score_title@2x.png");
     this.count_panel = this.loadImage("images/count_panel@2x.png");
+    //エフェクト
+    this.num_get = this.loadImages('num_get',10);
     //ロープ
     this.rope = this.loadImage("images/rope@2x.png");
     // サル（右向き）
@@ -46,6 +48,13 @@ class Images {
     return img;
   }
   loadImages(baseName, count) {
+    const images = [];
+    for (let i = 0; i < count; i++) {
+      images.push(this.loadImage(`images/${baseName}_${i}.png`));
+    }
+    return images;
+  }
+  loadImages2x(baseName, count) {
     const images = [];
     for (let i = 0; i < count; i++) {
       images.push(this.loadImage(`images/${baseName}_${i}@2x.png`));

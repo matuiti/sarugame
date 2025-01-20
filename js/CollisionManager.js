@@ -49,11 +49,11 @@ class CollisionManager {
     switch (object.type) {
       case "banana":
         object.erase = true; // 衝突したオブジェクトを消去
-        GAME_STATE.hitBanana(); // バナナがヒットした際の処理を呼び出す
+        GAME_STATE.hitBanana(this.saru); // バナナがヒットした際の処理を呼び出す
         break;
       case "apple":
         object.erase = true; // 衝突したオブジェクトを消去
-        GAME_STATE.hitApple(); // リンゴがヒットした際の処理を呼び出す
+        GAME_STATE.hitApple(this.saru); // リンゴがヒットした際の処理を呼び出す
         break;
       case "unti":
         object.erase = true; // 衝突したオブジェクトを消去

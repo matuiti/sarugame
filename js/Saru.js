@@ -2,9 +2,6 @@ import { Images, Config } from './index.js';
 
 const IMAGES = new Images;
 const CONFIG = new Config;
-const BLOCK_W = CONFIG.BLOCK_W;
-const BLOCK_H = CONFIG.BLOCK_H;
-const FIELD_COL = CONFIG.FIELD_COL;
 
 const HITBOXS = [//HITBOXS[0:閉, 1:開][ y ][ x ]
   [//閉じポーズ
@@ -43,16 +40,19 @@ const IMG_SARU = [// IMG_SARU[ this.right ][ this.open ][ this.type ]・・・IM
 class Saru {
   constructor(ctx) {
     this.ctx = ctx;
+    this.BLOCK_W = CONFIG.BLOCK_W;
+    this.BLOCK_H = CONFIG.BLOCK_H;
+    this.FIELD_COL = CONFIG.FIELD_COL;
     this.w = 4;//Saruの幅（ブロック数）
     this.h = 6;//Saruの高さ（ブロック数）
-    this.blockW = BLOCK_W * this.w;//Saruの幅（描画用）
-    this.blockH = BLOCK_H * this.h;//Saruの高さ（描画用）
+    this.blockW = this.BLOCK_W * this.w;//Saruの幅（描画用）
+    this.blockH = this.BLOCK_H * this.h;//Saruの高さ（描画用）
     this.vx = 1;//歩幅（ブロック数）
     this.reset();
   }
 
   reset() {
-    this.x = (FIELD_COL / 2) - (this.w / 2);//左右中央
+    this.x = (this.FIELD_COL / 2) - (this.w / 2);//左右中央
     this.y = CONFIG.START_Y;
     this.right = 1; // 0:左向き, 1:右向き
     this.open = 1; // 0:閉じポーズ, 1:開きポーズ
@@ -76,7 +76,7 @@ class Saru {
   }
 
   draw() {
-    this.ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * BLOCK_W, this.y * BLOCK_H, this.blockW, this.blockH);
+    this.ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * this.BLOCK_W, this.y * this.BLOCK_H, this.blockW, this.blockH);
   }
 
   jump() { this.isJumping = true; }//animation起動のフラグを立てる
