@@ -74,8 +74,8 @@ class Apple extends Obj {
 
 class Unti extends Obj {
   constructor() {
-    super(2);
-  }
+    const type = Math.random() < 0.5 ? 2 : 3; // 2か3をランダムに選択
+    super(type); }
   draw(ctx) {
     super.draw(ctx);
   }

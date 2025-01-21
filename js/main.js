@@ -3,9 +3,10 @@ import { Sounds, Config, CollisionManager } from './index.js';
 import { GAME_STATE, ROPE, SARU, OBJ_MANAGER, HEADER_UI, EFFECTS } from './index.js';
 
 // シーン管理
-let scene = 0;//0:タイトル, 1:プレイ, 2:ゲームオーバー, 3:クリア
+let scene = 0;//0:タイトル, 1:説明, 2:プレイ, 3:ゲームオーバー, 4:クリア
 let scenes = [//シーン要素
   document.getElementById("title"),
+  document.getElementById("desc"),
   document.getElementById("play"),
   document.getElementById("over"),
   document.getElementById("clear")
@@ -21,7 +22,10 @@ let btns = {//ボタン要素
   restart: document.getElementById("restart-btn")
 }
 let events = [//ボタンのイベント
-  btns.start.addEventListener("click", () => init()),//初期化→プレイへ
+  btns.start.addEventListener("click", () => {
+    setScene(1);//説明へ
+    setTimeout(init,3000);//少し待ってからプレイ画面へ
+  }),
   btns.yes.addEventListener("click", () => init()),//初期化→プレイへ
   btns.no.addEventListener("click", () => setScene(0)),//タイトルへ
   btns.restart.addEventListener("click", () => init())//初期化→プレイへ
@@ -86,7 +90,7 @@ function init() {//初期化関数
   SARU.reset();
   OBJ_MANAGER.reset();
   COLLISION_MANAGER.reset();
-  setScene(1);//プレイ画面へ
+  setScene(2);//プレイ画面へ
   OBJ_MANAGER.startPop(CONFIG.POP_INTERVAL);//オートポップとオート移動開始、範囲外の移動は削除
   keyPanel.left.classList.remove('leave-l');//逃げていたパネルを元に戻す
   keyPanel.right.classList.remove('leave-r');//逃げていたパネルを元に戻す
@@ -112,7 +116,7 @@ function downAnim2() {
 }
 function cleanup() {
   OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
-  setScene(2);//ゲームオーバーへ
+  setScene(3);//ゲームオーバーへ
 
 
 }
@@ -123,7 +127,7 @@ function runawayPanel() {
 
 function toClear() {//ゲームクリア移行処理
   OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
-  setScene(3);//ゲームクリアへ
+  setScene(4);//ゲームクリアへ
 }
 function resetScene() {//全シーンを非表示
   Object.values(scenes).forEach(el => {
@@ -135,7 +139,7 @@ function showScene(num) {//指定のシーンを表示
 }
 function setScene(num) {//シーンをセット
   resetScene();
-  if (num <= 3 && num >= 0) {
+  if (num <= 4 && num >= 0) {
     scene = num;
     showScene(scene);
   } else {//不正な値ならタイトルへ

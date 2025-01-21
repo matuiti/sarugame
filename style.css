@@ -64,7 +64,7 @@ body {
 #title-btn {
   width: 46%;
   aspect-ratio: 496/156;
-  margin-bottom: 18%;
+  margin-bottom: 17%;
   border-radius: 78px;
   background-color: #f1ec7e;
   border: none;
@@ -74,11 +74,16 @@ body {
   transition: 0.3s ease;
   background-image: url(images/start@2x.png);
   background-size: 62%;
-  /* height: 26%;
-  width: 26%; */
 }
 #title-btn:active {
   box-shadow: none;
+}
+
+/* desc */
+#desc {
+  background-image: url(images/description@2x.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* play */
