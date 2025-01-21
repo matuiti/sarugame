@@ -1,6 +1,6 @@
 import { canvas, ctx } from './index.js';
-import { Sounds, Config, CollisionManager, Effects } from './index.js';
-import { GAME_STATE, ROPE, SARU, OBJ_MANAGER, HEADER_UI } from './index.js';
+import { Sounds, Config, CollisionManager } from './index.js';
+import { GAME_STATE, ROPE, SARU, OBJ_MANAGER, HEADER_UI, EFFECTS } from './index.js';
 
 // シーン管理
 let scene = 0;//0:タイトル, 1:プレイ, 2:ゲームオーバー, 3:クリア
@@ -31,7 +31,6 @@ let events = [//ボタンのイベント
 // インスタンス
 const SOUNDS = new Sounds; //サウンドデータ
 const CONFIG = new Config; //設定
-const EFFECTS = new Effects; //設定
 const COLLISION_MANAGER = new CollisionManager(SARU, OBJ_MANAGER);
 
 canvas.width = CONFIG.SCREEN_W;

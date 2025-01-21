@@ -7,5 +7,4 @@ class Unti extends Obj {
     super.draw(ctx);
   }
 }
-
 export default Unti;
