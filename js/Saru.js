@@ -76,6 +76,10 @@ class Saru {
   }
 
   draw() {
+    if(this.type === 3){//appleTimeのサルは少し大きめに描画（他のサルタイプと揃えるため）
+      this.ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * this.BLOCK_W, this.y * this.BLOCK_H -30, this.blockW * 1.12, this.blockH * 1.1);
+      return;
+    }
     this.ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * this.BLOCK_W, this.y * this.BLOCK_H, this.blockW, this.blockH);
   }
 
