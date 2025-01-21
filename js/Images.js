@@ -31,11 +31,9 @@ class Images {
     this.saru_close_s_l = this.loadImage("images/saru_02_shout_l@2x.png");
     this.saru_close_d_l = this.loadImage("images/saru_02_down_l@2x.png");
     this.saru_close_apple_l = this.loadImage("images/saru_02_apple_l@2x.png");
-
+    
     // オブジェクト
-    this.banana = this.loadImage("images/item_banana@2x.png");
-    this.apple = this.loadImage("images/item_apple@2x.png");
-    this.unti = this.loadImage("images/item_unti@2x.png");
+    this.items = this.loadImages2x('item', 3); // 0:バナナ, 1:リンゴ, 2:うんち
 
     // さるガール
     // this.saru_girl = this.loadImage("images/saru_girl@2x.png");

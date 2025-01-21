@@ -7,9 +7,9 @@ const SOUNDS = new Sounds();
 class GameState {
   constructor() {
     this.scoreType = [10, 50]; // [バナナ,リンゴ]
-    this.initRemainingAppleTime = 0.1; // アップルタイムの基本効果時間(s)
+    this.initRemainingAppleTime = 5; // アップルタイムの基本効果時間(s)
     this.remainingAppleTime = this.initRemainingAppleTime; // アップルタイムの残り時間(s)
-    this.addTime = 0.1; // アップルタイム中のリンゴ獲得による延長時間(s)
+    this.addTime = 3; // アップルタイム中のリンゴ獲得による延長時間(s)
     this.hitTime = 300; // hit中判定の時間（ms）
     this.reset();
   }

@@ -2,31 +2,21 @@
 import { Images, Config } from './index.js';
 const IMAGES = new Images;
 const CONFIG = new Config;
+
 const BLOCK_W = CONFIG.BLOCK_W;
 const BLOCK_H = CONFIG.BLOCK_H;
 const FIELD_ROW = CONFIG.FIELD_ROW;
+
+const ITEMS = IMAGES.items;
 class Obj {
   constructor(type) {
-    this.type = type; // 種類を設定
-    this.image = this.getImage(type); // 画像を設定
-    this.x = this.rand(0, 9); // 初期座標x
-    this.y = 3; // 初期座標y
+    this.type = type; // 0:バナナ,1:リンゴ,2:うんち
+    this.image = ITEMS[this.type]; // 画像を設定
+    this.x = this.rand(0, 9);
+    this.y = 3;
     this.vy = 1; // 移動距離
     this.erase = false; // 削除フラグ
     this.moveIntervalId = null;
-  }
-
-  getImage(type) {
-    switch (type) {
-      case "banana":
-        return IMAGES.banana;
-      case "apple":
-        return IMAGES.apple;
-      case "unti":
-        return IMAGES.unti;
-      default:
-        return null;
-    }
   }
 
 
@@ -44,13 +34,11 @@ class Obj {
   }
 
   draw(ctx) {
-    if (this.image && this.image.complete) {
-      ctx.drawImage(this.image, this.x * BLOCK_W, this.y * BLOCK_H, BLOCK_W, BLOCK_H);
-    } else if (this.image) {
-      this.image.onload = () => {
-        ctx.drawImage(this.image, this.x * BLOCK_W, this.y * BLOCK_H, BLOCK_W, BLOCK_H);
-      };
+    if(this.type === 2){//うんちは縦長に描画
+      ctx.drawImage(this.image, this.x * BLOCK_W, this.y * BLOCK_H, BLOCK_W, BLOCK_H * 1.8);
+      return;
     }
+      ctx.drawImage(this.image, this.x * BLOCK_W, this.y * BLOCK_H, BLOCK_W, BLOCK_H);
   }
 
   move() {
@@ -68,7 +56,7 @@ class Obj {
 
 class Banana extends Obj {
   constructor() {
-    super("banana");
+    super(0);
   }
   draw(ctx) {
     super.draw(ctx);
@@ -77,7 +65,7 @@ class Banana extends Obj {
 
 class Apple extends Obj {
   constructor() {
-    super("apple");
+    super(1);
   }
   draw(ctx) {
     super.draw(ctx);
@@ -86,7 +74,7 @@ class Apple extends Obj {
 
 class Unti extends Obj {
   constructor() {
-    super("unti");
+    super(2);
   }
   draw(ctx) {
     super.draw(ctx);
