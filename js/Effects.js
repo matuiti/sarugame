@@ -1,4 +1,3 @@
-import { ctx } from './index.js';
 import { Images, Sounds } from './index.js';
 import { ROPE, SARU } from './index.js';
 const IMAGES = new Images();
@@ -7,7 +6,8 @@ const IMG = {
   numGet: IMAGES.num_get, // 0~9
 };
 class Effects {
-  constructor(){
+  constructor(ctx){
+    this.ctx = ctx;
     this.scorePopups = [];// 得点表示用の配列
   }
   reset(){
@@ -15,7 +15,7 @@ class Effects {
   }
     updateScorePopup(score) {
       const scoreStr = score.toString();
-      const popup = {
+      const popup = {//アニメーションの設定
         x: SARU.x + 1, // 表示の横位置を調整
         y: SARU.y, // 開始位置
         scoreStr,
@@ -28,7 +28,6 @@ class Effects {
       };
       this.scorePopups.push(popup);
 
-  
       // アニメーションで位置を更新しながらフェードアウト
       const animationInterval = setInterval(() => {
         // 速く登る距離を超えたら速度を切り替える
@@ -48,16 +47,16 @@ class Effects {
     }
   
     drawScorePopups() {
-      ctx.save();
+      this.ctx.save();
       this.scorePopups.forEach(popup => {
-        ctx.globalAlpha = popup.opacity;
+        this.ctx.globalAlpha = popup.opacity;
         let offsetX = 0;
         popup.scoreStr.split('').forEach(num => {
-          ctx.drawImage(IMG.numGet[num], popup.x * SARU.BLOCK_W + offsetX, popup.y * SARU.BLOCK_H, 79, 94);
+          this.ctx.drawImage(IMG.numGet[num], popup.x * SARU.BLOCK_W + offsetX, popup.y * SARU.BLOCK_H, 79, 94);
           offsetX += 100;
         });
       });
-      ctx.restore();
+      this.ctx.restore();
     }
 }
 

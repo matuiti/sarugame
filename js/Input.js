@@ -1,11 +1,9 @@
-import { gameLoop } from './index.js';
 import { Config } from './index.js';
 import { GAME_STATE, SARU } from './index.js';
-
 const CONFIG = new Config();
-
 class Input {
-  constructor() {
+  constructor(gameLoop) {
+    this.gameLoop = gameLoop;
     this.init();
   }
 
@@ -41,7 +39,7 @@ class Input {
     e.preventDefault();
     if (this.isSingleTouch && SARU.x > CONFIG.LEFT_END) {
       SARU.move(false);
-      gameLoop();
+      this.gameLoop();
     }
     this.stopMovement();
   }
@@ -61,7 +59,7 @@ class Input {
     e.preventDefault();
     if (this.isSingleTouch && SARU.x < CONFIG.RIGHT_END) {
       SARU.move(true);
-      gameLoop();
+      this.gameLoop();
     }
     this.stopMovement();
   }
@@ -76,12 +74,12 @@ class Input {
     if (this.moveLeft && !GAME_STATE.over && !CONFIG.hit && SARU.x > CONFIG.LEFT_END) {
       this.isSingleTouch = false;
       SARU.move(false);
-      gameLoop();
+      this.gameLoop();
       setTimeout(this.move.bind(this), 300); // 速度調整のために200ms待機
     } else if (this.moveRight && !GAME_STATE.over && !CONFIG.hit && SARU.x < CONFIG.RIGHT_END) {
       this.isSingleTouch = false;
       SARU.move(true);
-      gameLoop();
+      this.gameLoop();
       setTimeout(this.move.bind(this), 300); // 速度調整のために200ms待機
     }
   }
@@ -90,10 +88,10 @@ class Input {
     if (GAME_STATE.over) return;
     if (e.key === "ArrowLeft" && SARU.x > CONFIG.LEFT_END && !CONFIG.hit) {
       SARU.move(0);
-      gameLoop();
+      this.gameLoop();
     } else if (e.key === "ArrowRight" && SARU.x < CONFIG.RIGHT_END && !CONFIG.hit) {
       SARU.move(1);
-      gameLoop();
+      this.gameLoop();
     }
   }
 }

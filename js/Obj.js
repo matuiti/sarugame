@@ -66,4 +66,31 @@ class Obj {
   }
 }
 
-export default Obj;
+class Banana extends Obj {
+  constructor() {
+    super("banana");
+  }
+  draw(ctx) {
+    super.draw(ctx);
+  }
+}
+
+class Apple extends Obj {
+  constructor() {
+    super("apple");
+  }
+  draw(ctx) {
+    super.draw(ctx);
+  }
+}
+
+class Unti extends Obj {
+  constructor() {
+    super("unti");
+  }
+  draw(ctx) {
+    super.draw(ctx);
+  }
+}
+
+export { Obj, Banana, Apple, Unti };
