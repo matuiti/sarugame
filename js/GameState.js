@@ -21,10 +21,13 @@ class GameState {
     this.state = 0;
     this.maxBananas = 33;
     this.currentBananas = 0;
-    this.maxLife = 5;
+    this.maxLife = 1;
     this.currentLife = this.maxLife;
     this.score = 0;
     this.appleTimer = null;
+    this.countBananas= 0;
+    this.countApples= 0;
+    this.countUntis= 0;
     HEADER_UI.init(this.state, this.currentLife, this.score, this.currentBananas, this.maxBananas);
   }
 
@@ -54,15 +57,22 @@ class GameState {
     this.currentBananas++;
     this.#updateScore(this.scoreType[0]);
     EFFECTS.updateScorePopup(this.scoreType[0]);
-    if (this.currentBananas >= this.maxBananas) this.clear = true;
+    if (this.currentBananas >= this.maxBananas) {
+      this.clear = true;
+      return;
+    }
+    this.countBananas++;
+    console.log("countBananas: " + this.countBananas);
   }
-
+  
   hitApple() {
     if (this.state === 3) {
       SOUNDS.se("apple");
       this.#updateScore(this.scoreType[1]);
       this.addAppleTime(this.addTime);
       EFFECTS.updateScorePopup(this.scoreType[1]);
+      this.countApples++;
+      console.log("countApples: " + this.countApples);
     } else {
       SOUNDS.se("appleTime");
       this.state = 3;
@@ -70,6 +80,8 @@ class GameState {
       this.startAppleTime();
       EFFECTS.updateScorePopup(this.scoreType[1]);
       EFFECTS.updateAppleTimePopup();
+      this.countApples++;
+      console.log("countApples: " + this.countApples);
     }
   }
 
@@ -97,6 +109,8 @@ class GameState {
     SOUNDS.se("unti");
     this.state = 1;
     this.#updateLife();
+    this.countUntis++;
+    console.log("countUntis: "+this.countUntis);
   }
 }
 

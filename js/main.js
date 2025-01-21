@@ -11,7 +11,7 @@ let scenes = [//シーン要素
   document.getElementById("over"),
   document.getElementById("clear")
 ]
-let keyPanel = {//操作パネル要素
+let keyPanels = {//操作パネル要素
   left: document.getElementById('left-btn'),
   right: document.getElementById('right-btn')
 }
@@ -30,7 +30,10 @@ let events = [//ボタンのイベント
   btns.no.addEventListener("click", () => setScene(0)),//タイトルへ
   btns.restart.addEventListener("click", () => init())//初期化→プレイへ
 ]
-
+let overElms = {
+  overSaru: document.getElementById('over-saru'),
+  overPanel: document.getElementById('over-panel')
+}
 
 // インスタンス
 const SOUNDS = new Sounds; //サウンドデータ
@@ -92,12 +95,11 @@ function init() {//初期化関数
   COLLISION_MANAGER.reset();
   setScene(2);//プレイ画面へ
   OBJ_MANAGER.startPop(CONFIG.POP_INTERVAL);//オートポップとオート移動開始、範囲外の移動は削除
-  keyPanel.left.classList.remove('leave-l');//逃げていたパネルを元に戻す
-  keyPanel.right.classList.remove('leave-r');//逃げていたパネルを元に戻す
+  keyPanels.left.classList.remove('leave-l');//逃げていたパネルを元に戻す
+  keyPanels.right.classList.remove('leave-r');//逃げていたパネルを元に戻す
   requestAnimationFrame(gameLoop);//ゲームループ開始
 }
 function toOver() {//ゲームオーバー移行処理
-  // debugger
   GAME_STATE.toOver = false;
   GAME_STATE.over = true;
   COLLISION_MANAGER.setSkipCheck();
@@ -117,12 +119,18 @@ function downAnim2() {
 function cleanup() {
   OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
   setScene(3);//ゲームオーバーへ
+  setTimeout(() => {
+    overElms.overSaru.src = 'images/over_saru.gif';
+    setTimeout(() => {
+      overElms.overPanel.style.opacity = "1";
+    }, 2000);
+  }, 2000);
 
 
 }
 function runawayPanel() {
-  keyPanel.left.classList.add('leave-l');
-  keyPanel.right.classList.add('leave-r');
+  keyPanels.left.classList.add('leave-l');
+  keyPanels.right.classList.add('leave-r');
 }
 
 function toClear() {//ゲームクリア移行処理

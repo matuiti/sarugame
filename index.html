@@ -21,43 +21,6 @@
 
   <!-- プレイ画面 -->
   <div id="play" class="screen bg-01" style="display: none;">
-    <!-- <div id="header" class="header">
-      <div class="container">
-        <div class="box-left">
-          <img id="icon" class="icon" src="images/icon_0@2x.png">
-        </div>
-        <div class="box-center">
-          <div class="box-score">
-            <div class="box-score-title">
-              <img id="score-title" class="score-title" src="images/score_title@2x.png">
-            </div>
-            <div class="box-num-score">
-              <div class="num-score"><img src="images/num_score_0@2x.png"></div>
-              <div class="num-score"><img src="images/num_score_0@2x.png"></div>
-              <div class="num-score"><img src="images/num_score_0@2x.png"></div>
-              <div class="num-score"><img src="images/num_score_0@2x.png"></div>
-              <div class="num-score"><img src="images/num_score_0@2x.png"></div>
-            </div>
-          </div>
-          <div class="box-life">
-            <img class="life" src="images/life_5@2x.png">
-
-          </div>
-        </div>
-        <div class="box-right">
-          <div class="box-right-bg">
-            <div class="box-num-now">
-              <img class="num-now" src="images/num_now_0@2x.png">
-              <img class="num-now" src="images/num_now_0@2x.png">
-            </div>
-            <div class="box-num-max">
-              <img class="num-max" src="images/num_max_0@2x.png">
-              <img class="num-max" src="images/num_max_0@2x.png">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <canvas id="canvas"></canvas>
     <div id="play-btns" class="play-btns">
       <button id="left-btn" class="left-btn"></button>
@@ -67,13 +30,15 @@
 
   <!-- ゲームオーバー画面 -->
   <div id="over" class="screen" style="display: none;">
-    <img id="over-title" class="over-title" width="80%" src="images/overtitle@2x.png">
-    <div id="over-body" class="over-body">
-      <img id="over-message" class="over-message" width="80%" src="images/playagain@2x.png">
+    <img id="over-title" class="over-title" width="80%" src="images/over_title@2x.png">
+    <img id="over-saru" class="over-saru" width="80%" src="images/over_saru@2x.png">
+
+    <div id="over-panel" class="over-panel">
       <button id="yes-btn" class="yes-btn"></button>
       <button id="no-btn" class="no-btn"></button>
     </div>
-    <img id="over-saru" class="over-saru" width="80%" src="images/saru_gameover@2x.png">
+
+
   </div>
 
   <!-- ゲームクリア画面 -->
