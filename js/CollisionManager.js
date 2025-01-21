@@ -47,15 +47,15 @@ class CollisionManager {
   handleCollision(object) {
     switch (object.type) {
       case 0:
-        object.erase = true; // 衝突したオブジェクトを消去
+        object.erase = true; // オブジェクトを消去
         GAME_STATE.hitBanana(); // バナナがヒットした際の処理を呼び出す
         break;
       case 1:
-        object.erase = true; // 衝突したオブジェクトを消去
+        object.erase = true; // オブジェクトを消去
         GAME_STATE.hitApple(); // リンゴがヒットした際の処理を呼び出す
         break;
       case 2:
-        object.erase = true; // 衝突したオブジェクトを消去
+        object.erase = true; // オブジェクトを消去
         if (GAME_STATE.state !== 3) { // アップルタイム中は当たらない
           GAME_STATE.hitUnti(); // うんちがヒットした際の処理を呼び出す
         }
