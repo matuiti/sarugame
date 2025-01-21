@@ -34,11 +34,7 @@ class Obj {
   }
 
   draw(ctx) {
-    // if(this.type === 2){//うんちは縦長に描画
-    //   ctx.drawImage(this.image, this.x * BLOCK_W, this.y * BLOCK_H, BLOCK_W, BLOCK_H * 1.8);
-    //   return;
-    // }
-      ctx.drawImage(this.image, this.x * BLOCK_W, this.y * BLOCK_H, BLOCK_W, BLOCK_H);
+    ctx.drawImage(this.image, this.x * BLOCK_W, this.y * BLOCK_H, BLOCK_W, BLOCK_H);
   }
 
   move() {
@@ -74,8 +70,8 @@ class Apple extends Obj {
 
 class Unti extends Obj {
   constructor() {
-    const type = Math.random() < 0.5 ? 2 : 3; // 2か3をランダムに選択
-    super(type); }
+    super(2);
+  }
   draw(ctx) {
     super.draw(ctx);
   }

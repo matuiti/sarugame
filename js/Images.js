@@ -33,7 +33,7 @@ class Images {
     this.saru_close_apple_l = this.loadImage("images/saru_02_apple_l@2x.png");
     
     // オブジェクト
-    this.items = this.loadImages2x('item', 4); // 0:バナナ, 1:リンゴ, 2:うんち(顔あり), 3:うんち（顔なし）
+    this.items = this.loadImages2x('item', 3); // 0:バナナ, 1:リンゴ, 2:うんち
 
     // さるガール
     // this.saru_girl = this.loadImage("images/saru_girl@2x.png");
