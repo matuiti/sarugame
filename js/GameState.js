@@ -31,6 +31,11 @@ class GameState {
     HEADER_UI.init(this.state, this.currentLife, this.score, this.currentBananas, this.maxBananas);
   }
 
+  getResult(){
+    const result = [this.countBananas, this.countApples, this.countUntis, this.score];
+    return result;
+  }
+
   #updateScore(points) {
     this.score += points;
   }
@@ -84,27 +89,7 @@ class GameState {
       console.log("countApples: " + this.countApples);
     }
   }
-
-  startAppleTime() {
-    this.appleTimer = setInterval(() => {
-      if (this.remainingAppleTime > 0) {
-        this.remainingAppleTime--;
-      } else {
-        this.stopAppleTime();
-      }
-    }, 1000);
-  }
-
-  addAppleTime(addTime) {
-    this.remainingAppleTime += addTime;
-  }
-
-  stopAppleTime() {
-    clearInterval(this.appleTimer);
-    this.appleTimer = null;
-    this.state = 0;
-  }
-
+  
   hitUnti() {
     SOUNDS.se("unti");
     this.state = 1;
@@ -112,6 +97,26 @@ class GameState {
     this.countUntis++;
     console.log("countUntis: "+this.countUntis);
   }
+  
+    startAppleTime() {
+      this.appleTimer = setInterval(() => {
+        if (this.remainingAppleTime > 0) {
+          this.remainingAppleTime--;
+        } else {
+          this.stopAppleTime();
+        }
+      }, 1000);
+    }
+  
+    addAppleTime(addTime) {
+      this.remainingAppleTime += addTime;
+    }
+  
+    stopAppleTime() {
+      clearInterval(this.appleTimer);
+      this.appleTimer = null;
+      this.state = 0;
+    }
 }
 
 export default GameState;

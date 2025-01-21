@@ -1,5 +1,5 @@
 import { canvas, ctx } from './index.js';
-import { Sounds, Config, CollisionManager } from './index.js';
+import { Sounds, Config, CollisionManager, Over } from './index.js';
 import { GAME_STATE, ROPE, SARU, OBJ_MANAGER, HEADER_UI, EFFECTS } from './index.js';
 
 // シーン管理
@@ -39,6 +39,7 @@ let overElms = {
 const SOUNDS = new Sounds; //サウンドデータ
 const CONFIG = new Config; //設定
 const COLLISION_MANAGER = new CollisionManager(SARU, OBJ_MANAGER);
+const OVER = new Over; //gameoverシーンの管理
 
 canvas.width = CONFIG.SCREEN_W;
 canvas.height = CONFIG.SCREEN_H;
@@ -117,16 +118,9 @@ function downAnim2() {
   setTimeout(cleanup, 2000);
 }
 function cleanup() {
-  OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
-  setScene(3);//ゲームオーバーへ
-  setTimeout(() => {
-    overElms.overSaru.src = 'images/over_saru.gif';
-    setTimeout(() => {
-      overElms.overPanel.style.opacity = "1";
-    }, 2000);
-  }, 2000);
-
-
+  OBJ_MANAGER.stopPop();//オブジェクトの自動ポップの停止と全オブジェクトの削除
+  setScene(3);//ゲームオーバーへ画面の切り替え
+  OVER.startOver();//ゲームオーバーシーン内の処理開始
 }
 function runawayPanel() {
   keyPanels.left.classList.add('leave-l');

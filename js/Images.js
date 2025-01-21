@@ -8,6 +8,8 @@ class Images {
     this.num_score = this.loadImages2x('num_score',10);
     this.score_title = this.loadImage("images/score_title@2x.png");
     this.count_panel = this.loadImage("images/count_panel@2x.png");
+    //結果画面
+    this.num_result = this.loadImages2x('num_result',10);
     //エフェクト
     this.num_get = this.loadImages('num_get',10);
     this.appleTime = this.loadImage('images/appletime@2x.png');
