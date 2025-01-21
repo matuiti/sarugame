@@ -1,5 +1,5 @@
 import { canvas, ctx } from './index.js';
-import { Sounds, Config, CollisionManager } from './index.js';
+import { Sounds, Config, CollisionManager, Effects } from './index.js';
 import { GAME_STATE, ROPE, SARU, OBJ_MANAGER, HEADER_UI } from './index.js';
 
 // シーン管理
@@ -31,6 +31,7 @@ let events = [//ボタンのイベント
 // インスタンス
 const SOUNDS = new Sounds; //サウンドデータ
 const CONFIG = new Config; //設定
+const EFFECTS = new Effects; //設定
 const COLLISION_MANAGER = new CollisionManager(SARU, OBJ_MANAGER);
 
 canvas.width = CONFIG.SCREEN_W;
@@ -75,7 +76,7 @@ function draw() {
   ROPE.draw();
   SARU.draw();
   OBJ_MANAGER.drawAllObjects();
-  GAME_STATE.drawScorePopups(SARU);
+  EFFECTS.drawScorePopups();
 }
 
 function init() {//初期化関数

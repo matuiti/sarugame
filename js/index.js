@@ -1,7 +1,9 @@
 
 import Images from './Images.js';
-import Sounds from './Sounds.js';
 import Config from './Config.js';
+import Sounds from './Sounds.js';
+import Effects from './Effects.js';
+import Saru from './Saru.js';
 import HeaderUI from './HeaderUI.js';
 import GameState from './GameState.js';
 import ObjManager from './ObjManager.js';
@@ -10,7 +12,6 @@ import Banana from './Banana.js';
 import Apple from './Apple.js';
 import Unti from './Unti.js';
 import Rope from './Rope.js';
-import Saru from './Saru.js';
 import Input from './Input.js';
 import CollisionManager from './CollisionManager.js';
 import { gameLoop } from './main.js'
@@ -27,5 +28,5 @@ const OBJ_MANAGER = new ObjManager(ctx);
 const INPUT = new Input;
 
 export { canvas, ctx, gameLoop };
-export { Images, Sounds, Config, Obj, Banana, Apple, Unti, CollisionManager };
+export { Images, Sounds, Config, Obj, Banana, Apple, Unti, CollisionManager, Effects };
 export { GAME_STATE, ROPE, SARU, OBJ_MANAGER, INPUT, HEADER_UI };
