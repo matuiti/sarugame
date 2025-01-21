@@ -76,6 +76,7 @@ function draw() {
   SARU.draw();
   OBJ_MANAGER.drawAllObjects();
   EFFECTS.drawScorePopups();
+  EFFECTS.drawAppleTimePopups();
 }
 
 function init() {//初期化関数

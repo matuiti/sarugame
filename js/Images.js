@@ -10,6 +10,7 @@ class Images {
     this.count_panel = this.loadImage("images/count_panel@2x.png");
     //エフェクト
     this.num_get = this.loadImages('num_get',10);
+    this.appleTime = this.loadImage('images/appletime@2x.png');
     //ロープ
     this.rope = this.loadImage("images/rope@2x.png");
     // サル（右向き）
