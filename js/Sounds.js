@@ -16,6 +16,8 @@ class Sounds {
     this.setVolumeBGM(0.8);
     this.setVolumeSE(0.4);
     this.apple.volume = 0.1;
+    this.click.volume = 0.2;
+    this.move.volume = 0.2;
   }
 
   // 全SEのヴォリュームを一括設定するメソッド
@@ -24,7 +26,8 @@ class Sounds {
     this.unti.volume = volume;
     this.appletime.volume = volume;
     this.scream.volume = volume;
-    this.click.volume = volume;
+    this.falling.volume = volume;
+    this.standup.volume = volume;
   }
   // 全BGMのヴォリュームを一括設定するメソッド
   setVolumeBGM(volume) {

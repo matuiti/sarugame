@@ -26,7 +26,7 @@ class Input {
 
   touchLeftStart(e) {
     e.preventDefault();
-    if (GAME_STATE.over || CONFIG.hit || SARU.x <= CONFIG.LEFT_END) return;
+    if (GAME_STATE.over || GAME_STATE.clear ||CONFIG.hit || SARU.x <= CONFIG.LEFT_END) return;
     if (this.leftCooldown) return; // クールダウン中は反応しない
     this.moveLeft = true;
     this.isSingleTouch = true;
@@ -46,7 +46,7 @@ class Input {
 
   touchRightStart(e) {
     e.preventDefault();
-    if (GAME_STATE.over || CONFIG.hit || SARU.x >= CONFIG.RIGHT_END) return;
+    if (GAME_STATE.over || GAME_STATE.clear || CONFIG.hit || SARU.x >= CONFIG.RIGHT_END) return;
     if (this.rightCooldown) return; // クールダウン中は反応しない
     this.moveRight = true;
     this.isSingleTouch = true;
