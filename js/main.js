@@ -97,12 +97,12 @@ export function gameLoop(timestamp) {
 }
 
 function update() {
-  let state = GAME_STATE.state;
+  // let GAME_STATE.state = GAME_STATE.state;
   OBJ_MANAGER.updateAllObjects();//objects[]を更新
-  if (state !== 1 && !GAME_STATE.over && !GAME_STATE.clear) COLLISION_MANAGER.checkCollisions();//hit中とダウン中以外は、当たり判定のチェックをして事後処理の分岐
+  if (GAME_STATE.state !== 1 && !GAME_STATE.over && !GAME_STATE.clear) COLLISION_MANAGER.checkCollisions();//hit中とダウン中以外は、当たり判定のチェックをして事後処理の分岐
   ROPE.update();
-  SARU.update(state);
-  HEADER_UI.drawAll(state, GAME_STATE.currentLife, GAME_STATE.score, GAME_STATE.currentBananas, GAME_STATE.maxBananas);//(iconIndex, newLife, newScore, currentBananas)
+  SARU.update(GAME_STATE.state);
+  HEADER_UI.drawAll(GAME_STATE.state, GAME_STATE.currentLife, GAME_STATE.score, GAME_STATE.currentBananas, GAME_STATE.maxBananas);//(iconIndex, newLife, newScore, currentBananas)
 }
 
 function draw() {
@@ -119,7 +119,7 @@ function init() {//初期化関数
   ROPE.reset();
   SARU.reset();
   OBJ_MANAGER.reset();
-  COLLISION_MANAGER.reset();
+  // COLLISION_MANAGER.reset();
   OVER.reset();
   CLEAR.reset();
   setScene(2);//プレイ画面へ
@@ -131,7 +131,7 @@ function init() {//初期化関数
 function toOver() {//ゲームオーバー移行処理
   GAME_STATE.toOver = false;
   GAME_STATE.over = true;
-  COLLISION_MANAGER.setSkipCheck();
+  // COLLISION_MANAGER.setSkipCheck();
   gameLoop();
   downAnim1();
 }

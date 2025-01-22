@@ -8,12 +8,11 @@ class GameState {
   constructor() {
     this.scoreType = [10, 50]; // [バナナ,リンゴ]
     this.initRemainingAppleTime = 5; // アップルタイムの基本効果時間(s)
-    this.remainingAppleTime = this.initRemainingAppleTime; // アップルタイムの残り時間(s)
     this.addTime = 3; // アップルタイム中のリンゴ獲得による延長時間(s)
     this.hitTime = 300; // hit中判定の時間（ms）
     this.reset();
   }
-
+  
   reset() {
     this.toOver = false;
     this.over = false;
@@ -25,10 +24,11 @@ class GameState {
     this.maxLife = 5;
     this.currentLife = this.maxLife;
     this.score = 0;
-    this.appleTimer = null;
     this.countBananas = 0;
     this.countApples = 0;
     this.countUntis = 0;
+    this.remainingAppleTime = this.initRemainingAppleTime; // アップルタイムの残り時間(s)
+    this.stopAppleTime();
     HEADER_UI.init(this.state, this.currentLife, this.score, this.currentBananas, this.maxBananas);
   }
 
@@ -69,12 +69,15 @@ class GameState {
 
   hitApple() {
     if (this.state === 3) {
+      // console.log("addApple 残り時間: " + this.remainingAppleTime );
       SOUNDS.se("apple");
       this.countApples++;
       this.#updateScore(this.scoreType[1]);
       this.addAppleTime(this.addTime);
       EFFECTS.updateScorePopup(this.scoreType[1]);
+      return;
     } else {
+      // console.log("fastApple 残り時間: " + this.remainingAppleTime);
       SOUNDS.se("appleTime");
       this.countApples++;
       this.state = 3;
@@ -82,6 +85,7 @@ class GameState {
       this.startAppleTime();
       EFFECTS.updateScorePopup(this.scoreType[1]);
       EFFECTS.updateAppleTimePopup();
+      return;
     }
   }
 
@@ -96,6 +100,7 @@ class GameState {
     this.appleTimer = setInterval(() => {
       if (this.remainingAppleTime > 0) {
         this.remainingAppleTime--;
+        console.log("残りタイム: " + this.remainingAppleTime);
       } else {
         this.stopAppleTime();
       }

@@ -127,6 +127,7 @@ button.pressed {
   width: 100%;
   max-width: 32%;
   aspect-ratio: 346 / 324;
+  touch-action: none;//タッチイベントのパンやズームを無効にする
 }
 .left-btn {
   background: url(images/arrow_left@2x.png) center/contain no-repeat;

@@ -73,10 +73,6 @@ class Saru {
     this.x += toRight ? this.vx : -this.vx;
   }
 
-  setType(state) {
-    this.type = state;
-  }
-
   draw() {
     if(this.type === 3){//appleTimeのサルは少し大きめに描画（他のサルタイプと揃えるため）
       this.ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * this.BLOCK_W - 32, this.y * this.BLOCK_H -30, this.blockW * 1.15, this.blockH * 1.112);

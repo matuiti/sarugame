@@ -12,20 +12,20 @@ class Input {
     this.leftBtn = document.getElementById("left-btn");
     this.rightBtn = document.getElementById("right-btn");
 
-    this.leftBtn.addEventListener("touchstart", this.touchLeftStart.bind(this), { passive: false });
-    this.leftBtn.addEventListener("touchend", this.touchLeftEnd.bind(this), { passive: false });
-    this.leftBtn.addEventListener("touchcancel", this.stopMovement.bind(this), { passive: false });
+    this.leftBtn.addEventListener("touchstart", this.touchLeftStart.bind(this), { passive: true });
+    this.leftBtn.addEventListener("touchend", this.touchLeftEnd.bind(this), { passive: true });
+    this.leftBtn.addEventListener("touchcancel", this.stopMovement.bind(this), { passive: true });
 
-    this.rightBtn.addEventListener("touchstart", this.touchRightStart.bind(this), { passive: false });
-    this.rightBtn.addEventListener("touchend", this.touchRightEnd.bind(this), { passive: false });
-    this.rightBtn.addEventListener("touchcancel", this.stopMovement.bind(this), { passive: false });
+    this.rightBtn.addEventListener("touchstart", this.touchRightStart.bind(this), { passive: true });
+    this.rightBtn.addEventListener("touchend", this.touchRightEnd.bind(this), { passive: true });
+    this.rightBtn.addEventListener("touchcancel", this.stopMovement.bind(this), { passive: true });
 
     // PCのキーボードイベント
     document.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
   touchLeftStart(e) {
-    e.preventDefault();
+    // e.preventDefault();
     if (GAME_STATE.over || GAME_STATE.clear ||CONFIG.hit || SARU.x <= CONFIG.LEFT_END) return;
     if (this.leftCooldown) return; // クールダウン中は反応しない
     this.moveLeft = true;
@@ -36,7 +36,7 @@ class Input {
   }
 
   touchLeftEnd(e) {
-    e.preventDefault();
+    // e.preventDefault();
     if (this.isSingleTouch && SARU.x > CONFIG.LEFT_END) {
       SARU.move(false);
       this.gameLoop();
@@ -45,7 +45,7 @@ class Input {
   }
 
   touchRightStart(e) {
-    e.preventDefault();
+    // e.preventDefault();
     if (GAME_STATE.over || GAME_STATE.clear || CONFIG.hit || SARU.x >= CONFIG.RIGHT_END) return;
     if (this.rightCooldown) return; // クールダウン中は反応しない
     this.moveRight = true;
@@ -56,7 +56,7 @@ class Input {
   }
 
   touchRightEnd(e) {
-    e.preventDefault();
+    // e.preventDefault();
     if (this.isSingleTouch && SARU.x < CONFIG.RIGHT_END) {
       SARU.move(true);
       this.gameLoop();
