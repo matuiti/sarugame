@@ -18,6 +18,7 @@ img {
   max-width: 100%;
 }
 button {
+  outline: none;
   -webkit-appearance: none;
   appearance: none;
   vertical-align: middle;
@@ -48,17 +49,14 @@ body {
   width: 100%;
   height: 100%;
 }
-.none {
-  display: none;
-}
-button{
-  transition: all 0.3s!important;
-  opacity: 1!important;
+button {
+  transition: all 0.3s !important;
+  opacity: 1 !important;
 }
 button.pressed {
-  transform: translateY(10px)!important;
-      box-shadow: none!important;
-      opacity: 0.6!important;
+  transform: translateY(10px) !important;
+  box-shadow: none !important;
+  opacity: 0.6 !important;
 }
 
 /* title */
@@ -83,9 +81,6 @@ button.pressed {
   background-image: url(images/start@2x.png);
   background-size: 62%;
 }
-/* #title-btn:active {
-  box-shadow: none;
-} */
 
 /* desc */
 #desc {
@@ -146,14 +141,14 @@ button.pressed {
   0% {
   }
   100% {
-    transform: translateX(-500px);
+    transform: translateX(-100vw);
   }
 }
 @keyframes leave-r-anim {
   0% {
   }
   100% {
-    transform: translateX(500px);
+    transform: translateX(100vw);
   }
 }
 
@@ -180,14 +175,13 @@ button.pressed {
   background-image: url(images/over_panel@2x.png);
   background-repeat: no-repeat;
   background-size: cover;
-  
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
   width: 100%;
   height: 100%;
-  background-color:  rgba(140, 166, 228, 0.9);
+  background-color: rgba(140, 166, 228, 0.9);
 }
 #over-canvas {
   width: 100%;
@@ -217,12 +211,6 @@ button.pressed {
   background-size: 42%;
 }
 
-/* .yes-btn:active,
-.no-btn:active {
-  bottom: 5%;
-  box-shadow: none;
-} */
-
 /* clear */
 #clear {
   background-image: url(images/clear.gif);
@@ -232,4 +220,17 @@ button.pressed {
   align-items: center;
   justify-content: space-evenly;
   text-align: center;
+}
+#retry-btn {
+  width: 46%;
+  aspect-ratio: 496/156;
+  margin-bottom: 17%;
+  border-radius: 78px;
+  background-color: #f1ec7e;
+  border: none;
+  box-shadow: 0px 10px #e5814c;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(images/start@2x.png);
+  background-size: 62%;
 }

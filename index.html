@@ -44,7 +44,10 @@
 
   <!-- ゲームクリア画面 -->
   <div id="clear" class="screen" style="display: none;">
-    <button id="restart-btn">ONE MORE ?</button>
+    <div id="over-panel" class="over-panel">
+      <canvas id="over-canvas"></canvas>
+      <button id="retry-btn"></button>
+    </div>
   </div>
 
   <script type="module" src="js/main.js"></script>

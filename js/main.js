@@ -33,7 +33,7 @@ let btns = {//個別のボタン要素
   start: document.getElementById("title-btn"),
   yes: document.getElementById("yes-btn"),
   no: document.getElementById("no-btn"),
-  restart: document.getElementById("restart-btn")
+  retry: document.getElementById("retry-btn")
 }
 let events = [//個別のボタン要素のイベント処理
   btns.start.addEventListener("click", () => {
@@ -46,9 +46,9 @@ let events = [//個別のボタン要素のイベント処理
     setTimeout(init, 3000);//初期化→プレイへ
   }),
   btns.no.addEventListener("click", () => {
-    setTimeout(()=>setScene(0), 2000);//初期化→プレイへ
+    setTimeout(() => setScene(0), 2000);//初期化→プレイへ
   }),//タイトルへ
-  btns.restart.addEventListener("click", () => {
+  btns.retry.addEventListener("click", () => {
     setTimeout(init, 2000);//初期化→プレイへ
   })
 ]
