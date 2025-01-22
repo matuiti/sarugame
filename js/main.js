@@ -158,8 +158,10 @@ function runawayPanel() {
 function toClear() {//ゲームクリア移行処理
   GAME_STATE.toClear = false;
   GAME_STATE.clear = true;
+  SOUNDS.se('clear');
+  OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
+
   setTimeout(()=>{
-    OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
     setScene(4);//ゲームクリアへ
     CLEAR.startClear();//ゲームクリアシーン内の処理開始
   },3000)

@@ -5,9 +5,10 @@ class Sounds {
     this.apple = new Audio('sound/apple.mp3');
     this.unti = new Audio('sound/unti_01.mp3');
     this.appletime = new Audio('sound/mahounosutekki.mp3');
-    this.move = new Audio('sound/move.mp3');
+    this.move = new Audio('sound/move_03.mp3');
     this.scream = new Audio('sound/dawn_01.mp3');
     this.falling = new Audio('sound/falling.mp3');
+    this.clear = new Audio('sound/clear.mp3');
     this.win = new Audio('sound/win.mp3');
     this.click = new Audio('sound/click.mp3');
     this.standup = new Audio('sound/standup.mp3');
@@ -17,9 +18,8 @@ class Sounds {
     this.setVolumeSE(0.4);
     this.apple.volume = 0.1;
     this.click.volume = 0.2;
-    this.move.volume = 0.2;
   }
-
+  
   // 全SEのヴォリュームを一括設定するメソッド
   setVolumeSE(volume) {
     this.banana.volume = volume;
@@ -28,6 +28,7 @@ class Sounds {
     this.scream.volume = volume;
     this.falling.volume = volume;
     this.standup.volume = volume;
+    this.move.volume = volume;
   }
   // 全BGMのヴォリュームを一括設定するメソッド
   setVolumeBGM(volume) {
@@ -54,6 +55,9 @@ class Sounds {
         break;
       case "falling":
         sound = this.falling;
+        break;
+      case "clear":
+        sound = this.clear;
         break;
       case "win":
         sound = this.win;
