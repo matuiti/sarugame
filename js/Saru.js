@@ -1,6 +1,7 @@
-import { Images, Config } from './index.js';
+import { Images,Sounds, Config } from './index.js';
 
 const IMAGES = new Images;
+const SOUNDS = new Sounds;
 const CONFIG = new Config;
 
 const HITBOXS = [//HITBOXS[0:閉, 1:開][ y ][ x ]
@@ -66,6 +67,7 @@ class Saru {
   }
 
   move(toRight) {
+    SOUNDS.se('move');
     this.right = toRight ? 1 : 0;
     this.open = 1 - this.open; // 元の値を反転
     this.x += toRight ? this.vx : -this.vx;

@@ -5,8 +5,13 @@ class Sounds {
     this.apple = new Audio('sound/apple.mp3');
     this.unti = new Audio('sound/unti_01.mp3');
     this.appletime = new Audio('sound/mahounosutekki.mp3');
-    this.move = new Audio('sound/move_02.mp3');
-    this.scream = new Audio('sound/dawn_02.mp3');
+    this.move = new Audio('sound/move.mp3');
+    this.scream = new Audio('sound/dawn_01.mp3');
+    this.falling = new Audio('sound/falling.mp3');
+    this.win = new Audio('sound/win.mp3');
+    this.click = new Audio('sound/click.mp3');
+    this.standup = new Audio('sound/standup.mp3');
+    this.se_bgm = new Audio('sound/se_bgm.wav');
 
     this.setVolumeBGM(0.8);
     this.setVolumeSE(0.4);
@@ -18,8 +23,8 @@ class Sounds {
     this.banana.volume = volume;
     this.unti.volume = volume;
     this.appletime.volume = volume;
-    this.move.volume = volume;
     this.scream.volume = volume;
+    this.click.volume = volume;
   }
   // 全BGMのヴォリュームを一括設定するメソッド
   setVolumeBGM(volume) {
@@ -43,6 +48,24 @@ class Sounds {
         break;
       case "scream":
         sound = this.scream;
+        break;
+      case "falling":
+        sound = this.falling;
+        break;
+      case "win":
+        sound = this.win;
+        break;
+      case "click":
+        sound = this.click;
+        break;
+      case "move":
+        sound = this.move;
+        break;
+      case "standup":
+        sound = this.standup;
+        break;
+      case "se_bgm":
+        sound = this.se_bgm;
         break;
       default:
         console.error("指定されたサウンドは見つかりません: " + se);

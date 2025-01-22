@@ -1,6 +1,7 @@
 import { Images, Sounds, Config } from './index.js';
 import { GAME_STATE } from './index.js';
 const IMAGES = new Images;
+const SOUNDS = new Sounds;
 const CONFIG = new Config;
 
 const cCanvas = document.getElementById('clear-canvas');
@@ -65,9 +66,11 @@ class Clear {
   }
 
   startClear() {
+    SOUNDS.se('win');
     const result = GAME_STATE.getResult();
     setTimeout(() => {
       CLEAR_ELMS.clearPanel.style.opacity = "1";
+      SOUNDS.se('se_bgm');
       this.drawScore(result[3]);
       this.drawItemCount(result[0], this.count_banana_x, this.count_banana_y, this.count_banana_w, this.count_banana_h); // 例: バナナの個数を描画
       this.drawItemCount(result[1], this.count_apple_x, this.count_apple_y, this.count_apple_w, this.count_apple_h); // 例: リンゴの個数を描画

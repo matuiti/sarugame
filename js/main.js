@@ -22,6 +22,7 @@ buttons.forEach(button => {//ボタン共通処理
     button.classList.add('pressed');
   });
   button.addEventListener('mouseup', () => {
+    SOUNDS.se('click');
     button.classList.remove('pressed'); // クリック解除時にクラスを削除
   });
   button.addEventListener('mouseleave', () => {
@@ -141,6 +142,7 @@ function downAnim1() {
 }
 function downAnim2() {
   SARU.fall();
+  SOUNDS.se('falling');
   setTimeout(cleanup, 3000);
 }
 function cleanup() {
