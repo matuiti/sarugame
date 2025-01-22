@@ -124,6 +124,7 @@ button.pressed {
 }
 .left-btn,
 .right-btn {
+  display:inline-block;
   width: 100%;
   max-width: 32%;
   aspect-ratio: 346 / 324;

@@ -12,7 +12,7 @@
 <body>
 
   <!-- タイトル画面 -->
-  <div id="title" class="screen" style="display: flex;">
+  <div id="title" class="screen" style="display: none;">
     <button id="title-btn"></button>
     <p class="copyright"><small>© matuiti</small></p>
   </div>
@@ -21,11 +21,11 @@
   </div>
 
   <!-- プレイ画面 -->
-  <div id="play" class="screen bg-01" style="display: none;">
+  <div id="play" class="screen bg-01" style="display: flex;">
     <canvas id="canvas"></canvas>
     <div id="play-btns" class="play-btns">
-      <button id="left-btn" class="left-btn"></button>
-      <button id="right-btn" class="right-btn"></button>
+      <div id="left-btn" class="left-btn"></div>
+      <div id="right-btn" class="right-btn"></div>
     </div>
   </div>
 
