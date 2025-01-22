@@ -73,12 +73,6 @@ let deltaTime = 0;//最終計測からの経過時間
 export function gameLoop(timestamp) {
   if (!lastTime) lastTime = timestamp;
   deltaTime = timestamp - lastTime;
-  if (deltaTime >= CONFIG.GAME_SPEED) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);//画面のクリア
-    update();
-    draw();
-    lastTime = timestamp;
-  }
 
   if (GAME_STATE.toOver) {
     SOUNDS.stopBGM();
@@ -90,6 +84,14 @@ export function gameLoop(timestamp) {
     SOUNDS.stopBGM();
     return;//ループを抜ける
   }
+  
+  if (deltaTime >= CONFIG.GAME_SPEED) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);//画面のクリア
+    update();
+    draw();
+    lastTime = timestamp;
+  }
+
 
   requestAnimationFrame(gameLoop);
 }
