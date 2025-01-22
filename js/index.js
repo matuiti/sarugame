@@ -12,6 +12,7 @@ import ObjManager from './ObjManager.js';
 import CollisionManager from './CollisionManager.js';
 import Input from './Input.js';
 import Over from './Over.js';
+import Clear from './Clear.js';
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -27,5 +28,5 @@ const OBJ_MANAGER = new ObjManager(ctx);
 const INPUT = new Input(gameLoop);
 
 export { canvas, ctx };//main.jsで利用
-export { Images, Sounds, Config, Obj, Banana, Apple, Unti, CollisionManager, Over };//各自newして利用
+export { Images, Sounds, Config, Obj, Banana, Apple, Unti, CollisionManager, Over, Clear };//各自newして利用
 export { GAME_STATE, ROPE, SARU, OBJ_MANAGER, INPUT, HEADER_UI, EFFECTS };//1つのインスタンスを参照

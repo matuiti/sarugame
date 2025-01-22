@@ -85,7 +85,7 @@ class Input {
   }
 
   handleKeyDown(e) {
-    if (GAME_STATE.over) return;
+    if (GAME_STATE.over || GAME_STATE.clear) return;
     if (e.key === "ArrowLeft" && SARU.x > CONFIG.LEFT_END && !CONFIG.hit) {
       SARU.move(0);
       this.gameLoop();

@@ -15,23 +15,24 @@ class GameState {
   }
 
   reset() {
-    this.over = false;
-    this.clear = false;
     this.toOver = false;
+    this.over = false;
+    this.toClear = false;
+    this.clear = false;
     this.state = 0;
-    this.maxBananas = 33;
+    this.maxBananas = 1;
     this.currentBananas = 0;
-    this.maxLife = 1;
+    this.maxLife = 5;
     this.currentLife = this.maxLife;
     this.score = 0;
     this.appleTimer = null;
-    this.countBananas= 0;
-    this.countApples= 0;
-    this.countUntis= 0;
+    this.countBananas = 0;
+    this.countApples = 0;
+    this.countUntis = 0;
     HEADER_UI.init(this.state, this.currentLife, this.score, this.currentBananas, this.maxBananas);
   }
 
-  getResult(){
+  getResult() {
     const result = [this.countBananas, this.countApples, this.countUntis, this.score];
     return result;
   }
@@ -59,60 +60,57 @@ class GameState {
 
   hitBanana() {
     SOUNDS.se("banana");
+    this.countBananas++;
     this.currentBananas++;
     this.#updateScore(this.scoreType[0]);
     EFFECTS.updateScorePopup(this.scoreType[0]);
-    if (this.currentBananas >= this.maxBananas) {
-      this.clear = true;
-      return;
-    }
-    this.countBananas++;
+    if (this.currentBananas >= this.maxBananas) this.toClear = true;
   }
-  
+
   hitApple() {
     if (this.state === 3) {
       SOUNDS.se("apple");
+      this.countApples++;
       this.#updateScore(this.scoreType[1]);
       this.addAppleTime(this.addTime);
       EFFECTS.updateScorePopup(this.scoreType[1]);
-      this.countApples++;
     } else {
       SOUNDS.se("appleTime");
+      this.countApples++;
       this.state = 3;
       this.#updateScore(this.scoreType[1]);
       this.startAppleTime();
       EFFECTS.updateScorePopup(this.scoreType[1]);
       EFFECTS.updateAppleTimePopup();
-      this.countApples++;
     }
   }
-  
+
   hitUnti() {
     SOUNDS.se("unti");
+    this.countUntis++;
     this.state = 1;
     this.#updateLife();
-    this.countUntis++;
   }
-  
-    startAppleTime() {
-      this.appleTimer = setInterval(() => {
-        if (this.remainingAppleTime > 0) {
-          this.remainingAppleTime--;
-        } else {
-          this.stopAppleTime();
-        }
-      }, 1000);
-    }
-  
-    addAppleTime(addTime) {
-      this.remainingAppleTime += addTime;
-    }
-  
-    stopAppleTime() {
-      clearInterval(this.appleTimer);
-      this.appleTimer = null;
-      this.state = 0;
-    }
+
+  startAppleTime() {
+    this.appleTimer = setInterval(() => {
+      if (this.remainingAppleTime > 0) {
+        this.remainingAppleTime--;
+      } else {
+        this.stopAppleTime();
+      }
+    }, 1000);
+  }
+
+  addAppleTime(addTime) {
+    this.remainingAppleTime += addTime;
+  }
+
+  stopAppleTime() {
+    clearInterval(this.appleTimer);
+    this.appleTimer = null;
+    this.state = 0;
+  }
 }
 
 export default GameState;

@@ -1,5 +1,5 @@
 import { canvas, ctx } from './index.js';
-import { Sounds, Config, CollisionManager, Over } from './index.js';
+import { Sounds, Config, CollisionManager, Over, Clear } from './index.js';
 import { GAME_STATE, ROPE, SARU, OBJ_MANAGER, HEADER_UI, EFFECTS } from './index.js';
 
 // シーン管理
@@ -61,7 +61,8 @@ let overElms = {
 const SOUNDS = new Sounds; //サウンドデータ
 const CONFIG = new Config; //設定
 const COLLISION_MANAGER = new CollisionManager(SARU, OBJ_MANAGER);
-const OVER = new Over; //gameoverシーンの管理
+const OVER = new Over; //「ゲームオーバー」シーンの管理
+const CLEAR = new Clear; //「ゲームクリア」シーンの管理
 
 canvas.width = CONFIG.SCREEN_W;
 canvas.height = CONFIG.SCREEN_H;
@@ -83,9 +84,9 @@ export function gameLoop(timestamp) {
     toOver();
     return;//ループを抜ける
   }
-  if (GAME_STATE.clear) {
-    SOUNDS.stopBGM();
+  if (GAME_STATE.toClear) {
     toClear();
+    SOUNDS.stopBGM();
     return;//ループを抜ける
   }
 
@@ -95,7 +96,7 @@ export function gameLoop(timestamp) {
 function update() {
   let state = GAME_STATE.state;
   OBJ_MANAGER.updateAllObjects();//objects[]を更新
-  if (state !== 1 && !GAME_STATE.over) COLLISION_MANAGER.checkCollisions();//hit中とダウン中以外は、当たり判定のチェックをして事後処理の分岐
+  if (state !== 1 && !GAME_STATE.over && !GAME_STATE.clear) COLLISION_MANAGER.checkCollisions();//hit中とダウン中以外は、当たり判定のチェックをして事後処理の分岐
   ROPE.update();
   SARU.update(state);
   HEADER_UI.drawAll(state, GAME_STATE.currentLife, GAME_STATE.score, GAME_STATE.currentBananas, GAME_STATE.maxBananas);//(iconIndex, newLife, newScore, currentBananas)
@@ -117,6 +118,7 @@ function init() {//初期化関数
   OBJ_MANAGER.reset();
   COLLISION_MANAGER.reset();
   OVER.reset();
+  CLEAR.reset();
   setScene(2);//プレイ画面へ
   OBJ_MANAGER.startPop(CONFIG.POP_INTERVAL);//オートポップとオート移動開始、範囲外の移動は削除
   keyPanels.left.classList.remove('leave-l');//逃げていたパネルを元に戻す
@@ -152,8 +154,13 @@ function runawayPanel() {
 }
 
 function toClear() {//ゲームクリア移行処理
-  OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
-  setScene(4);//ゲームクリアへ
+  GAME_STATE.toClear = false;
+  GAME_STATE.clear = true;
+  setTimeout(()=>{
+    OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
+    setScene(4);//ゲームクリアへ
+    CLEAR.startClear();//ゲームクリアシーン内の処理開始
+  },3000)
 }
 function resetScene() {//全シーンを非表示
   Object.values(scenes).forEach(el => {
