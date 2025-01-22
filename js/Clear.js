@@ -45,7 +45,7 @@ class Clear {
 
   reset() {
     cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height); // 画面のクリア
-    CLEAR_ELMS.clearPanel.style.opacity = "0";
+    CLEAR_ELMS.clearPanel.style.display = "none";
   }
 
   drawNumber(ctx, num, x, y, w, h, digitCount, startX) {
@@ -69,7 +69,7 @@ class Clear {
     SOUNDS.se('win');
     const result = GAME_STATE.getResult();
     setTimeout(() => {
-      CLEAR_ELMS.clearPanel.style.opacity = "1";
+      CLEAR_ELMS.clearPanel.style.display = "block";
       SOUNDS.se('se_bgm');
       this.drawScore(result[3]);
       this.drawItemCount(result[0], this.count_banana_x, this.count_banana_y, this.count_banana_w, this.count_banana_h); // 例: バナナの個数を描画

@@ -46,7 +46,7 @@ class Over {
 
   reset() {
     oCtx.clearRect(0, 0, oCanvas.width, oCanvas.height); // 画面のクリア
-    OVER_ELMS.overPanel.style.opacity = "0";
+    OVER_ELMS.overPanel.style.display = "none";
     OVER_ELMS.overSaru.src = 'images/over_saru@2x.png';
   }
 
@@ -73,7 +73,7 @@ class Over {
       SOUNDS.se('standup');
       OVER_ELMS.overSaru.src = 'images/over_saru.gif';
       setTimeout(() => {
-        OVER_ELMS.overPanel.style.opacity = "1";
+        OVER_ELMS.overPanel.style.display = "block";
         SOUNDS.se('se_bgm');
         this.drawScore(result[3]);
         this.drawItemCount(result[0], this.count_banana_x, this.count_banana_y, this.count_banana_w, this.count_banana_h);
