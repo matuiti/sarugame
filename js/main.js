@@ -15,20 +15,42 @@ let keyPanels = {//操作パネル要素
   left: document.getElementById('left-btn'),
   right: document.getElementById('right-btn')
 }
-let btns = {//ボタン要素
+
+let buttons = document.querySelectorAll('button');//全てのボタン要素
+buttons.forEach(button => {//ボタン共通処理
+  button.addEventListener('mousedown', () => {
+    button.classList.add('pressed');
+  });
+  button.addEventListener('mouseup', () => {
+    button.classList.remove('pressed'); // クリック解除時にクラスを削除
+  });
+  button.addEventListener('mouseleave', () => {
+    button.classList.remove('pressed'); // ボタン外にカーソルが出たときにクラスを削除
+  });
+});
+
+let btns = {//個別のボタン要素
   start: document.getElementById("title-btn"),
   yes: document.getElementById("yes-btn"),
   no: document.getElementById("no-btn"),
   restart: document.getElementById("restart-btn")
 }
-let events = [//ボタンのイベント
+let events = [//個別のボタン要素のイベント処理
   btns.start.addEventListener("click", () => {
-    setScene(1);//説明へ
-    setTimeout(init,3000);//少し待ってからプレイ画面へ
+    setTimeout(() => {
+      setScene(1);//説明へ
+      setTimeout(init, 3000);//少し待ってからプレイ画面へ
+    }, 1000)
   }),
-  btns.yes.addEventListener("click", () => init()),//初期化→プレイへ
-  btns.no.addEventListener("click", () => setScene(0)),//タイトルへ
-  btns.restart.addEventListener("click", () => init())//初期化→プレイへ
+  btns.yes.addEventListener("click", () => {
+    setTimeout(init, 3000);//初期化→プレイへ
+  }),
+  btns.no.addEventListener("click", () => {
+    setTimeout(()=>setScene(0), 2000);//初期化→プレイへ
+  }),//タイトルへ
+  btns.restart.addEventListener("click", () => {
+    setTimeout(init, 2000);//初期化→プレイへ
+  })
 ]
 let overElms = {
   overSaru: document.getElementById('over-saru'),
@@ -94,6 +116,7 @@ function init() {//初期化関数
   SARU.reset();
   OBJ_MANAGER.reset();
   COLLISION_MANAGER.reset();
+  OVER.reset();
   setScene(2);//プレイ画面へ
   OBJ_MANAGER.startPop(CONFIG.POP_INTERVAL);//オートポップとオート移動開始、範囲外の移動は削除
   keyPanels.left.classList.remove('leave-l');//逃げていたパネルを元に戻す
@@ -104,6 +127,7 @@ function toOver() {//ゲームオーバー移行処理
   GAME_STATE.toOver = false;
   GAME_STATE.over = true;
   COLLISION_MANAGER.setSkipCheck();
+  gameLoop();
   downAnim1();
 }
 function downAnim1() {
@@ -115,7 +139,7 @@ function downAnim1() {
 }
 function downAnim2() {
   SARU.fall();
-  setTimeout(cleanup, 2000);
+  setTimeout(cleanup, 3000);
 }
 function cleanup() {
   OBJ_MANAGER.stopPop();//オブジェクトの自動ポップの停止と全オブジェクトの削除

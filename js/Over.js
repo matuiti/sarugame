@@ -21,8 +21,8 @@ class Over {
   constructor() {
     this.score_x = 246;
     this.score_y = 459;
-    this.score_w = 124;
-    this.score_h = 155;
+    this.score_w = 114;//124
+    this.score_h = 140;//155
     this.count_item_x = 599; // base
     this.count_item_w = 89;  // base
     this.count_item_h = 111; // base
@@ -38,22 +38,32 @@ class Over {
     this.count_unti_y = 1088;
     this.count_unti_w = this.count_item_w;
     this.count_unti_h = this.count_item_h;
+
+    this.score_startX = 711; // 1桁目の左上x
+    this.score_item_startX = 666 + 30; // 1桁目の左上x + a
   }
 
-  drawNumber(ctx, num, x, y, w, h, digitCount) {
+  reset() {
+    oCtx.clearRect(0, 0, oCanvas.width, oCanvas.height); // 画面のクリア
+    OVER_ELMS.overPanel.style.opacity = "0";
+    OVER_ELMS.overSaru.src = 'images/over_saru@2x.png';
+  }
+
+  drawNumber(ctx, num, x, y, w, h, digitCount, startX) {
     const numStr = num.toString().padStart(digitCount, '0'); // 指定桁数になるように0で埋める
+
     for (let i = 0; i < numStr.length; i++) {
       const digit = parseInt(numStr.charAt(i));
-      ctx.drawImage(IMG.numResult[digit], x + (numStr.length - 1 - i) * w, y, w, h); // 右寄せ表示
+      ctx.drawImage(IMG.numResult[digit], startX - (numStr.length - 1 - i) * w, y, w, h); // 右寄せ表示
     }
   }
 
   drawScore(score) {
-    this.drawNumber(oCtx, score, this.score_x, this.score_y, this.score_w, this.score_h, 5); // 5桁
+    this.drawNumber(oCtx, score, this.score_x, this.score_y, this.score_w, this.score_h, 5, this.score_startX); // 5桁
   }
 
   drawItemCount(count, x, y, w, h) {
-    this.drawNumber(oCtx, count, x, y, w, h, 2); // 2桁
+    this.drawNumber(oCtx, count, x, y, w, h, 2, this.score_item_startX); // 2桁
   }
 
   startOver() {
@@ -62,12 +72,12 @@ class Over {
       OVER_ELMS.overSaru.src = 'images/over_saru.gif';
       setTimeout(() => {
         OVER_ELMS.overPanel.style.opacity = "1";
-        this.drawScore(result[3]); // 例: トータルスコアを描画
+        this.drawScore(result[3]);
         this.drawItemCount(result[0], this.count_banana_x, this.count_banana_y, this.count_banana_w, this.count_banana_h); // 例: バナナの個数を描画
         this.drawItemCount(result[1], this.count_apple_x, this.count_apple_y, this.count_apple_w, this.count_apple_h); // 例: リンゴの個数を描画
         this.drawItemCount(result[2], this.count_unti_x, this.count_unti_y, this.count_unti_w, this.count_unti_h); // 例: ウンチの個数を描画
       }, 4000);
-    }, 2000);
+    }, 3000);
   }
 }
 

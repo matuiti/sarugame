@@ -67,7 +67,6 @@ class GameState {
       return;
     }
     this.countBananas++;
-    console.log("countBananas: " + this.countBananas);
   }
   
   hitApple() {
@@ -77,7 +76,6 @@ class GameState {
       this.addAppleTime(this.addTime);
       EFFECTS.updateScorePopup(this.scoreType[1]);
       this.countApples++;
-      console.log("countApples: " + this.countApples);
     } else {
       SOUNDS.se("appleTime");
       this.state = 3;
@@ -86,7 +84,6 @@ class GameState {
       EFFECTS.updateScorePopup(this.scoreType[1]);
       EFFECTS.updateAppleTimePopup();
       this.countApples++;
-      console.log("countApples: " + this.countApples);
     }
   }
   
@@ -95,7 +92,6 @@ class GameState {
     this.state = 1;
     this.#updateLife();
     this.countUntis++;
-    console.log("countUntis: "+this.countUntis);
   }
   
     startAppleTime() {

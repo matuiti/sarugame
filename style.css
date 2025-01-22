@@ -51,6 +51,15 @@ body {
 .none {
   display: none;
 }
+button{
+  transition: all 0.3s!important;
+  opacity: 1!important;
+}
+button.pressed {
+  transform: translateY(10px)!important;
+      box-shadow: none!important;
+      opacity: 0.6!important;
+}
 
 /* title */
 #title {
@@ -71,13 +80,12 @@ body {
   box-shadow: 0px 10px #e5814c;
   background-repeat: no-repeat;
   background-position: center;
-  transition: 0.3s ease;
   background-image: url(images/start@2x.png);
   background-size: 62%;
 }
-#title-btn:active {
+/* #title-btn:active {
   box-shadow: none;
-}
+} */
 
 /* desc */
 #desc {
@@ -134,21 +142,6 @@ body {
   animation: leave-r-anim 0.8s 0.6s both;
 }
 
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 280%, 0);
-    transform: translate3d(0, 280%, 0);
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-}
 @keyframes leave-l-anim {
   0% {
   }
@@ -210,7 +203,6 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   z-index: 1;
-  transition: 0.3s ease;
   border-radius: 78px;
   box-shadow: 0px 10px 0px 0px #ff3c0b;
 }
@@ -225,21 +217,11 @@ body {
   background-size: 42%;
 }
 
-.yes-btn:active,
+/* .yes-btn:active,
 .no-btn:active {
   bottom: 5%;
   box-shadow: none;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-    background-color: #615478;
-  }
-}
+} */
 
 /* clear */
 #clear {
