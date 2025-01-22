@@ -20,7 +20,7 @@ class GameState {
     this.toClear = false;
     this.clear = false;
     this.state = 0;
-    this.maxBananas = 1;
+    this.maxBananas = 10;
     this.currentBananas = 0;
     this.maxLife = 5;
     this.currentLife = this.maxLife;
