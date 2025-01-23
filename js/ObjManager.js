@@ -1,12 +1,16 @@
 import { Config, Banana, Apple, Unti } from './index.js';
 const CONFIG = new Config;
 class ObjManager {
-  constructor(ctx) {
+  constructor(ctx) {// index.jsでnewされて、ctxを受け取る
     this.ctx = ctx;
     this.objects = [];
-    this.objTypes = [Banana, Apple, Unti]; // ドロップオブジェクトのクラス
-    this.probabilities = CONFIG.PROBABILITIES; // banana,apple,untiの出現率
+    this.objTypes = [Banana, Apple, Unti]; // ドロップオブジェクトクラス名
+    this.probabilities = CONFIG.PROBABILITIES; // 各ドロップオブジェクトの出現確率
     this.intervalId = null;
+  }
+
+  reset() {//配列を空に
+    this.objects.splice(0);
   }
 
   startPop(interval) {
@@ -24,13 +28,13 @@ class ObjManager {
   }
 
   #addObject() {
-    const objClass = this.#getRandomClass();
+    const objClass = this.#getRandomObjType();
     const newObj = new objClass();
     this.objects.push(newObj);
     newObj.startAutoMove(CONFIG.FALLING_INTERVAL); // オブジェクトの自動移動開始
   }
 
-  #getRandomClass() {// return Banana || Apple || Unti
+  #getRandomObjType() {//確率を元にオブジェクトの種類を返す
     let sum = 0;
     let r = Math.random();
     for (let i = 0; i < this.probabilities.length; i++) {
@@ -40,15 +44,12 @@ class ObjManager {
       }
     }
   }
+
   getCurrentObjects() {
     return this.objects;
   }
 
-  reset() {//配列を空に
-    this.objects.splice(0);
-  }
-
-  updateAllObjects() {//objects[]を削除フラグがfalseのものだけで作成更新
+  updateAllObjects() {//objects[]を、削除フラグがtrueのものを除き更新
     this.objects = this.objects.filter(obj => !obj.erase);
   }
 

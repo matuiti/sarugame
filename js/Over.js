@@ -12,11 +12,11 @@ oCtx.imageSmoothingEnabled = true;
 oCtx.imageSmoothingQuality = 'high';
 
 const IMG = {
-  numResult: IMAGES.num_result // 0~9の数字画像
+  numResult: IMAGES.num_result // 結果画面用の数字画像0~9
 }
 const OVER_ELMS = {
-  overSaru: document.getElementById('over-saru'),
-  overPanel: document.getElementById('over-panel')
+  overSaru: document.getElementById('over-saru'),//サルのimg要素
+  overPanel: document.getElementById('over-panel')//リザルト用のパネル要素
 }
 class Over {
   constructor() {

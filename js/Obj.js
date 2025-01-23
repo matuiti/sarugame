@@ -6,21 +6,19 @@ const CONFIG = new Config;
 const BLOCK_W = CONFIG.BLOCK_W;
 const BLOCK_H = CONFIG.BLOCK_H;
 const FIELD_ROW = CONFIG.FIELD_ROW;
-
-const ITEMS = IMAGES.items; // 0:バナナ,1:リンゴ,2:うんち
-class Obj {
+const ITEMS = IMAGES.items; // [ 0 ]:バナナ, [ 1 ]:リンゴ, [ 2 ]:うんち
+class Obj {//オブジェクトの雛形クラス
   constructor(type) {
     this.type = type; // 0:バナナ,1:リンゴ,2:うんち
-    this.image = ITEMS[this.type];
-    this.x = this.rand(0, 9);
-    this.y = 3;
+    this.image = ITEMS[this.type];// [ 0 ]:バナナ, [ 1 ]:リンゴ, [ 2 ]:うんち
+    this.x = this.rand(0, 9);//pop位置xはランダム値
+    this.y = 3;//pop位置y
     this.vy = 1; // 移動距離
     this.erase = false; // 削除フラグ
     this.moveIntervalId = null;
   }
 
-
-  startAutoMove(interval) {
+  startAutoMove(interval) {//interval毎にオブジェクトを移動
     this.moveIntervalId = setInterval(() => {
       this.move();
     }, interval);
@@ -39,7 +37,7 @@ class Obj {
 
   move() {
     if (this.y >= FIELD_ROW) {
-      this.erase = true;
+      this.erase = true;//画面下を出たら削除
       return;
     }
     this.y += this.vy;

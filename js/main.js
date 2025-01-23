@@ -93,7 +93,7 @@ export function gameLoop(timestamp) {
 }
 
 function update() {
-  OBJ_MANAGER.updateAllObjects();//オブジェクトの配列から削除フラグのものを削除して配列を更新
+  OBJ_MANAGER.updateAllObjects();//オブジェクトの配列から削除フラグのものを削除更新
   if (GAME_STATE.state !== 1 && !GAME_STATE.over && !GAME_STATE.clear) COLLISION_MANAGER.checkCollisions();//当たり判定のチェックと事後処理への分岐
   if (GAME_STATE.over) ROPE.update();//ロープ落下のアニメーション
   SARU.update(GAME_STATE.state);//サルのタイプを更新、サル落下のアニメーション
@@ -104,9 +104,9 @@ function draw() {
   OBJ_MANAGER.drawAllObjects();
   EFFECTS.drawScorePopups();
   EFFECTS.drawAppleTimePopups();
-  HEADER_UI.drawAll(GAME_STATE.state, GAME_STATE.currentLife, GAME_STATE.score, GAME_STATE.countBananas, GAME_STATE.maxBananas);//( iconIndex, newLife, newScore, countBananas )
+  HEADER_UI.drawAll(GAME_STATE.state, GAME_STATE.currentLife, GAME_STATE.score, GAME_STATE.countBananas, GAME_STATE.maxBananas);//drawAll( iconIndex, newLife, newScore, countBananas )
 }
-function init() {//初期化関数
+function init() {//ゲームの初期化
   SOUNDS.startBGM();//プレイ時のBGM開始（ループ再生）
   GAME_STATE.reset();
   ROPE.reset();
@@ -116,50 +116,49 @@ function init() {//初期化関数
   CLEAR.reset();
   setScene(2);//プレイ画面へ
   OBJ_MANAGER.startPop(CONFIG.POP_INTERVAL);//オートポップとオート移動開始、範囲外の移動は削除
-  keyPanels.left.classList.remove('leave-l');//逃げていたパネルを元に戻す
-  keyPanels.right.classList.remove('leave-r');//逃げていたパネルを元に戻す
+  keyPanels.left.classList.remove('leave-l');//パネルを定位置に
+  keyPanels.right.classList.remove('leave-r');//パネルを定位置に
   requestAnimationFrame(gameLoop);//ゲームループ開始
 }
-function toOver() {//ゲームオーバー移行処理
+function toOver() {//ゲームオーバーへの移行処理
   GAME_STATE.toOver = false;
   GAME_STATE.over = true;
   gameLoop();
   downAnim1();
 }
 function downAnim1() {
-  runawayPanel();
-  ROPE.fall();
-  SARU.jump();
+  runawayPanel();//操作パネルが左右に逃亡
+  ROPE.fall();//ロープが落下
+  SARU.jump();//サルが跳び上がる
   SOUNDS.se('scream');
   setTimeout(downAnim2, 600);
 }
 function downAnim2() {
-  SARU.fall();
+  SARU.fall();//サルが落下
   SOUNDS.se('falling');
   setTimeout(cleanup, 3000);
 }
 function cleanup() {
-  OBJ_MANAGER.stopPop();//オブジェクトの自動ポップの停止と全オブジェクトの削除
-  setScene(3);//ゲームオーバーへ画面の切り替え
-  OVER.startOver();//ゲームオーバーシーン内の処理開始
+  OBJ_MANAGER.stopPop();//オブジェクトの自動ポップ停止、全オブジェクトの削除
+  setScene(3);//ゲームオーバー画面へ
+  OVER.startOver();//ゲームオーバーの処理を開始
 }
 function runawayPanel() {
   keyPanels.left.classList.add('leave-l');
   keyPanels.right.classList.add('leave-r');
 }
 
-function toClear() {//ゲームクリア移行処理
+function toClear() {//ゲームクリアへの移行処理
   GAME_STATE.toClear = false;
   GAME_STATE.clear = true;
   SOUNDS.se('clear');
-  OBJ_MANAGER.stopPop();//オブジェクトのポップの停止と全オブジェクトの削除
-
+  OBJ_MANAGER.stopPop();//オブジェクトの自動ポップ停止、全オブジェクトの削除
   setTimeout(() => {
-    setScene(4);//ゲームクリアへ
-    CLEAR.startClear();//ゲームクリアシーン内の処理開始
+    setScene(4);//ゲームクリア画面へ
+    CLEAR.startClear();//ゲームクリアの処理を開始
   }, 3000)
 }
-function resetScene() {//全シーンを非表示
+function resetScene() {//全てのシーンを非表示
   Object.values(scenes).forEach(el => {
     el.style.display = 'none';
   });
