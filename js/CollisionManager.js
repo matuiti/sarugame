@@ -4,21 +4,12 @@ class CollisionManager {
   constructor(saru, objManager) {
     this.saru = saru; // プレイヤーキャラクター（サル）の参照を保持
     this.objManager = objManager; // オブジェクトマネージャーの参照を保持
-    // this.reset();
   }
-  // reset() { this.skipCheck = false; }
-
-  //判定をスキップさせる
-  // setSkipCheck(){ this.skipCheck = true; }
-
   // 衝突判定をチェックするメソッド
   checkCollisions() {
-    // if(this.skipCheck)return;
-
     const hitboxes = this.saru.getCurrentHitbox(); // 現在のプレイヤーのヒットボックスを取得
     const playerHitbox = this.saru.open === 1 ? hitboxes[1] : hitboxes[0]; // プレイヤーの状態に応じて適切なヒットボックスを選択
     const objects = this.objManager.getCurrentObjects(); // 現在のオブジェクトを取得
-
     // すべてのオブジェクトに対して衝突判定を行う
     for (const object of objects) {
       if (this.checkCollision(playerHitbox, object)) {
@@ -26,7 +17,6 @@ class CollisionManager {
       }
     }
   }
-
   // プレイヤーヒットボックスとオブジェクトの衝突判定を行うメソッド
   checkCollision(playerHitbox, object) {
     for (let y = 0; y < playerHitbox.length; y++) {
@@ -42,7 +32,6 @@ class CollisionManager {
     }
     return false; // 衝突が検出されなかった場合、falseを返す
   }
-
   // 衝突が検出された場合の処理を行うメソッド
   handleCollision(object) {
     switch (object.type) {

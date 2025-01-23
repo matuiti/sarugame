@@ -1,0 +1,15 @@
+{
+  "name": "SARU GAME",
+  "short_name": "SARUGAME",
+  "start_url": "https://sarugame.vercel.app/",
+  "display": "standalone",
+  "background_color": "#333333",
+  "theme_color": "#333333",
+  "icons": [
+    {
+      "src": "images/item_0@2x.png",
+      "sizes": "226*206",
+      "type": "image/png"
+    }
+  ]
+}

@@ -7,6 +7,7 @@
   <title>SARU GAME</title>
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -16,6 +17,7 @@
     <button id="title-btn"></button>
     <p class="copyright"><small>© matuiti</small></p>
   </div>
+
   <!-- ゲーム説明画面 -->
   <div id="desc" class="screen" style="display: none;">
   </div>
@@ -33,14 +35,11 @@
   <div id="over" class="screen" style="display: none;">
     <img id="over-title" class="over-title" width="80%" src="images/over_title@2x.png">
     <img id="over-saru" class="over-saru" width="80%" src="images/over_saru@2x.png">
-
     <div id="over-panel" class="over-panel">
       <canvas id="over-canvas"></canvas>
       <button id="no-btn" class="no-btn"></button>
       <button id="yes-btn" class="yes-btn"></button>
     </div>
-
-
   </div>
 
   <!-- ゲームクリア画面 -->

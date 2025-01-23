@@ -72,9 +72,9 @@ class Clear {
       CLEAR_ELMS.clearPanel.style.display = "block";
       SOUNDS.se('se_bgm');
       this.drawScore(result[3]);
-      this.drawItemCount(result[0], this.count_banana_x, this.count_banana_y, this.count_banana_w, this.count_banana_h); // 例: バナナの個数を描画
-      this.drawItemCount(result[1], this.count_apple_x, this.count_apple_y, this.count_apple_w, this.count_apple_h); // 例: リンゴの個数を描画
-      this.drawItemCount(result[2], this.count_unti_x, this.count_unti_y, this.count_unti_w, this.count_unti_h); // 例: ウンチの個数を描画
+      this.drawItemCount(result[0], this.count_banana_x, this.count_banana_y, this.count_banana_w, this.count_banana_h);
+      this.drawItemCount(result[1], this.count_apple_x, this.count_apple_y, this.count_apple_w, this.count_apple_h);
+      this.drawItemCount(result[2], this.count_unti_x, this.count_unti_y, this.count_unti_w, this.count_unti_h);
     }, 3000);
   }
 }

@@ -4,7 +4,7 @@ class Config {
     this.GAME_SPEED = 1000 / 30; // FPS
     this.POP_INTERVAL = 700; // アイテムのリポップ間隔(ms)
     this.FALLING_INTERVAL = 400; // 落下速度(ms)
-    this.PROBABILITIES = [0.4, 0.3, 0.3];// banana,apple,untiの出現確率
+    this.PROBABILITIES = [0.4, 0.3, 0.3];// [ banana, apple, unti ]の出現確率
     // フィールド
     this.FIELD_COL = 10; // 列数
     this.FIELD_ROW = 20; // 行数
