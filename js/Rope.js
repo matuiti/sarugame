@@ -1,7 +1,6 @@
 import { Images, Config } from './index.js';
 const IMAGES = new Images();
 const CONFIG = new Config();
-
 class Rope {
   constructor(ctx) {
     this.ctx = ctx;
@@ -12,7 +11,7 @@ class Rope {
   reset() {
     this.x = 0;
     this.y = CONFIG.START_Y;
-    this.isFalling = false;
+    this.isFalling = false;//落下中か
   }
   draw() {
     this.ctx.drawImage(IMAGES.rope, this.x, this.y * CONFIG.BLOCK_H + this.h, this.w, this.h);

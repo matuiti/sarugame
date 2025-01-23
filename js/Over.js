@@ -20,10 +20,12 @@ const OVER_ELMS = {
 }
 class Over {
   constructor() {
+    //トータルスコア表示
     this.score_x = 246;
     this.score_y = 459;
     this.score_w = 114;//124
     this.score_h = 140;//155
+    //オブジェクト獲得数表示
     this.count_item_x = 599; // base
     this.count_item_w = 89;  // base
     this.count_item_h = 111; // base
@@ -46,13 +48,12 @@ class Over {
 
   reset() {
     oCtx.clearRect(0, 0, oCanvas.width, oCanvas.height); // 画面のクリア
-    OVER_ELMS.overPanel.style.display = "none";
-    OVER_ELMS.overSaru.src = 'images/over_saru@2x.png';
+    OVER_ELMS.overPanel.style.display = "none"; //リザルトパネルを非表示
+    OVER_ELMS.overSaru.src = 'images/over_saru@2x.png';//サルの画像を初期化
   }
 
   drawNumber(ctx, num, x, y, w, h, digitCount, startX) {
     const numStr = num.toString().padStart(digitCount, '0'); // 指定桁数になるように0で埋める
-
     for (let i = 0; i < numStr.length; i++) {
       const digit = parseInt(numStr.charAt(i));
       ctx.drawImage(IMG.numResult[digit], startX - (numStr.length - 1 - i) * w, y, w, h); // 右寄せ表示
@@ -68,12 +69,12 @@ class Over {
   }
 
   startOver() {
-    const result = GAME_STATE.getResult();
+    const result = GAME_STATE.getResult();//結果を取得 [ banana, apple, unti, score]
     setTimeout(() => {
       SOUNDS.se('standup');
-      OVER_ELMS.overSaru.src = 'images/over_saru.gif';
+      OVER_ELMS.overSaru.src = 'images/over_saru.gif';//画像の切替
       setTimeout(() => {
-        OVER_ELMS.overPanel.style.display = "block";
+        OVER_ELMS.overPanel.style.display = "block";//リザルトパネルの表示
         SOUNDS.se('se_bgm');
         this.drawScore(result[3]);
         this.drawItemCount(result[0], this.count_banana_x, this.count_banana_y, this.count_banana_w, this.count_banana_h);

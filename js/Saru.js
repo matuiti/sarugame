@@ -1,10 +1,10 @@
-import { Images,Sounds, Config } from './index.js';
+import { Images, Sounds, Config } from './index.js';
 
 const IMAGES = new Images;
 const SOUNDS = new Sounds;
 const CONFIG = new Config;
 
-const HITBOXS = [//HITBOXS[0:閉, 1:開][ y ][ x ]
+const HITBOXS = [ // HITBOXS[ 0:閉, 1:開 ][ y ][ x ]
   [//閉じポーズ
     [1, 1, 1, 1],
     [1, 1, 1, 1],
@@ -23,7 +23,7 @@ const HITBOXS = [//HITBOXS[0:閉, 1:開][ y ][ x ]
   ]
 ]
 
-const IMG_SARU = [// IMG_SARU[ this.right ][ this.open ][ this.type ]・・・IMG_SARU[0-1][0-1][0-3]
+const IMG_SARU = [// IMG_SARU[ this.right ][ this.open ][ this.type ]・・・IMG_SARU[ 0-1 ][ 0-1 ][ 0-3 ]
   [// 左向き
     // 閉じポーズ
     [IMAGES.saru_close_l, IMAGES.saru_close_s_l, IMAGES.saru_close_d_l, IMAGES.saru_close_apple_l],
@@ -39,16 +39,16 @@ const IMG_SARU = [// IMG_SARU[ this.right ][ this.open ][ this.type ]・・・IM
 ];
 
 class Saru {
-  constructor(ctx) {
+  constructor(ctx) { // index.jsでnewしてctx受け取り
     this.ctx = ctx;
     this.BLOCK_W = CONFIG.BLOCK_W;
     this.BLOCK_H = CONFIG.BLOCK_H;
     this.FIELD_COL = CONFIG.FIELD_COL;
-    this.w = 4;//Saruの幅（ブロック数）
-    this.h = 6;//Saruの高さ（ブロック数）
-    this.blockW = this.BLOCK_W * this.w;//Saruの幅（描画用）
+    this.w = 4;//Saruの幅（ブロック単位）
+    this.h = 6;//Saruの高さ（ブロック単位）
+    this.vx = 1;//歩幅（ブロック単位）
+    this.blockW = this.BLOCK_W * this.w;//Saruの幅  （描画用）
     this.blockH = this.BLOCK_H * this.h;//Saruの高さ（描画用）
-    this.vx = 1;//歩幅（ブロック数）
     this.reset();
   }
 
@@ -56,10 +56,10 @@ class Saru {
     this.x = (this.FIELD_COL / 2) - (this.w / 2);//左右中央
     this.y = CONFIG.START_Y;
     this.right = 1; // 0:左向き, 1:右向き
-    this.open = 1; // 0:閉じポーズ, 1:開きポーズ
-    this.type = 0; // 0:普通, 1:叫び, 2:ダウン, 3:アップルタイム
-    this.isJumping = false;
-    this.isFalling = false;
+    this.open = 1;  // 0:閉じポーズ, 1:開きポーズ
+    this.type = 0;  // 0:普通, 1:叫び, 2:ダウン, 3:アップルタイム
+    this.isJumping = false;//ジャンプ中か
+    this.isFalling = false;//落下中か
   }
 
   getCurrentHitbox() {
@@ -74,19 +74,19 @@ class Saru {
   }
 
   draw() {
-    if(this.type === 3){//appleTimeのサルは少し大きめに描画（他のサルタイプと揃えるため）
-      this.ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * this.BLOCK_W - 32, this.y * this.BLOCK_H -30, this.blockW * 1.15, this.blockH * 1.112);
+    if (this.type === 3) { // appleTimeのサルは描画サイズを大きめに調整（ 他のタイプと揃えるため ）
+      this.ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * this.BLOCK_W - 32, this.y * this.BLOCK_H - 30, this.blockW * 1.15, this.blockH * 1.112);
       return;
     }
     this.ctx.drawImage(IMG_SARU[this.right][this.open][this.type], this.x * this.BLOCK_W, this.y * this.BLOCK_H, this.blockW, this.blockH);
   }
 
-  jump() { this.isJumping = true; }//animation起動のフラグを立てる
-  fall() { this.isFalling = true; }//animation起動のフラグを立てる
+  jump() { this.isJumping = true; }//アニメーション起動のフラグを立てる
+  fall() { this.isFalling = true; }//アニメーション起動のフラグを立てる
 
   update(state) {
     this.type = state;
-    if (this.isJumping && this.y > 2) {//やられ時のジャンプアニメーション
+    if (this.isJumping && this.y > 2) {//やられ時の跳び上がりアニメーション
       this.y -= 1;
     } else { this.isJumping = false; }
     if (this.isFalling && this.y < (CONFIG.FIELD_ROW + this.h + 1)) {//やられ時の落下アニメーション
@@ -95,8 +95,6 @@ class Saru {
       this.isFalling = false;
     }
   }
-
-
 }
 
 export default Saru;

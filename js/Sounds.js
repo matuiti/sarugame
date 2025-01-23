@@ -1,5 +1,6 @@
 class Sounds {
   constructor() {
+    //音素材の読み込み
     this.bgm_01 = new Audio('sound/bgm_01.mp3');
     this.banana = new Audio('sound/banana.mp3');
     this.apple = new Audio('sound/apple.mp3');
@@ -13,14 +14,15 @@ class Sounds {
     this.click = new Audio('sound/click.mp3');
     this.standup = new Audio('sound/standup.mp3');
     this.se_bgm = new Audio('sound/se_bgm.wav');
-
+    //音量調整（共通）
     this.setVolumeBGM(0.8);
     this.setVolumeSE(0.4);
+    //音量調整（個別）
     this.apple.volume = 0.1;
     this.click.volume = 0.2;
   }
-  
-  // 全SEのヴォリュームを一括設定するメソッド
+
+  // SEのヴォリュームを一律に設定
   setVolumeSE(volume) {
     this.banana.volume = volume;
     this.unti.volume = volume;
@@ -30,11 +32,11 @@ class Sounds {
     this.standup.volume = volume;
     this.move.volume = volume;
   }
-  // 全BGMのヴォリュームを一括設定するメソッド
+  // BGMのヴォリュームを一律に設定するメソッド
   setVolumeBGM(volume) {
     this.bgm_01.volume = volume;
   }
-
+  // 指定された効果音を再生
   se(se) {
     let sound;
     switch (se) {
@@ -83,7 +85,7 @@ class Sounds {
   }
 
   startBGM() {
-    this.bgm_01.loop = true;
+    this.bgm_01.loop = true;//ループ再生
     this.bgm_01.play();
   }
 

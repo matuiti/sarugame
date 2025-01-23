@@ -1,4 +1,4 @@
-/* reset */
+/* reset style */
 *,
 ::before,
 ::after {
@@ -33,12 +33,11 @@ button {
   cursor: pointer;
 }
 
-/* base */
+/* base style */
 body {
   margin: 0 auto;
   max-height: 100vh;
   aspect-ratio: 9/16;
-  font-family: impact, MS-gothic;
   background-color: #404d3c;
   overflow: hidden; /* 検証画面のスクロールバーを出現させない */
 }
@@ -63,7 +62,6 @@ button.pressed {
   color: #636363;
   letter-spacing: 0.02em;
 }
-
 /* title */
 #title {
   background-image: url(images/title@2x.png);
@@ -86,14 +84,12 @@ button.pressed {
   background-image: url(images/start@2x.png);
   background-size: 62%;
 }
-
 /* desc */
 #desc {
   background-image: url(images/description@2x.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 /* play */
 #play {
   position: relative;
@@ -110,7 +106,6 @@ button.pressed {
 #play.bg-04 {
   background: url(images/bg_04.png) center/cover no-repeat;
 }
-
 /* play（操作ボタン） */
 #play {
   position: relative;
@@ -120,15 +115,15 @@ button.pressed {
   width: 100%;
   position: absolute;
   left: 0%;
-  bottom: 0;
+  bottom: -1%;
 }
 .left-btn,
 .right-btn {
-  display:inline-block;
+  display: inline-block;
   width: 100%;
   max-width: 32%;
   aspect-ratio: 346 / 324;
-  touch-action: none;//タッチイベントのパンやズームを無効にする
+  touch-action: none; /* タッチイベントのパンやズームを無効にする */
 }
 .left-btn {
   background: url(images/arrow_left@2x.png) center/contain no-repeat;
@@ -143,7 +138,6 @@ button.pressed {
 .leave-r {
   animation: leave-r-anim 0.8s 0.6s both;
 }
-
 @keyframes leave-l-anim {
   0% {
   }
@@ -158,7 +152,6 @@ button.pressed {
     transform: translateX(100vw);
   }
 }
-
 /* over */
 #over {
   background-image: url(images/bg_05.png);
@@ -172,12 +165,12 @@ button.pressed {
 .over-title {
   aspect-ratio: 771/402;
   margin-top: 36%;
+  width: 80%;
 }
 .over-saru {
   position: absolute;
   bottom: 10%;
 }
-
 .over-panel {
   display: none;
   background-image: url(images/over_panel@2x.png);
@@ -217,7 +210,6 @@ button.pressed {
   background-image: url(images/no@2x.png);
   background-size: 42%;
 }
-
 /* clear */
 #clear {
   position: relative;
