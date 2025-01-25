@@ -33,13 +33,22 @@ buttons.forEach(button => {
 });
 
 let btns = {//個別のボタン要素
-  start: document.getElementById("title-btn"),
+  easy: document.getElementById("easy-btn"),
+  hard: document.getElementById("hard-btn"),
   yes: document.getElementById("yes-btn"),
   no: document.getElementById("no-btn"),
   retry: document.getElementById("retry-btn")
 }
 let events = [//個別のボタン要素のイベント処理
-  btns.start.addEventListener("click", () => {
+  btns.easy.addEventListener("click", () => {
+    setTimeout(() => {
+      CONFIG.gameMode = 0;//easyモード
+      setScene(1);//説明へ
+      setTimeout(init, 3000);//少し待ってからプレイ画面へ
+    }, 1000)
+  }),
+  btns.hard.addEventListener("click", () => {
+    CONFIG.gameMode = 1;//hardモード
     setTimeout(() => {
       setScene(1);//説明画面へ
       setTimeout(init, 3000);//初期化→プレイ画面へ
@@ -57,7 +66,6 @@ let events = [//個別のボタン要素のイベント処理
 ]
 // インスタンス
 const SOUNDS = new Sounds; //サウンドデータ
-const CONFIG = new Config; //設定
 const COLLISION_MANAGER = new CollisionManager(SARU, OBJ_MANAGER);
 const OVER = new Over;
 const CLEAR = new Clear;
@@ -92,12 +100,11 @@ export function gameLoop(timestamp) {
 }
 
 function update() {
-  let state = GAME_STATE.state;
-  OBJ_MANAGER.updateAllObjects();//objects[]を更新
-  if (state !== 1 && !GAME_STATE.over && !GAME_STATE.clear) COLLISION_MANAGER.checkCollisions();//hit中とダウン中以外は、当たり判定のチェックをして事後処理の分岐
+  OBJ_MANAGER.updateAllObjects();//オブジェクトの配列から削除フラグのものを削除更新
+  if (GAME_STATE.state !== 1 && !GAME_STATE.over && !GAME_STATE.clear) COLLISION_MANAGER.checkCollisions();//当たり判定のチェックと事後処理への分岐
+  if (GAME_STATE.over) ROPE.update();//ロープ落下のアニメーション
+  SARU.update(GAME_STATE.state);//サルのタイプを更新、サル落下のアニメーション
   ROPE.update();
-  SARU.update(state);
-  HEADER_UI.drawAll(state, GAME_STATE.currentLife, GAME_STATE.score, GAME_STATE.currentBananas, GAME_STATE.maxBananas);//(iconIndex, newLife, newScore, currentBananas)
 }
 function draw() {
   ROPE.draw();
@@ -105,7 +112,7 @@ function draw() {
   OBJ_MANAGER.drawAllObjects();
   EFFECTS.drawScorePopups();
   EFFECTS.drawAppleTimePopups();
-  HEADER_UI.drawAll(GAME_STATE.state, GAME_STATE.currentLife, GAME_STATE.score, GAME_STATE.countBananas, GAME_STATE.maxBananas);//drawAll( iconIndex, newLife, newScore, countBananas )
+  HEADER_UI.drawAll(GAME_STATE.state, CONFIG.CURRENT_LIFE, GAME_STATE.score, CONFIG.CURRENT_BANANAS, CONFIG.MAX_BANANAS);//drawAll( iconIndex, newLife, newScore, countBananas )
 }
 function init() {//ゲームの初期化
   SOUNDS.startBGM();//プレイ時のBGM開始（ループ再生）

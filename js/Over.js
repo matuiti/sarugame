@@ -11,6 +11,12 @@ const OVER_ELMS = {
 }
 class Over {
   constructor() {
+    this.oCanvas = document.getElementById('over-canvas');
+    this.oCtx = this.oCanvas.getContext('2d');
+    this.oCanvas.width = CONFIG.SCREEN_W;
+    this.oCanvas.height = CONFIG.SCREEN_H;
+    this.oCtx.imageSmoothingEnabled = true;
+    this.oCtx.imageSmoothingQuality = 'high';
     this.score_x = 246;
     this.score_y = 459;
     this.score_w = 114;//124
@@ -37,7 +43,7 @@ class Over {
   }
 
   reset() {
-    oCtx.clearRect(0, 0, oCanvas.width, oCanvas.height); // 画面のクリア
+    this.oCtx.clearRect(0, 0, this.oCanvas.width, this.oCanvas.height); // 画面のクリア
     OVER_ELMS.overPanel.style.display = "none";
     OVER_ELMS.overSaru.src = 'images/over_saru@2x.png';
   }

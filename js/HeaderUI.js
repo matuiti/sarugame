@@ -2,7 +2,6 @@ import { Images } from './index.js';
 import { CONFIG } from './index.js';
 
 const IMAGES = new Images();
-const CONFIG = new Config();
 const IMG = {
   icon: IMAGES.icons, // 0:普通, 1:叫び, 2:ダウン, 3:appleTime
   life: IMAGES.lifes, // ライフ0~5
@@ -78,7 +77,7 @@ class HeaderUI {
     this.drawMaxBananas(maxBananas);
   }
 
-drawHeader() {
+drawBG() {
     // ヘッダーのシャドウを描画
     this.ctx.fillStyle = this.shadow_color;
     this.ctx.beginPath();

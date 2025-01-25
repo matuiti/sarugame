@@ -1,5 +1,5 @@
-import { Images,Sounds, Config } from './index.js';
-
+import { Images,Sounds } from './index.js';
+import { CONFIG } from './index.js';
 const IMAGES = new Images;
 const SOUNDS = new Sounds;
 

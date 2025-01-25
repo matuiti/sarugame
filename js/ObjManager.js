@@ -6,7 +6,6 @@ class ObjManager {
     this.ctx = ctx;
     this.objects = [];
     this.objTypes = [Banana, Apple, Unti]; // ドロップオブジェクトのクラス
-    this.probabilities = CONFIG.PROBABILITIES; // banana,apple,untiの出現率
     this.intervalId = null;
   }
 
@@ -29,13 +28,13 @@ class ObjManager {
   }
 
   #addObject() {
-    const objClass = this.getRandomObjType();
+    const objClass = this.#getRandomObjType();
     const newObj = new objClass();
     this.objects.push(newObj);
     newObj.startAutoMove(CONFIG.FALLING_INTERVAL); // オブジェクトの自動移動開始
   }
 
-  getRandomClass() {// return Banana || Apple || Unti
+  #getRandomObjType() {// return Banana || Apple || Unti
     let sum = 0;
     let r = Math.random();
     for (let i = 0; i < CONFIG.PROBABILITIES.length; i++) {

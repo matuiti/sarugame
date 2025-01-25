@@ -7,6 +7,14 @@ class Config {
     this.POP_INTERVAL = 700; // アイテムのリポップ間隔(ms)
     this.FALLING_INTERVAL = 400; // 落下速度(ms)
     this.PROBABILITIES = [0.6, 0.1, 0.3];// banana,apple,untiの出現確率
+    this.SCORE_TYPE = [10, 50]; // [バナナ,リンゴ]
+    this.INIT_REMAINING_APPLE_TIME = 5; // アップルタイムの基本効果時間(s)
+    this.ADD_TIME = 3; // アップルタイム中のリンゴ獲得による延長時間(s)
+    this.MAX_BANANAS = 10;
+    this.CURRENT_BANANAS = 0;
+    this.MAX_LIFE = 5;
+    this.CURRENT_LIFE = this.MAX_LIFE;
+    this.HIT_TIME = 300; // hit中判定の時間（ms）
     // フィールド
     this.FIELD_COL = 10; // 列数
     this.FIELD_ROW = 20; // 行数

@@ -1,8 +1,7 @@
-import { Images, Sounds } from './index.js';
+import { Images } from './index.js';
 import { SARU } from './index.js';
 
 const IMAGES = new Images();
-const SOUNDS = new Sounds();
 const IMG = {
   numGet: IMAGES.num_get, // 加点時の頭上ポップアップ数値画像0~9
   appleTime: IMAGES.appleTime //appleTime時の頭上ポップアップ画像
