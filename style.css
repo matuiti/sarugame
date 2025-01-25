@@ -59,11 +59,15 @@ button.pressed {
 }
 .copyright {
   position: absolute;
+  top:5%;
+  left:3%;
   color: #636363;
   letter-spacing: 0.02em;
+  font-size:16px;
 }
 /* title */
 #title {
+  position: relative;
   background-image: url(images/title@2x.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -71,17 +75,32 @@ button.pressed {
   align-items: center;
   justify-content: flex-end;
 }
-#title-btn {
+#title button {
   width: 46%;
-  aspect-ratio: 496/156;
-  margin-bottom: 17%;
   border-radius: 78px;
-  background-color: #f1ec7e;
   border: none;
-  box-shadow: 0px 10px #e5814c;
+  background-repeat: no-repeat;
+  background-size: 62%;
+}
+#easy-btn {
+  aspect-ratio: 496/130;
+  margin-bottom: 3%;
+  background-color: #f1ec7e;
+  box-shadow: 0px 10px #E5814C;
+  background-position: center;
+  background-image: url(images/easy@2x.png);
+}
+#hard-btn {
+  width: 46%;
+  aspect-ratio: 496/130;
+  margin-bottom: 5%;
+  border-radius: 78px;
+  background-color: #FF3C0B;
+  border: none;
+  box-shadow: 0px 10px #E5AF4C;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url(images/start@2x.png);
+  background-image: url(images/hard@2x.png);
   background-size: 62%;
 }
 /* desc */

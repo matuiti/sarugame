@@ -1,8 +1,9 @@
-import { Images, Config } from './index.js';
+import { Images } from './index.js';
+import { CONFIG } from './index.js';
 
 const IMAGES = new Images();
 const CONFIG = new Config();
-const IMG = {//画像素材
+const IMG = {
   icon: IMAGES.icons, // 0:普通, 1:叫び, 2:ダウン, 3:appleTime
   life: IMAGES.lifes, // ライフ0~5
   numNow: IMAGES.num_now, // バナナ数の数値0~9
@@ -77,8 +78,8 @@ class HeaderUI {
     this.drawMaxBananas(maxBananas);
   }
 
-  drawBG() {
-    // ヘッダーのシャドウ
+drawHeader() {
+    // ヘッダーのシャドウを描画
     this.ctx.fillStyle = this.shadow_color;
     this.ctx.beginPath();
     this.ctx.moveTo(this.x, this.y + this.h - this.shadow_offset_y);
@@ -98,7 +99,9 @@ class HeaderUI {
     this.ctx.arcTo(this.x, this.y + this.h, this.x, this.y + this.h - this.radius, this.radius);
     this.ctx.closePath();
     this.ctx.fill();
-  }
+}
+
+
 
   drawIcon(iconIndex) {
     this.ctx.drawImage(IMG.icon[iconIndex], this.icon_X, this.icon_y, this.icon_w, this.icon_h);

@@ -1,16 +1,7 @@
-import { Images, Sounds, Config } from './index.js';
-import { GAME_STATE } from './index.js';
+import { Images, Sounds } from './index.js';
+import { CONFIG, GAME_STATE } from './index.js';
 const IMAGES = new Images;
 const SOUNDS = new Sounds;
-const CONFIG = new Config;
-
-const oCanvas = document.getElementById('over-canvas');
-const oCtx = oCanvas.getContext('2d');
-oCanvas.width = CONFIG.SCREEN_W;
-oCanvas.height = CONFIG.SCREEN_H;
-oCtx.imageSmoothingEnabled = true;
-oCtx.imageSmoothingQuality = 'high';
-
 const IMG = {
   numResult: IMAGES.num_result // 結果画面用の数字画像0~9
 }
@@ -20,7 +11,6 @@ const OVER_ELMS = {
 }
 class Over {
   constructor() {
-    //トータルスコア表示
     this.score_x = 246;
     this.score_y = 459;
     this.score_w = 114;//124
@@ -48,8 +38,8 @@ class Over {
 
   reset() {
     oCtx.clearRect(0, 0, oCanvas.width, oCanvas.height); // 画面のクリア
-    OVER_ELMS.overPanel.style.display = "none"; //リザルトパネルを非表示
-    OVER_ELMS.overSaru.src = 'images/over_saru@2x.png';//サルの画像を初期化
+    OVER_ELMS.overPanel.style.display = "none";
+    OVER_ELMS.overSaru.src = 'images/over_saru@2x.png';
   }
 
   drawNumber(ctx, num, x, y, w, h, digitCount, startX) {
@@ -61,11 +51,11 @@ class Over {
   }
 
   drawScore(score) {
-    this.drawNumber(oCtx, score, this.score_x, this.score_y, this.score_w, this.score_h, 5, this.score_startX); // 5桁
+    this.drawNumber(this.oCtx, score, this.score_x, this.score_y, this.score_w, this.score_h, 5, this.score_startX); // 5桁
   }
 
   drawItemCount(count, x, y, w, h) {
-    this.drawNumber(oCtx, count, x, y, w, h, 2, this.score_item_startX); // 2桁
+    this.drawNumber(this.oCtx, count, x, y, w, h, 2, this.score_item_startX); // 2桁
   }
 
   startOver() {

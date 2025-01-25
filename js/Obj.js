@@ -1,14 +1,19 @@
 
-import { Images, Config } from './index.js';
+import { Images } from './index.js';
+import { CONFIG } from './index.js';
 const IMAGES = new Images;
 const CONFIG = new Config;
 
 const BLOCK_W = CONFIG.BLOCK_W;
 const BLOCK_H = CONFIG.BLOCK_H;
 const FIELD_ROW = CONFIG.FIELD_ROW;
-const ITEMS = IMAGES.items; // [ 0 ]:バナナ, [ 1 ]:リンゴ, [ 2 ]:うんち
-class Obj {//オブジェクトの雛形クラス
+
+const ITEMS = IMAGES.items; // 0:バナナ,1:リンゴ,2:うんち
+class Obj {
   constructor(type) {
+    this.BLOCK_W = CONFIG.BLOCK_W;
+    this.BLOCK_H = CONFIG.BLOCK_H;
+    this.FIELD_ROW = CONFIG.FIELD_ROW;
     this.type = type; // 0:バナナ,1:リンゴ,2:うんち
     this.image = ITEMS[this.type];// [ 0 ]:バナナ, [ 1 ]:リンゴ, [ 2 ]:うんち
     this.x = this.rand(0, 9);//pop位置xはランダム値
@@ -32,12 +37,12 @@ class Obj {//オブジェクトの雛形クラス
   }
 
   draw(ctx) {
-    ctx.drawImage(this.image, this.x * BLOCK_W, this.y * BLOCK_H, BLOCK_W, BLOCK_H);
+    ctx.drawImage(this.image, this.x * this.BLOCK_W, this.y * this.BLOCK_H, this.BLOCK_W, this.BLOCK_H);
   }
 
   move() {
     if (this.y >= FIELD_ROW) {
-      this.erase = true;//画面下を出たら削除
+      this.erase = true;
       return;
     }
     this.y += this.vy;

@@ -1,6 +1,5 @@
-import { Config } from './index.js';
-import { GAME_STATE, SARU } from './index.js';
-const CONFIG = new Config();
+import { CONFIG, GAME_STATE, SARU } from './index.js';
+
 class Input {
   constructor(gameLoop) {
     this.gameLoop = gameLoop;

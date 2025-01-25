@@ -1,6 +1,8 @@
-import { Images, Config } from './index.js';
+import { Images } from './index.js';
+import { CONFIG } from './index.js';
 const IMAGES = new Images();
 const CONFIG = new Config();
+
 class Rope {
   constructor(ctx) {
     this.ctx = ctx;
