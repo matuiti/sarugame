@@ -1,7 +1,7 @@
-import { Images, Config } from './index.js';
+import { Images } from './index.js';
+import { CONFIG } from './index.js';
 
 const IMAGES = new Images();
-const CONFIG = new Config();
 const IMG = {
   icon: IMAGES.icons, // 0:普通, 1:叫び, 2:ダウン, 3:appleTime
   life: IMAGES.lifes, // 0~5
@@ -32,9 +32,9 @@ class HeaderUI {
     this.icon_h = 141;
     // score title
     this.scoreTitle_w = 210;
-    this.scoreTitle_h = 46/2 + 1;
+    this.scoreTitle_h = 46 / 2 + 1;
     this.scoreTitle_X = 319;
-    this.scoreTitle_y = 42 + this.scoreTitle_h /2;
+    this.scoreTitle_y = 42 + this.scoreTitle_h / 2;
     // num score
     this.numScore_w = 37;
     this.numScore_h = 42;
@@ -77,12 +77,12 @@ class HeaderUI {
     this.drawMaxBananas(maxBananas);
   }
 
-drawHeader() {
+  drawHeader() {
     // ヘッダーのシャドウを描画
     this.ctx.fillStyle = this.shadow_color;
     this.ctx.beginPath();
-  this.ctx.moveTo(this.x, this.y + this.h - this.shadow_offset_y);
-  this.ctx.lineTo(this.x + this.w, this.y + this.h - this.shadow_offset_y);
+    this.ctx.moveTo(this.x, this.y + this.h - this.shadow_offset_y);
+    this.ctx.lineTo(this.x + this.w, this.y + this.h - this.shadow_offset_y);
     this.ctx.arcTo(this.x + this.w, this.y + this.h + this.shadow_offset_y, this.x + this.w - this.radius, this.y + this.h + this.shadow_offset_y, this.radius);
     this.ctx.arcTo(this.x, this.y + this.h + this.shadow_offset_y, this.x, this.y + this.h, this.radius);
     this.ctx.closePath();
@@ -99,7 +99,7 @@ drawHeader() {
     this.ctx.arcTo(this.x, this.y + this.h, this.x, this.y + this.h - this.radius, this.radius);
     this.ctx.closePath();
     this.ctx.fill();
-}
+  }
 
 
 

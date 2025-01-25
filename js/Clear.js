@@ -1,16 +1,7 @@
-import { Images, Sounds, Config } from './index.js';
-import { GAME_STATE } from './index.js';
+import { Images, Sounds } from './index.js';
+import { CONFIG, GAME_STATE } from './index.js';
 const IMAGES = new Images;
 const SOUNDS = new Sounds;
-const CONFIG = new Config;
-
-const cCanvas = document.getElementById('clear-canvas');
-const cCtx = cCanvas.getContext('2d');
-cCanvas.width = CONFIG.SCREEN_W;
-cCanvas.height = CONFIG.SCREEN_H;
-cCtx.imageSmoothingEnabled = true;
-cCtx.imageSmoothingQuality = 'high';
-
 const IMG = {
   numResult: IMAGES.num_result // 0~9の数字画像
 }
@@ -19,6 +10,12 @@ const CLEAR_ELMS = {
 }
 class Clear {
   constructor() {
+    this.cCanvas = document.getElementById('clear-canvas');
+    this.cCtx = this.cCanvas.getContext('2d');
+    this.cCanvas.width = CONFIG.SCREEN_W;
+    this.cCanvas.height = CONFIG.SCREEN_H;
+    this.cCtx.imageSmoothingEnabled = true;
+    this.cCtx.imageSmoothingQuality = 'high';
     this.score_x = 246;
     this.score_y = 459;
     this.score_w = 114;//124
@@ -44,7 +41,7 @@ class Clear {
   }
 
   reset() {
-    cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height); // 画面のクリア
+    this.cCtx.clearRect(0, 0, this.cCanvas.width, this.cCanvas.height); // 画面のクリア
     CLEAR_ELMS.clearPanel.style.display = "none";
   }
 
@@ -58,11 +55,11 @@ class Clear {
   }
 
   drawScore(score) {
-    this.drawNumber(cCtx, score, this.score_x, this.score_y, this.score_w, this.score_h, 5, this.score_startX); // 5桁
+    this.drawNumber(this.cCtx, score, this.score_x, this.score_y, this.score_w, this.score_h, 5, this.score_startX); // 5桁
   }
 
   drawItemCount(count, x, y, w, h) {
-    this.drawNumber(cCtx, count, x, y, w, h, 2, this.score_item_startX); // 2桁
+    this.drawNumber(this.cCtx, count, x, y, w, h, 2, this.score_item_startX); // 2桁
   }
 
   startClear() {

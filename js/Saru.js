@@ -1,8 +1,9 @@
-import { Images,Sounds, Config } from './index.js';
+import { Images,Sounds } from './index.js';
+import { CONFIG } from './index.js';
+
 
 const IMAGES = new Images;
 const SOUNDS = new Sounds;
-const CONFIG = new Config;
 
 const HITBOXS = [//HITBOXS[0:閉, 1:開][ y ][ x ]
   [//閉じポーズ

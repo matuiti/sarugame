@@ -1,11 +1,11 @@
-import { Config, Banana, Apple, Unti } from './index.js';
-const CONFIG = new Config;
+import { Banana, Apple, Unti } from './index.js';
+import { CONFIG } from './index.js';
+
 class ObjManager {
   constructor(ctx) {
     this.ctx = ctx;
     this.objects = [];
     this.objTypes = [Banana, Apple, Unti]; // ドロップオブジェクトのクラス
-    this.probabilities = CONFIG.PROBABILITIES; // banana,apple,untiの出現率
     this.intervalId = null;
   }
 
@@ -30,11 +30,11 @@ class ObjManager {
     newObj.startAutoMove(CONFIG.FALLING_INTERVAL); // オブジェクトの自動移動開始
   }
 
-  #getRandomClass() {// return Banana || Apple || Unti
+  #getRandomClass() {// Configの確率設定を元にランダム取得
     let sum = 0;
     let r = Math.random();
-    for (let i = 0; i < this.probabilities.length; i++) {
-      sum += this.probabilities[i];
+    for (let i = 0; i < CONFIG.PROBABILITIES.length; i++) {
+      sum += CONFIG.PROBABILITIES[i];
       if (r <= sum) {
         return this.objTypes[i];
       }

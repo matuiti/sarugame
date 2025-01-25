@@ -1,6 +1,6 @@
 import { canvas, ctx } from './index.js';
-import { Sounds, Config, CollisionManager, Over, Clear } from './index.js';
-import { GAME_STATE, ROPE, SARU, OBJ_MANAGER, HEADER_UI, EFFECTS } from './index.js';
+import { Sounds, CollisionManager, Over, Clear } from './index.js';
+import { CONFIG, GAME_STATE, ROPE, SARU, OBJ_MANAGER, HEADER_UI, EFFECTS } from './index.js';
 
 // シーン管理
 let scene = 0;//0:タイトル, 1:説明, 2:プレイ, 3:ゲームオーバー, 4:クリア
@@ -31,13 +31,22 @@ buttons.forEach(button => {//ボタン共通処理
 });
 
 let btns = {//個別のボタン要素
-  start: document.getElementById("title-btn"),
+  easy: document.getElementById("easy-btn"),
+  hard: document.getElementById("hard-btn"),
   yes: document.getElementById("yes-btn"),
   no: document.getElementById("no-btn"),
   retry: document.getElementById("retry-btn")
 }
 let events = [//個別のボタン要素のイベント処理
-  btns.start.addEventListener("click", () => {
+  btns.easy.addEventListener("click", () => {
+    setTimeout(() => {
+      CONFIG.gameMode = 0;//easyモード
+      setScene(1);//説明へ
+      setTimeout(init, 3000);//少し待ってからプレイ画面へ
+    }, 1000)
+  }),
+  btns.hard.addEventListener("click", () => {
+    CONFIG.gameMode = 1;//hardモード
     setTimeout(() => {
       setScene(1);//説明へ
       setTimeout(init, 3000);//少し待ってからプレイ画面へ
@@ -60,7 +69,6 @@ let overElms = {
 
 // インスタンス
 const SOUNDS = new Sounds; //サウンドデータ
-const CONFIG = new Config; //設定
 const COLLISION_MANAGER = new CollisionManager(SARU, OBJ_MANAGER);
 const OVER = new Over; //「ゲームオーバー」シーンの管理
 const CLEAR = new Clear; //「ゲームクリア」シーンの管理
@@ -102,7 +110,7 @@ function update() {
   if (state !== 1 && !GAME_STATE.over && !GAME_STATE.clear) COLLISION_MANAGER.checkCollisions();//hit中とダウン中以外は、当たり判定のチェックをして事後処理の分岐
   ROPE.update();
   SARU.update(state);
-  HEADER_UI.drawAll(state, GAME_STATE.currentLife, GAME_STATE.score, GAME_STATE.currentBananas, GAME_STATE.maxBananas);//(iconIndex, newLife, newScore, currentBananas)
+  HEADER_UI.drawAll(state, CONFIG.CURRENT_LIFE, GAME_STATE.score, CONFIG.CURRENT_BANANAS, CONFIG.MAX_BANANAS);//(iconIndex, newLife, newScore, currentBananas)
 }
 
 function draw() {
@@ -115,6 +123,7 @@ function draw() {
 
 function init() {//初期化関数
   SOUNDS.startBGM();//プレイ時のBGM開始（ループ再生）
+  CONFIG.reset();
   GAME_STATE.reset();
   ROPE.reset();
   SARU.reset();

@@ -1,35 +1,23 @@
-import { Images, Sounds } from './index.js';
-import { HEADER_UI, EFFECTS } from './index.js';
-
-const IMAGES = new Images();
+import { Sounds } from './index.js';
+import { CONFIG, HEADER_UI, EFFECTS } from './index.js';
 const SOUNDS = new Sounds();
-
 class GameState {
   constructor() {
-    this.scoreType = [10, 50]; // [バナナ,リンゴ]
-    this.initRemainingAppleTime = 5; // アップルタイムの基本効果時間(s)
-    this.remainingAppleTime = this.initRemainingAppleTime; // アップルタイムの残り時間(s)
-    this.addTime = 3; // アップルタイム中のリンゴ獲得による延長時間(s)
-    this.hitTime = 300; // hit中判定の時間（ms）
     this.reset();
   }
-
+  
   reset() {
     this.toOver = false;
     this.over = false;
     this.toClear = false;
     this.clear = false;
     this.state = 0;
-    this.maxBananas = 10;
-    this.currentBananas = 0;
-    this.maxLife = 5;
-    this.currentLife = this.maxLife;
     this.score = 0;
     this.appleTimer = null;
     this.countBananas = 0;
     this.countApples = 0;
     this.countUntis = 0;
-    HEADER_UI.init(this.state, this.currentLife, this.score, this.currentBananas, this.maxBananas);
+    HEADER_UI.init(this.state, CONFIG.CURRENT_LIFE, this.score, CONFIG.CURRENT_BANANAS, CONFIG.MAX_BANANAS);
   }
 
   getResult() {
@@ -42,46 +30,49 @@ class GameState {
   }
 
   #updateLife() {
-    this.currentLife--;
-    if (this.currentLife > this.maxLife) {
-      this.currentLife = this.maxLife;
+    CONFIG.CURRENT_LIFE--;
+    if (CONFIG.CURRENT_LIFE > CONFIG.MAX_LIFE) {
+      CONFIG.CURRENT_LIFE = CONFIG.MAX_LIFE;
       return;
-    } else if (this.currentLife <= 0) {
-      this.currentLife = 0;
+    } else if (CONFIG.CURRENT_LIFE <= 0) {
+      CONFIG.CURRENT_LIFE = 0;
       this.state = 2;
       this.toOver = true;
       return;
     } else {
       setTimeout(() => {
         this.state = 0;
-      }, this.hitTime);
+      }, CONFIG.HIT_TIME);
     }
   }
 
   hitBanana() {
     SOUNDS.se("banana");
     this.countBananas++;
-    this.currentBananas++;
-    this.#updateScore(this.scoreType[0]);
-    EFFECTS.updateScorePopup(this.scoreType[0]);
-    if (this.currentBananas >= this.maxBananas) this.toClear = true;
+    CONFIG.CURRENT_BANANAS++;
+    this.#updateScore(CONFIG.SCORE_TYPE[0]);
+    EFFECTS.updateScorePopup(CONFIG.SCORE_TYPE[0]);
+    if (CONFIG.CURRENT_BANANAS >= CONFIG.MAX_BANANAS) this.toClear = true;
   }
 
   hitApple() {
     if (this.state === 3) {
       SOUNDS.se("apple");
       this.countApples++;
-      this.#updateScore(this.scoreType[1]);
-      this.addAppleTime(this.addTime);
-      EFFECTS.updateScorePopup(this.scoreType[1]);
+      this.#updateScore(CONFIG.SCORE_TYPE[1]);
+      this.addAppleTime();
+      EFFECTS.updateScorePopup(CONFIG.SCORE_TYPE[1]);
+      return;
     } else {
       SOUNDS.se("appleTime");
       this.countApples++;
       this.state = 3;
-      this.#updateScore(this.scoreType[1]);
+      CONFIG.REMAINING_APPLE_TIME = CONFIG.INIT_REMAINING_APPLE_TIME;//基本効果時間を残り時間に代入
+      this.#updateScore(CONFIG.SCORE_TYPE[1]);
       this.startAppleTime();
-      EFFECTS.updateScorePopup(this.scoreType[1]);
+      EFFECTS.updateScorePopup(CONFIG.SCORE_TYPE[1]);
       EFFECTS.updateAppleTimePopup();
+      return;
     }
   }
 
@@ -94,16 +85,16 @@ class GameState {
 
   startAppleTime() {
     this.appleTimer = setInterval(() => {
-      if (this.remainingAppleTime > 0) {
-        this.remainingAppleTime--;
+      if (CONFIG.REMAINING_APPLE_TIME > 0) {
+        CONFIG.REMAINING_APPLE_TIME--;
       } else {
         this.stopAppleTime();
       }
     }, 1000);
   }
 
-  addAppleTime(addTime) {
-    this.remainingAppleTime += addTime;
+  addAppleTime( ) {
+    CONFIG.REMAINING_APPLE_TIME += CONFIG.ADD_TIME;
   }
 
   stopAppleTime() {

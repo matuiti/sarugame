@@ -1,16 +1,7 @@
-import { Images, Sounds, Config } from './index.js';
-import { GAME_STATE } from './index.js';
+import { Images, Sounds } from './index.js';
+import { CONFIG, GAME_STATE } from './index.js';
 const IMAGES = new Images;
 const SOUNDS = new Sounds;
-const CONFIG = new Config;
-
-const oCanvas = document.getElementById('over-canvas');
-const oCtx = oCanvas.getContext('2d');
-oCanvas.width = CONFIG.SCREEN_W;
-oCanvas.height = CONFIG.SCREEN_H;
-oCtx.imageSmoothingEnabled = true;
-oCtx.imageSmoothingQuality = 'high';
-
 const IMG = {
   numResult: IMAGES.num_result // 0~9の数字画像
 }
@@ -20,6 +11,13 @@ const OVER_ELMS = {
 }
 class Over {
   constructor() {
+    this.oCanvas = document.getElementById('over-canvas');
+    this.oCtx = this.oCanvas.getContext('2d');
+    this.oCanvas.width = CONFIG.SCREEN_W;
+    this.oCanvas.height = CONFIG.SCREEN_H;
+    this.oCtx.imageSmoothingEnabled = true;
+    this.oCtx.imageSmoothingQuality = 'high';
+
     this.score_x = 246;
     this.score_y = 459;
     this.score_w = 114;//124
@@ -45,7 +43,7 @@ class Over {
   }
 
   reset() {
-    oCtx.clearRect(0, 0, oCanvas.width, oCanvas.height); // 画面のクリア
+    this.oCtx.clearRect(0, 0, this.oCanvas.width, this.oCanvas.height); // 画面のクリア
     OVER_ELMS.overPanel.style.display = "none";
     OVER_ELMS.overSaru.src = 'images/over_saru@2x.png';
   }
@@ -60,11 +58,11 @@ class Over {
   }
 
   drawScore(score) {
-    this.drawNumber(oCtx, score, this.score_x, this.score_y, this.score_w, this.score_h, 5, this.score_startX); // 5桁
+    this.drawNumber(this.oCtx, score, this.score_x, this.score_y, this.score_w, this.score_h, 5, this.score_startX); // 5桁
   }
 
   drawItemCount(count, x, y, w, h) {
-    this.drawNumber(oCtx, count, x, y, w, h, 2, this.score_item_startX); // 2桁
+    this.drawNumber(this.oCtx, count, x, y, w, h, 2, this.score_item_startX); // 2桁
   }
 
   startOver() {
