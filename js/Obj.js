@@ -5,9 +5,6 @@ const IMAGES = new Images;
 const ITEMS = IMAGES.items; // 0:バナナ,1:リンゴ,2:うんち
 class Obj {
   constructor(type) {
-    this.BLOCK_W = CONFIG.BLOCK_W;
-    this.BLOCK_H = CONFIG.BLOCK_H;
-    this.FIELD_ROW = CONFIG.FIELD_ROW;
     this.type = type; // 0:バナナ,1:リンゴ,2:うんち
     this.image = ITEMS[this.type];
     this.x = this.rand(0, 9);
@@ -32,11 +29,11 @@ class Obj {
   }
 
   draw(ctx) {
-    ctx.drawImage(this.image, this.x * this.BLOCK_W, this.y * this.BLOCK_H, this.BLOCK_W, this.BLOCK_H);
+    ctx.drawImage(this.image, this.x * CONFIG.BLOCK_W, this.y * CONFIG.BLOCK_H, CONFIG.BLOCK_W, CONFIG.BLOCK_H);
   }
 
   move() {
-    if (this.y >= this.FIELD_ROW) {
+    if (this.y >= CONFIG.FIELD_ROW) {
       this.erase = true;
       return;
     }
